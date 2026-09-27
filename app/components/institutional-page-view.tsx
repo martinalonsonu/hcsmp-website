@@ -1,6 +1,7 @@
 import { Archive, ArrowUpRight, CalendarDays, UsersRound } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { assetUrl } from "@/app/data/assets";
 import { BrotherhoodHistoryPage } from "@/app/components/brotherhood-history-page";
 import {
   BrotherhoodOverview,
@@ -218,13 +219,14 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
               className={`object-cover grayscale ${hasPresidentsBackground ? "object-[center_48%]" : hasFoundersBackground ? "object-[center_55%]" : "object-center"}`}
               fill
               priority
+              quality={90}
               sizes="100vw"
               src={
                 hasPresidentsBackground
-                  ? "/assets/presidentes.jpg"
+                  ? assetUrl("presidentes.jpg")
                   : hasFoundersBackground
-                    ? "/assets/primeros-pasos.jpg"
-                    : "/assets/estandarte.jpg"
+                    ? assetUrl("primeros-pasos.jpg")
+                    : assetUrl("estandarte-1.jpg")
               }
             />
             <div

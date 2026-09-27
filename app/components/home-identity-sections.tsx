@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { assetUrl } from "@/app/data/assets";
 import { HomeClosingSection } from "@/app/components/home-closing-section";
 import { SectionCta } from "@/app/components/section-cta";
 import {
@@ -20,9 +21,9 @@ export function HomeIdentitySections() {
           aria-hidden="true"
           className="object-cover object-[center_48%] grayscale md:object-[center_35%]"
           fill
-          quality={75}
+          quality={90}
           sizes="100vw"
-          src="/assets/smp-cruz.jpg"
+          src={assetUrl("smp-cruz.jpg")}
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[#111111]/80" />
         <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
@@ -75,9 +76,9 @@ export function HomeIdentitySections() {
               alt="Imagen de San Martín de Porres en su anda procesional"
               className="object-cover object-[center_32%]"
               fill
-              quality={80}
+              quality={90}
               sizes="(max-width: 768px) 100vw, 48vw"
-              src="/assets/smp.jpg"
+              src={assetUrl("smp.jpg")}
             />
             <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/75 to-transparent px-5 pb-5 pt-16 text-xs text-white/85">
               San Martín de Porres · Cruz Blanca
@@ -221,9 +222,9 @@ export function HomeIdentitySections() {
           aria-hidden="true"
           className="object-cover object-[center_38%] grayscale opacity-45"
           fill
-          quality={75}
+          quality={90}
           sizes="100vw"
-          src="/assets/acuarela.jpg"
+          src={assetUrl("acuarela.jpg")}
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[#111111]/65" />
         <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">

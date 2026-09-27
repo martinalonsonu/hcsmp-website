@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { brotherhoodLogoUrl } from "@/app/data/assets";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { navigationGroups } from "@/app/data/navigation";
@@ -89,7 +90,8 @@ export function SiteHeader() {
                 className="size-full object-contain"
                 height={1080}
                 priority
-                src="/assets/hcsmp-logo.png"
+                quality={90}
+                src={brotherhoodLogoUrl}
                 width={1080}
               />
             </span>

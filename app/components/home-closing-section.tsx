@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { assetUrl } from "@/app/data/assets";
 
 export function HomeClosingSection() {
   return (
@@ -11,9 +12,9 @@ export function HomeClosingSection() {
         alt="Hermanos de la Hermandad reunidos en una fotografía histórica"
         className="object-cover object-center grayscale"
         fill
-        quality={80}
+        quality={90}
         sizes="100vw"
-        src="/assets/hcsmp-90.jpg"
+        src={assetUrl("hcsmp-90-1.jpg")}
       />
       <div aria-hidden="true" className="absolute inset-0 bg-black/55" />
       <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-5xl sm:w-[calc(100%-2.5rem)]">

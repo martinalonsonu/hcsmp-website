@@ -1,3 +1,5 @@
+import { assetUrl } from "@/app/data/assets";
+
 export type HistoryChapter = {
   id: string;
   eyebrow: string;
@@ -57,7 +59,7 @@ export const historyChapters: HistoryChapter[] = [
       "El 23 de abril de 1967 se formó en el local del Círculo Deportivo de Cruz Blanca el Comité Central Pro-Construcción del Templo de San Martín de Porres, presidido por el señor Marcelino Mundo. En esos años la imagen comenzó a peregrinar por distintos sectores del norte chico.",
     ],
     image: {
-      src: "/assets/antigua.jpg",
+      src: assetUrl("antigua.jpg"),
       alt: "Hermanos y devotos reunidos junto a la imagen de San Martín de Porres frente a un templo",
       caption:
         "Fotografía de archivo de la Hermandad. Fecha y protagonistas por identificar.",

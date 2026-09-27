@@ -43,6 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="es"
       className={`${poppins.variable} ${libreBaskerville.variable}`}
+      data-scroll-behavior="smooth"
     >
       <body className="min-h-screen bg-paper font-sans text-ink antialiased">
         <a

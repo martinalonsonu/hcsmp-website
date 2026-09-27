@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import { firstSisters } from "@/app/data/brotherhood";
+import { assetUrl } from "@/app/data/assets";
 import { historyChapters } from "@/app/data/history";
 import { historicalEvents } from "@/app/data/institutional-pages";
 
@@ -16,8 +17,9 @@ export function BrotherhoodHistoryPage() {
           className="object-cover object-center grayscale"
           fill
           priority
+          quality={90}
           sizes="100vw"
-          src="/assets/escudo.jpg"
+          src={assetUrl("escudo-1.jpg")}
         />
         <div aria-hidden="true" className="absolute inset-0 bg-black/55" />
         <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
@@ -125,6 +127,7 @@ export function BrotherhoodHistoryPage() {
                       alt={chapter.image.alt}
                       className="object-cover"
                       fill
+                      quality={90}
                       sizes="(max-width: 768px) 100vw, 70vw"
                       src={chapter.image.src}
                     />

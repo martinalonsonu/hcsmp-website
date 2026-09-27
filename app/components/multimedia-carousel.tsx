@@ -3,38 +3,39 @@
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { assetUrl } from "@/app/data/assets";
 
 const slides = [
   {
-    src: "/assets/alfombra.jpg",
+    src: assetUrl("alfombra.jpg"),
     alt: "Procesión de San Martín de Porres sobre la alfombra floral del homenaje institucional de 2018",
     title: "Paso procesional del 3 de noviembre",
     caption: "2018 · Homenaje institucional",
     position: "center 62%",
   },
   {
-    src: "/assets/jubileo-800.jpg",
+    src: assetUrl("jubileo-800.jpg"),
     alt: "Hermanos de la Hermandad participando en la procesión por los 800 años de la Orden Dominica en Lima",
     title: "800 años de la Orden Dominica",
     caption: "Lima · Procesión jubilar",
     position: "center 52%",
   },
   {
-    src: "/assets/tres-nov2020.jpg",
+    src: assetUrl("tres-nov2020.jpg"),
     alt: "Hermanos reunidos para el día central de San Martín de Porres el 3 de noviembre de 2020",
     title: "Nuestro día central en la Pandemia",
     caption: "3 de noviembre de 2020",
     position: "center 58%",
   },
   {
-    src: "/assets/milagros.jpg",
+    src: assetUrl("milagros.jpg"),
     alt: "Encuentro de la Hermandad con el Señor de los Milagros de Huacho durante la procesión del 31 de octubre de 2014",
     title: "Encuentro con el Señor de los Milagros",
     caption: "Huacho · 31 de octubre de 2014",
     position: "center 52%",
   },
   {
-    src: "/assets/hcsmp-lima.jpg",
+    src: assetUrl("hcsmp-lima-1.jpg"),
     alt: "Hermanos de la Hermandad en el Convento de Santo Domingo de Lima para la procesión de los Pasos de la Pasión",
     title: "Procesión de los Pasos de la Pasión",
     caption: "Convento de Santo Domingo de Lima · Martes Santo Dominico 2026",
@@ -105,7 +106,7 @@ export function MultimediaCarousel() {
               className="object-cover"
               fill
               priority={index === 0}
-              quality={80}
+              quality={90}
               sizes="(max-width: 768px) 100vw, 90vw"
               src={slide.src}
               style={{ objectPosition: slide.position }}

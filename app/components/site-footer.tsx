@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { brotherhoodLogoUrl } from "@/app/data/assets";
 import { CurrentYear } from "@/app/components/current-year";
 import { footerNavigation } from "@/app/data/navigation";
 
@@ -13,7 +14,8 @@ export function SiteFooter() {
               alt="Emblema de la Hermandad de Cargadores de San Martín de Porres"
               className="size-full object-contain"
               height={1080}
-              src="/assets/hcsmp-logo.png"
+              quality={90}
+              src={brotherhoodLogoUrl}
               width={1080}
             />
           </span>
@@ -46,7 +48,8 @@ export function SiteFooter() {
       </div>
       <div className="mx-auto mt-8 flex w-[calc(100%-2rem)] flex-col gap-3 border-t border-white/15 pt-5 text-[11px] text-white/60 sm:w-[calc(100%-2.5rem)] sm:flex-row sm:items-center sm:justify-between md:w-[calc(100%-4rem)]">
         <p>
-          © <CurrentYear /> Hermandad de Cargadores de San Martín de Porres
+          © <CurrentYear /> Hermandad de Cargadores de San Martín de Porres.
+          Todos los derechos reservados.
         </p>
         <p>
           Hecho con <span aria-label="amor">❤️</span> por{" "}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { assetUrl } from "@/app/data/assets";
 
 export function HomeHero() {
   return (
@@ -9,9 +10,9 @@ export function HomeHero() {
         className="object-cover object-top md:object-[center_4%]"
         fill
         preload
-        quality={85}
+        quality={90}
         sizes="100vw"
-        src="/assets/home_hero.jpg"
+        src={assetUrl("home_hero.jpg")}
       />
       <div className="absolute inset-0 bg-linear-to-r from-black/45 via-black/20 to-transparent" />
       <div className="absolute inset-0 bg-linear-to-t from-black/55 via-black/10 to-transparent" />
