@@ -11,7 +11,9 @@ type NewsPageProps = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return newsArticles.map((article) => ({ slug: article.slug }));
+  return newsArticles.length > 0
+    ? newsArticles.map((article) => ({ slug: article.slug }))
+    : [{ slug: "sin-publicaciones" }];
 }
 
 export async function generateMetadata({
@@ -19,6 +21,12 @@ export async function generateMetadata({
 }: NewsPageProps): Promise<Metadata> {
   const { slug } = await params;
   const article = getNewsArticle(slug);
+  if (!article && newsArticles.length === 0 && slug === "sin-publicaciones") {
+    return {
+      title: "Noticias",
+      description: "Aún no hay noticias publicadas.",
+    };
+  }
   if (!article) notFound();
 
   return {
@@ -37,6 +45,21 @@ export async function generateMetadata({
 export default async function NewsArticlePage({ params }: NewsPageProps) {
   const { slug } = await params;
   const article = getNewsArticle(slug);
+  if (!article && newsArticles.length === 0 && slug === "sin-publicaciones") {
+    return (
+      <article className="mx-auto w-[calc(100%-2rem)] max-w-4xl py-14 sm:w-[calc(100%-2.5rem)] sm:py-20 md:py-28">
+        <Link
+          className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
+          href="/"
+        >
+          <ArrowLeft aria-hidden="true" size={15} /> Volver al inicio
+        </Link>
+        <h1 className="mt-10 font-display text-4xl leading-tight sm:text-5xl md:text-6xl">
+          Aún no hay noticias publicadas
+        </h1>
+      </article>
+    );
+  }
   if (!article) notFound();
 
   return (

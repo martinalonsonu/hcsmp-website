@@ -1,10 +1,18 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const siteUrl = (
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  ).replace(/\/+$/, "");
+  const basePath =
+    process.env.NEXT_PUBLIC_BASE_PATH === "/"
+      ? ""
+      : (process.env.NEXT_PUBLIC_BASE_PATH ?? "");
 
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: new URL("/sitemap.xml", siteUrl).toString(),
+    sitemap: `${siteUrl}${basePath}/sitemap.xml`,
   };
 }

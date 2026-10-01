@@ -18,9 +18,9 @@ const libreBaskerville = Libre_Baskerville({
 });
 
 export const metadata: Metadata = {
-  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
-    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
-    : undefined,
+  metadataBase: new URL(
+    `${(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/+$/, "")}${process.env.NEXT_PUBLIC_BASE_PATH === "/" ? "" : (process.env.NEXT_PUBLIC_BASE_PATH ?? "")}/`,
+  ),
   title: {
     default: "Hermandad de Cargadores de San Martín de Porres | Cruz Blanca",
     template: "%s | Hermandad de San Martín de Porres",

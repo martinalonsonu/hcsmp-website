@@ -15,27 +15,32 @@ export const foundingFigures: FoundingFigure[] = [
   {
     id: "victorino-collantes-sipan",
     name: "Victorino Collantes Sipán",
-    note: "Señalado en la memoria compartida como primer presidente.",
+    note: "Fundador y Primer Presidente.",
   },
   {
     id: "eleodoro-garcia-nicho",
     name: "Eleodoro García Nicho",
-    note: "Mencionado entre las figuras de los primeros años.",
+    note: "Fundador.",
   },
   {
     id: "nicolas-nicho",
     name: "Nicolás Nicho",
-    note: "Mencionado entre las figuras de los primeros años.",
+    note: "Fundador",
   },
   {
     id: "alcides-fernandez",
     name: "Alcides Fernández",
-    note: "Mencionado entre las figuras de los primeros años.",
+    note: "Fundador.",
   },
   {
     id: "jorge-nunez",
     name: "Jorge Núñez",
-    note: "Mencionado en la memoria de la formalización eclesial de 1991.",
+    note: "Fundador y primer presidente reconocido eclesialmente",
+  },
+  {
+    id: "jorge-nicho",
+    name: "Jorge Nicho Mauricio",
+    note: "Fundador",
   },
 ];
 
@@ -57,7 +62,7 @@ export const presidencyReferences: PresidencyReference[] = [
     name: "Jorge Núñez",
     context:
       "Primer presidente reconocido por la autoridad eclesial diocesana.",
-    date: "1991 · 1992",
+    date: "1990 · 1991",
   },
   {
     id: "martin-nunez-1999-2000",
