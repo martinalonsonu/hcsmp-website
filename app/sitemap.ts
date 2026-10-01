@@ -15,7 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "/",
     "/contacto",
-    ...institutionalPages.map((page) => page.path),
+    ...institutionalPages
+      .filter(
+        (page) =>
+          page.path !== "/san-martin" && !page.path.startsWith("/san-martin/"),
+      )
+      .map((page) => page.path),
     ...newsArticles.map((article) => `/noticias/${article.slug}`),
   ];
 

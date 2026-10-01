@@ -2,7 +2,10 @@ import { Archive, ArrowUpRight, CalendarDays, UsersRound } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { assetUrl } from "@/app/data/assets";
+import { newsArticles } from "@/app/data/news";
+import { PrimaryImageBackground } from "@/app/components/primary-image-background";
 import { BrotherhoodHistoryPage } from "@/app/components/brotherhood-history-page";
+import { SanMartinPage } from "@/app/components/san-martin-page";
 import {
   BrotherhoodOverview,
   FoundersArchive,
@@ -181,6 +184,54 @@ function EmptyPeopleState({ page }: { page: InstitutionalPage }) {
   );
 }
 
+function NewsList() {
+  return (
+    <div className="space-y-5">
+      {newsArticles.map((article) => (
+        <article
+          className="overflow-hidden border border-line"
+          key={article.slug}
+        >
+          <Link
+            className="group grid sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
+            href={`/noticias/${article.slug}`}
+          >
+            {article.image && (
+              <div className="relative aspect-16/10 overflow-hidden bg-mist sm:aspect-auto sm:min-h-64">
+                <Image
+                  alt={article.title}
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  fill
+                  quality={90}
+                  sizes="(max-width: 640px) 100vw, 40vw"
+                  src={article.image}
+                />
+              </div>
+            )}
+            <div className="flex flex-col justify-center p-5 sm:p-7 md:p-9">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay">
+                {article.eyebrow ?? article.category}
+              </p>
+              <h2 className="mt-3 font-display text-2xl leading-tight group-hover:text-clay sm:text-3xl">
+                {article.title}
+              </h2>
+              <p className="mt-4 flex items-center gap-2 text-xs text-muted">
+                <CalendarDays aria-hidden="true" size={14} /> {article.date}
+              </p>
+              <p className="mt-4 text-sm leading-7 text-muted">
+                {article.summary}
+              </p>
+              <span className="mt-5 inline-flex min-h-10 items-center gap-2 text-xs font-semibold text-forest-link">
+                Leer boletín <ArrowUpRight aria-hidden="true" size={15} />
+              </span>
+            </div>
+          </Link>
+        </article>
+      ))}
+    </div>
+  );
+}
+
 function PageKindContent({ page }: { page: InstitutionalPage }) {
   if (page.kind === "brotherhood") return <BrotherhoodOverview />;
   if (page.kind === "founders") return <FoundersArchive />;
@@ -190,6 +241,7 @@ function PageKindContent({ page }: { page: InstitutionalPage }) {
   if (page.kind === "route") return <RouteGuide />;
   if (page.kind === "archive") return <ArchiveFilter />;
   if (page.kind === "people") return <EmptyPeopleState page={page} />;
+  if (page.kind === "news") return <NewsList />;
   return null;
 }
 
@@ -197,36 +249,41 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
   if (page.path === "/hermandad/historia") {
     return <BrotherhoodHistoryPage />;
   }
+  if (page.path === "/san-martin-de-porres") return <SanMartinPage />;
 
   const hasBrotherhoodBackground = page.path === "/hermandad";
   const hasPresidentsBackground = page.path === "/hermandad/presidentes";
   const hasFoundersBackground = page.path === "/hermandad/fundadores";
+  const hasLifeBackground = page.path === "/hermandad/vida";
+  const hasFiestaBackground = page.path === "/fiesta";
   const hasImageBackground =
     hasBrotherhoodBackground ||
     hasPresidentsBackground ||
-    hasFoundersBackground;
+    hasFoundersBackground ||
+    hasLifeBackground ||
+    hasFiestaBackground;
 
   return (
     <>
       <header
-        className={`relative isolate overflow-hidden border-b py-12 sm:py-16 md:py-20 ${hasPresidentsBackground || hasFoundersBackground ? "min-h-[340px] border-[#48443d] bg-[#111111] text-[#f4f0e6] sm:min-h-[380px] md:min-h-[420px]" : hasBrotherhoodBackground ? "border-[#48443d] bg-[#111111] text-[#f4f0e6]" : "border-line bg-mist/50"}`}
+        className={`relative isolate overflow-hidden border-b py-12 sm:py-16 md:py-20 ${hasPresidentsBackground || hasFoundersBackground || hasLifeBackground || hasFiestaBackground ? "min-h-[340px] border-[#48443d] bg-[#111111] text-[#f4f0e6] sm:min-h-[380px] md:min-h-[420px]" : hasBrotherhoodBackground ? "border-[#48443d] bg-[#111111] text-[#f4f0e6]" : "border-line bg-mist/50"}`}
       >
         {hasImageBackground && (
           <>
-            <Image
+            <PrimaryImageBackground
               alt=""
-              aria-hidden="true"
-              className={`object-cover grayscale ${hasPresidentsBackground ? "object-[center_48%]" : hasFoundersBackground ? "object-[center_55%]" : "object-center"}`}
-              fill
-              priority
+              className={`object-cover grayscale ${hasPresidentsBackground ? "object-[center_48%]" : hasFoundersBackground ? "object-[center_55%]" : hasLifeBackground ? "object-[center_48%] md:object-[center_35%]" : "object-center"}`}
               quality={90}
-              sizes="100vw"
               src={
                 hasPresidentsBackground
                   ? assetUrl("presidentes.jpg")
                   : hasFoundersBackground
                     ? assetUrl("primeros-pasos.jpg")
-                    : assetUrl("estandarte-1.jpg")
+                    : hasLifeBackground
+                      ? "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/70595698_2344695052244982_6646925837222281216_n.jpg"
+                      : hasFiestaBackground
+                        ? "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/489105222_9402938193087264_7697141976573185879_n.jpg"
+                        : assetUrl("estandarte-1.jpg")
               }
             />
             <div

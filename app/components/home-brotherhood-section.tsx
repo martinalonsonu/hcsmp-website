@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SectionCta } from "@/app/components/section-cta";
 
 const brotherhoodAreas = [
@@ -9,23 +8,18 @@ const brotherhoodAreas = [
   },
   {
     number: "02",
-    title: "Actividades",
-    detail: "Encuentros que mantienen viva la vida institucional.",
+    title: "Caridad",
+    detail: "Servicio cercano, inspirado en San Martín de Porres.",
   },
   {
     number: "03",
-    title: "Apostolado",
-    detail: "Servicio cercano, inspirado en el ejemplo de San Martín.",
-  },
-  {
-    number: "04",
     title: "Fraternidad",
     detail: "Lazos que sostienen a la Hermandad dentro y fuera de noviembre.",
   },
   {
     number: "05",
-    title: "Convocatorias",
-    detail: "Espacio para participar y sumarse a la vida común.",
+    title: "Convivenciax",
+    detail: "Espacios para participar y sumarse a la vida común.",
   },
 ];
 
@@ -35,7 +29,7 @@ export function HomeBrotherhoodSection() {
       <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-5 sm:w-[calc(100%-2.5rem)] sm:gap-8 md:w-[calc(100%-4rem)] md:grid-cols-[0.75fr_1.25fr] md:gap-20">
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
-            Todo el año
+            Vida Eclesial
           </p>
           <h2 className="mt-3 font-display text-2xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
             Vida de Hermandad
@@ -44,15 +38,7 @@ export function HomeBrotherhoodSection() {
             La devoción continúa en la formación, el encuentro y el servicio
             compartido.
           </p>
-          <div className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-1">
-            <Link
-              className="inline-flex min-h-11 items-center gap-3 text-sm font-semibold text-forest-link hover:text-clay"
-              href="/vida-de-hermandad"
-            >
-              Conoce nuestra vida comunitaria <span aria-hidden="true">→</span>
-            </Link>
-            <SectionCta href="/hermandad">Conoce a la Hermandad</SectionCta>
-          </div>
+          <SectionCta href="/hermandad">Conoce a la Hermandad</SectionCta>
         </div>
         <div className="border-t border-line">
           {brotherhoodAreas.map(({ number, title, detail }) => (

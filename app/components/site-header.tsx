@@ -75,9 +75,11 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className={`sticky top-0 z-30 border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${isScrolled ? "border-line/80 bg-paper/85 shadow-sm backdrop-blur-md" : "border-line bg-paper"}`}
+        className={`sticky top-0 z-30 border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${isScrolled ? "border-line/70 bg-paper/75 shadow-md backdrop-blur-md" : "border-line bg-paper"}`}
       >
-        <div className="mx-auto flex min-h-[4.5rem] w-[calc(100%-2.5rem)] max-w-7xl items-center justify-between gap-6 md:min-h-20 md:w-[calc(100%-4rem)]">
+        <div
+          className={`mx-auto flex w-[calc(100%-2.5rem)] max-w-7xl items-center justify-between gap-6 transition-[min-height] duration-300 md:w-[calc(100%-4rem)] ${isScrolled ? "min-h-18 md:min-h-20" : "min-h-16 md:min-h-18"}`}
+        >
           <Link
             aria-label="Hermandad de Cargadores de San Martín de Porres, inicio"
             className="flex shrink-0 items-center gap-3 text-forest-text"
@@ -151,9 +153,9 @@ export function SiteHeader() {
             })}
             <Link
               className="inline-flex min-h-11 items-center justify-center whitespace-nowrap border border-forest/30 px-3 text-xs font-semibold text-forest-text transition-colors hover:bg-forest hover:text-white-warm 2xl:px-4"
-              href="/hermandad/historia"
+              href="/contacto/"
             >
-              Conoce nuestra historia
+              Sé parte
             </Link>
           </nav>
         </div>
@@ -229,10 +231,10 @@ export function SiteHeader() {
             })}
             <Link
               className="mt-5 inline-flex min-h-11 w-full items-center justify-center border border-forest/30 px-4 text-xs font-semibold text-forest-text transition-colors hover:bg-forest hover:text-white-warm"
-              href="/hermandad/historia"
+              href="/contacto/"
               onClick={() => setIsMenuOpen(false)}
             >
-              Conoce nuestra historia
+              Sé parte
             </Link>
           </div>
         </nav>

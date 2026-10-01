@@ -18,7 +18,8 @@ export type InstitutionalPage = {
     | "people"
     | "archive"
     | "feast"
-    | "route";
+    | "route"
+    | "news";
   sections: InstitutionalSection[];
   related?: string[];
 };
@@ -260,6 +261,7 @@ export const institutionalPages: InstitutionalPage[] = [
       "/hermandad/historia",
       "/hermandad/fundadores",
       "/hermandad/presidentes",
+      "/hermandad/vida",
     ],
   },
   {
@@ -307,36 +309,26 @@ export const institutionalPages: InstitutionalPage[] = [
     related: ["/hermandad/historia"],
   },
   {
+    path: "/san-martin-de-porres",
+    title: "San Martín de Porres",
+    eyebrow: "Santo dominico peruano",
+    description:
+      "Biografía, espiritualidad dominicana y legado de caridad de San Martín de Porres.",
+    introduction:
+      "Nacido en Lima en 1579, San Martín de Porres hizo de la contemplación una vida de humildad, fraternidad y servicio, especialmente junto a las personas pobres y enfermas.",
+    sections: [],
+    related: ["/hermandad"],
+  },
+  {
     path: "/san-martin",
     title: "San Martín de Porres",
     eyebrow: "Santo dominico peruano",
     description:
-      "Vida y legado cristiano de San Martín de Porres, inspiración de la Hermandad.",
+      "Biografía, espiritualidad dominicana y legado de caridad de San Martín de Porres.",
     introduction:
-      "Un hombre que hizo del servicio una forma de vivir el Evangelio. Su ejemplo de humildad y caridad orienta la devoción de la Hermandad.",
-    sections: [
-      {
-        title: "Una vida de servicio",
-        body: "San Martín de Porres vivió en Lima entre 1579 y 1639. Religioso dominico, es recordado por su vida de oración, humildad y cercanía con las personas enfermas y necesitadas.",
-        items: [
-          {
-            label: "Su vida",
-            detail: "Contexto y camino de Martín de Porres.",
-            href: "/san-martin/vida",
-          },
-          {
-            label: "Su espiritualidad",
-            detail: "Oración, humildad y servicio al prójimo.",
-            href: "/san-martin/espiritualidad",
-          },
-        ],
-      },
-      {
-        title: "Un ejemplo que inspira",
-        body: "La devoción a San Martín no sustituye el centro de la fe cristiana: nos anima a seguir a Cristo mediante el servicio, la sencillez y el amor al prójimo.",
-      },
-    ],
-    related: ["/san-martin/vida", "/san-martin/espiritualidad", "/hermandad"],
+      "Nacido en Lima en 1579, San Martín de Porres hizo de la contemplación una vida de humildad, fraternidad y servicio, especialmente junto a las personas pobres y enfermas.",
+    sections: [],
+    related: ["/san-martin-de-porres"],
   },
   {
     path: "/san-martin/vida",
@@ -352,7 +344,7 @@ export const institutionalPages: InstitutionalPage[] = [
         body: "Fue canonizado por el papa Juan XXIII en 1962. Su memoria permanece ligada a una vida cristiana expresada en el servicio concreto.",
       },
     ],
-    related: ["/san-martin/espiritualidad", "/san-martin"],
+    related: ["/san-martin-de-porres#espiritualidad", "/san-martin-de-porres"],
   },
   {
     path: "/san-martin/espiritualidad",
@@ -372,7 +364,7 @@ export const institutionalPages: InstitutionalPage[] = [
         body: "Para la Hermandad, su ejemplo invita a que la devoción se traduzca en fraternidad y cercanía, más allá de la celebración anual.",
       },
     ],
-    related: ["/vida-de-hermandad/servicio", "/san-martin/vida"],
+    related: ["/hermandad/vida", "/san-martin-de-porres"],
   },
   {
     path: "/fiesta",
@@ -442,95 +434,28 @@ export const institutionalPages: InstitutionalPage[] = [
     related: ["/fiesta/procesion", "/fiesta/programa"],
   },
   {
-    path: "/vida-de-hermandad",
+    path: "/hermandad/vida",
     title: "Vida de Hermandad",
-    eyebrow: "Todo el año",
+    eyebrow: "Vida Eclesial",
     description:
       "Formación, servicio, fraternidad y actividades de la Hermandad.",
     introduction:
       "La vida de la Hermandad no se limita a noviembre. Se expresa en la formación, el encuentro y el servicio compartido.",
     sections: [
       {
-        title: "Crecer y servir",
-        body: "La formación cristiana y el apostolado acompañan la vida fraterna de los hermanos.",
-        items: [
-          {
-            label: "Formación cristiana",
-            detail: "Crecer en la fe también forma parte de nuestro camino.",
-            href: "/vida-de-hermandad/formacion",
-          },
-          {
-            label: "Servicio y apostolado",
-            detail: "La devoción se traduce en cercanía y cuidado.",
-            href: "/vida-de-hermandad/servicio",
-          },
-        ],
+        title: "Formación cristiana",
+        body: "Crecer en la fe también forma parte de nuestro camino como hermanos. La información de encuentros, materiales y convocatorias formativas se publicará cuando el calendario institucional esté disponible.",
       },
       {
-        title: "Encontrarse",
-        body: "Las actividades y convocatorias fortalecen los vínculos entre hermanos y devotos.",
-        items: [
-          {
-            label: "Actividades",
-            detail: "Encuentros y vida institucional.",
-            href: "/vida-de-hermandad/actividades",
-          },
-        ],
+        title: "Servicio y apostolado",
+        body: "Inspirados en San Martín, buscamos que nuestra devoción se traduzca en servicio y cercanía con quienes más lo necesitan. Las iniciativas de apostolado se incorporarán con sus objetivos, responsables y fechas cuando sean comunicadas por la Hermandad.",
       },
-    ],
-    related: [
-      "/vida-de-hermandad/formacion",
-      "/vida-de-hermandad/servicio",
-      "/vida-de-hermandad/actividades",
-    ],
-  },
-  {
-    path: "/vida-de-hermandad/formacion",
-    title: "Formación cristiana",
-    eyebrow: "Vida de Hermandad",
-    description:
-      "Espacios para profundizar en la fe y crecer como comunidad cristiana.",
-    introduction:
-      "Crecer en la fe también forma parte de nuestro camino como hermanos.",
-    sections: [
       {
-        title: "Aprender en comunidad",
-        body: "La información de encuentros, materiales y convocatorias formativas se publicará cuando el calendario institucional esté disponible.",
+        title: "Encuentros y actividades",
+        body: "La vida de la Hermandad se fortalece en el encuentro y en las actividades compartidas. Este espacio reunirá convocatorias internas y abiertas; las fechas y detalles se publicarán cuando estén confirmados. Actualmente no hay actividades publicadas.",
       },
     ],
-    related: ["/vida-de-hermandad", "/san-martin/espiritualidad"],
-  },
-  {
-    path: "/vida-de-hermandad/servicio",
-    title: "Servicio y apostolado",
-    eyebrow: "Vida de Hermandad",
-    description:
-      "El servicio y la solidaridad como expresión de la devoción a San Martín.",
-    introduction:
-      "Inspirados en San Martín, buscamos que nuestra devoción también se traduzca en servicio y cercanía con quienes más lo necesitan.",
-    sections: [
-      {
-        title: "Una fe que se hace cuidado",
-        body: "Las iniciativas de apostolado se incorporarán con sus objetivos, responsables y fechas una vez comunicadas por la Hermandad.",
-      },
-    ],
-    related: ["/vida-de-hermandad/formacion", "/san-martin/espiritualidad"],
-  },
-  {
-    path: "/vida-de-hermandad/actividades",
-    title: "Actividades y convocatorias",
-    eyebrow: "Vida institucional",
-    description:
-      "Encuentros, actividades y convocatorias de la vida de Hermandad.",
-    introduction:
-      "Este espacio reunirá las actividades internas y convocatorias abiertas para hermanos y devotos.",
-    sections: [
-      {
-        title: "Próximos encuentros",
-        body: "No hay actividades publicadas en este momento. Las convocatorias se compartirán cuando sus fechas y detalles estén confirmados.",
-      },
-    ],
-    related: ["/vida-de-hermandad", "/noticias"],
+    related: ["/hermandad", "/hermandad/historia", "/san-martin-de-porres"],
   },
   {
     path: "/memoria",
@@ -608,13 +533,9 @@ export const institutionalPages: InstitutionalPage[] = [
       "Noticias, comunicados, formación y actividades de la Hermandad.",
     introduction:
       "Un espacio para comunicados oficiales, actividades y noticias de la vida de la Hermandad.",
-    sections: [
-      {
-        title: "Publicaciones institucionales",
-        body: "Las noticias aparecerán aquí una vez revisadas y autorizadas por la Junta Directiva.",
-      },
-    ],
-    related: ["/vida-de-hermandad/actividades", "/fiesta"],
+    kind: "news",
+    sections: [],
+    related: ["/hermandad/vida", "/fiesta"],
   },
 ];
 

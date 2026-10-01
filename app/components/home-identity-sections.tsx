@@ -16,14 +16,10 @@ export function HomeIdentitySections() {
         className="relative isolate overflow-hidden bg-[#111111] py-10 text-[#f4f0e6] sm:py-16 md:py-24"
         id="historia"
       >
-        <Image
-          alt=""
+        <div
           aria-hidden="true"
-          className="object-cover object-[center_48%] grayscale md:object-[center_35%]"
-          fill
-          quality={90}
-          sizes="100vw"
-          src={assetUrl("smp-cruz.jpg")}
+          className="absolute inset-0 bg-fixed bg-cover bg-position-[center_48%] grayscale"
+          style={{ backgroundImage: `url("${assetUrl("smp-cruz.jpg")}")` }}
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[#111111]/80" />
         <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
@@ -39,8 +35,11 @@ export function HomeIdentitySections() {
                 Hitos reunidos desde antecedentes institucionales y la
                 cronología histórica compartida por la Hermandad.
               </p>
+              <SectionCta href="/contacto" inverse>
+                Sé parte
+              </SectionCta>
             </div>
-            <ol className="relative ml-1 grid border-l border-[#b89b5e]/70 md:ml-0 md:grid-cols-3 md:gap-x-6 md:gap-y-10 md:border-l-0">
+            <ol className="relative ml-1 grid border-l border-[#b89b5e]/70 md:ml-0 md:grid-cols-3 md:gap-y-10 md:border-l-0">
               {historicalEvents.slice(0, 6).map(({ id, year, title }) => (
                 <li
                   className="relative border-b border-white/15 pb-4 pl-6 last:border-b-0 last:pb-0 sm:pb-5 md:border-b-0 md:border-t md:border-[#b89b5e]/70 md:px-2 md:pb-0 md:pl-2 md:pt-6"
@@ -62,9 +61,6 @@ export function HomeIdentitySections() {
                 </li>
               ))}
             </ol>
-            <SectionCta href="/hermandad/historia" inverse>
-              Conoce nuestra historia
-            </SectionCta>
           </div>
         </div>
       </section>
@@ -92,16 +88,17 @@ export function HomeIdentitySections() {
               San Martín de Porres
             </h2>
             <p className="mt-3 max-w-xl text-xs leading-6 text-muted sm:mt-5 sm:text-base sm:leading-8">
-              Religioso dominico peruano, conocido por su humildad, su vida de
-              oración y su servicio a las personas enfermas y necesitadas. Su
-              ejemplo inspira una fe que se hace cuidado cotidiano.
+              Dominico limeño, hizo de la oración y la contemplación una vida de
+              servicio. Como hermano donado, puso sus oficios de barbero y
+              practicante de medicina al cuidado de personas pobres, enfermas y
+              excluidas. Su caridad y humildad siguen inspirando a la Hermandad.
             </p>
             <div className="mt-5 grid grid-cols-2 border-t border-line sm:mt-8">
               {[
-                ["1579—1639", "Su vida en Lima"],
-                ["1962", "Canonización"],
-                ["Oración", "Una espiritualidad sencilla"],
-                ["Servicio", "Una vida para los demás"],
+                ["9 dic 1579", "Nació en Lima"],
+                ["3 nov 1639", "Murió a los 59 años"],
+                ["1837", "Beatificado"],
+                ["6 may 1962", "Canonizado"],
               ].map(([term, detail]) => (
                 <div
                   className="border-b border-line py-3 pr-3 sm:py-5"
@@ -115,9 +112,11 @@ export function HomeIdentitySections() {
               ))}
             </div>
             <p className="mt-5 text-xs leading-6 text-muted">
-              Para la Hermandad, su ejemplo une fe, fraternidad y servicio.
+              Su ejemplo une fe, fraternidad y servicio al prójimo.
             </p>
-            <SectionCta href="/san-martin">Conoce a San Martín</SectionCta>
+            <SectionCta href="/san-martin-de-porres">
+              Conoce a San Martín de Porres
+            </SectionCta>
           </div>
         </div>
       </section>

@@ -6,19 +6,16 @@ import { firstSisters } from "@/app/data/brotherhood";
 import { assetUrl } from "@/app/data/assets";
 import { historyChapters } from "@/app/data/history";
 import { historicalEvents } from "@/app/data/institutional-pages";
+import { PrimaryImageBackground } from "@/app/components/primary-image-background";
 
 export function BrotherhoodHistoryPage() {
   return (
     <>
       <header className="relative isolate overflow-hidden border-b border-[#48443d] bg-[#111111] py-10 text-[#f4f0e6] sm:py-14 md:py-20">
-        <Image
+        <PrimaryImageBackground
           alt=""
-          aria-hidden="true"
           className="object-cover object-center grayscale"
-          fill
-          priority
           quality={90}
-          sizes="100vw"
           src={assetUrl("escudo-1.jpg")}
         />
         <div aria-hidden="true" className="absolute inset-0 bg-black/55" />

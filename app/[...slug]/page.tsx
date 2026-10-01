@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { InstitutionalPageView } from "@/app/components/institutional-page-view";
 import {
   institutionalPageByPath,
@@ -10,19 +10,33 @@ type PageProps = {
   params: Promise<{ slug: string[] }>;
 };
 
+const legacyRouteRedirects = new Map([
+  ["/vida-de-hermandad", "/hermandad/vida"],
+  ["/vida-de-hermandad/formacion", "/hermandad/vida"],
+  ["/vida-de-hermandad/servicio", "/hermandad/vida"],
+  ["/vida-de-hermandad/actividades", "/hermandad/vida"],
+  ["/hermandad/vida/formacion", "/hermandad/vida"],
+  ["/hermandad/vida/servicio", "/hermandad/vida"],
+  ["/hermandad/vida/actividades", "/hermandad/vida"],
+]);
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return institutionalPages.map((page) => ({
-    slug: page.path.slice(1).split("/"),
-  }));
+  return [
+    ...institutionalPages.map((page) => page.path),
+    ...legacyRouteRedirects.keys(),
+  ].map((path) => ({ slug: path.slice(1).split("/") }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const page = institutionalPageByPath.get(`/${slug.join("/")}`);
+  const path = `/${slug.join("/")}`;
+  const page = institutionalPageByPath.get(
+    legacyRouteRedirects.get(path) ?? path,
+  );
   if (!page) notFound();
 
   return {
@@ -44,7 +58,18 @@ export async function generateMetadata({
 
 export default async function InstitutionalRoute({ params }: PageProps) {
   const { slug } = await params;
-  const page = institutionalPageByPath.get(`/${slug.join("/")}`);
+  const path = `/${slug.join("/")}`;
+  const legacyRedirect = legacyRouteRedirects.get(path);
+  if (legacyRedirect) redirect(legacyRedirect);
+  if (path === "/san-martin") redirect("/san-martin-de-porres");
+  if (path === "/san-martin/vida") {
+    redirect("/san-martin-de-porres#biografia");
+  }
+  if (path === "/san-martin/espiritualidad") {
+    redirect("/san-martin-de-porres#espiritualidad");
+  }
+
+  const page = institutionalPageByPath.get(path);
   if (!page) notFound();
 
   return <InstitutionalPageView page={page} />;
