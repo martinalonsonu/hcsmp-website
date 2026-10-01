@@ -1,8 +1,19 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Pause,
+  Play,
+  X,
+} from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
 import { assetUrl } from "@/app/data/assets";
 
 const slides = [
@@ -45,10 +56,68 @@ const slides = [
 
 export function MultimediaCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [hasFocus, setHasFocus] = useState(false);
-  const pauseRotation = isPaused || isHovered || hasFocus;
+  const lightboxRef = useRef<HTMLDialogElement>(null);
+  const openButtonRef = useRef<HTMLButtonElement>(null);
+  const pauseRotation = isPaused || isHovered || hasFocus || isLightboxOpen;
+
+  useEffect(() => {
+    const lightbox = lightboxRef.current;
+    if (!lightbox) return;
+
+    if (isLightboxOpen && !lightbox.open) {
+      lightbox.showModal();
+    } else if (!isLightboxOpen && lightbox.open) {
+      lightbox.close();
+    }
+  }, [isLightboxOpen]);
+
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+
+    const body = document.body;
+    const documentElement = document.documentElement;
+    const scrollY = window.scrollY;
+    const previousStyles = {
+      bodyPosition: body.style.position,
+      bodyTop: body.style.top,
+      bodyLeft: body.style.left,
+      bodyRight: body.style.right,
+      bodyWidth: body.style.width,
+      bodyOverflow: body.style.overflow,
+      bodyPaddingRight: body.style.paddingRight,
+      documentOverflow: documentElement.style.overflow,
+      documentScrollBehavior: documentElement.style.scrollBehavior,
+    };
+
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    body.style.overflow = "hidden";
+    body.style.paddingRight = `${window.innerWidth - documentElement.clientWidth}px`;
+    documentElement.style.overflow = "hidden";
+
+    return () => {
+      body.style.position = previousStyles.bodyPosition;
+      body.style.top = previousStyles.bodyTop;
+      body.style.left = previousStyles.bodyLeft;
+      body.style.right = previousStyles.bodyRight;
+      body.style.width = previousStyles.bodyWidth;
+      body.style.overflow = previousStyles.bodyOverflow;
+      body.style.paddingRight = previousStyles.bodyPaddingRight;
+      documentElement.style.overflow = previousStyles.documentOverflow;
+      documentElement.style.scrollBehavior = "auto";
+      window.scrollTo(0, scrollY);
+      documentElement.style.scrollBehavior =
+        previousStyles.documentScrollBehavior;
+    };
+  }, [isLightboxOpen]);
 
   useEffect(() => {
     if (pauseRotation) return;
@@ -77,6 +146,34 @@ export function MultimediaCarousel() {
     setActiveIndex((currentIndex) => (currentIndex + 1) % slides.length);
   }
 
+  function openLightbox(index: number) {
+    setLightboxIndex(index);
+    setActiveIndex(index);
+    setIsLightboxOpen(true);
+  }
+
+  function showLightboxPrevious() {
+    const previousIndex = (lightboxIndex - 1 + slides.length) % slides.length;
+    setLightboxIndex(previousIndex);
+    setActiveIndex(previousIndex);
+  }
+
+  function showLightboxNext() {
+    const nextIndex = (lightboxIndex + 1) % slides.length;
+    setLightboxIndex(nextIndex);
+    setActiveIndex(nextIndex);
+  }
+
+  function handleLightboxKeyDown(event: KeyboardEvent<HTMLDialogElement>) {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showLightboxPrevious();
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showLightboxNext();
+    }
+  }
+
   return (
     <div
       aria-label="Fotografías de la vida de la Hermandad"
@@ -102,7 +199,8 @@ export function MultimediaCarousel() {
             aria-hidden={index !== activeIndex}
           >
             <Image
-              alt={slide.alt}
+              alt=""
+              aria-hidden="true"
               className="object-cover"
               fill
               priority={index === 0}
@@ -111,11 +209,19 @@ export function MultimediaCarousel() {
               src={slide.src}
               style={{ objectPosition: slide.position }}
             />
+            <button
+              aria-label={`Ampliar fotografía: ${slide.title}`}
+              className="absolute inset-0 z-0 cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white"
+              onClick={() => openLightbox(index)}
+              ref={index === activeIndex ? openButtonRef : undefined}
+              tabIndex={index === activeIndex ? 0 : -1}
+              type="button"
+            />
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-linear-to-t from-black/75 via-black/10 to-transparent"
+              className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/75 via-black/10 to-transparent"
             />
-            <figcaption className="absolute inset-x-0 bottom-0 flex flex-col justify-between gap-3 p-5 text-white sm:flex-row sm:items-end sm:p-8">
+            <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col justify-between gap-3 p-5 text-white sm:flex-row sm:items-end sm:p-8">
               <span>
                 <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-white/75">
                   {slide.caption}
@@ -188,6 +294,86 @@ export function MultimediaCarousel() {
           </button>
         ))}
       </div>
+
+      <dialog
+        aria-labelledby="multimedia-lightbox-title"
+        className="fixed inset-0 m-0 h-dvh w-screen max-h-none max-w-none overflow-hidden border-0 bg-black/95 p-0 text-white backdrop:bg-black/80"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) {
+            lightboxRef.current?.close();
+          }
+        }}
+        onClose={() => {
+          setIsLightboxOpen(false);
+          requestAnimationFrame(() =>
+            openButtonRef.current?.focus({ preventScroll: true }),
+          );
+        }}
+        onKeyDown={handleLightboxKeyDown}
+        ref={lightboxRef}
+      >
+        <div
+          className="mx-auto flex h-full min-h-0 w-full max-w-7xl flex-col px-3 sm:px-6"
+          style={{
+            paddingBottom: "env(safe-area-inset-bottom)",
+            paddingTop: "env(safe-area-inset-top)",
+          }}
+        >
+          <div className="flex shrink-0 items-start justify-between gap-4 py-3 sm:py-4">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/65">
+                {slides[lightboxIndex].caption}
+              </p>
+              <h2
+                className="mt-2 font-display text-xl leading-snug sm:text-2xl"
+                id="multimedia-lightbox-title"
+              >
+                {slides[lightboxIndex].title}
+              </h2>
+            </div>
+            <button
+              aria-label="Cerrar fotografía ampliada"
+              autoFocus
+              className="grid size-11 shrink-0 place-items-center border border-white/40 text-white transition-colors hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              onClick={() => lightboxRef.current?.close()}
+              type="button"
+            >
+              <X aria-hidden="true" size={20} />
+            </button>
+          </div>
+
+          <div className="relative min-h-0 flex-1 bg-black/40">
+            <Image
+              alt={slides[lightboxIndex].alt}
+              className="object-contain"
+              fill
+              quality={95}
+              sizes="100vw"
+              src={slides[lightboxIndex].src}
+            />
+            <button
+              aria-label="Fotografía anterior"
+              className="absolute left-2 top-1/2 z-10 grid size-11 -translate-y-1/2 place-items-center border border-white/50 bg-black/45 text-white transition-colors hover:bg-black/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:left-4"
+              onClick={showLightboxPrevious}
+              type="button"
+            >
+              <ChevronLeft aria-hidden="true" size={22} />
+            </button>
+            <button
+              aria-label="Fotografía siguiente"
+              className="absolute right-2 top-1/2 z-10 grid size-11 -translate-y-1/2 place-items-center border border-white/50 bg-black/45 text-white transition-colors hover:bg-black/75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-4"
+              onClick={showLightboxNext}
+              type="button"
+            >
+              <ChevronRight aria-hidden="true" size={22} />
+            </button>
+          </div>
+
+          <p className="shrink-0 py-3 text-right text-xs text-white/65">
+            {String(lightboxIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+          </p>
+        </div>
+      </dialog>
     </div>
   );
 }

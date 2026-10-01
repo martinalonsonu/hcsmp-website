@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   basePath: configuredBasePath === "/" ? "" : configuredBasePath,
   images: {
+    qualities: [75, 90, 95],
     unoptimized: true,
   },
 };

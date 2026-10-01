@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { SectionCta } from "@/app/components/section-cta";
 import { MultimediaCarousel } from "@/app/components/multimedia-carousel";
