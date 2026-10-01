@@ -46,7 +46,7 @@ Invitamos a toda la comunidad a acompañar con fe y devoción el paso de San Mar
 **Hermandad de Cargadores de San Martín de Porres de Cruz Blanca**  
 *Parroquia La Santa Cruz – Cruz Blanca*
 
-**“Somos parte de tu historia de amor.”**`,
+**“¡Somos parte de tu historia de amor!”**`,
   },
 ];
 

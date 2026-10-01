@@ -35,7 +35,7 @@ export function BrotherhoodOverview() {
           Somos una institución de fieles laicos, que hace vida eclesial en la
           Parroquia La Santa Cruz, del barrio de Cruz Blanca, unida por la
           devoción a San Martín de Porres y una vida de fe, fraternidad y
-          servicio.
+          caridad.
         </p>
         <p className="mt-4 text-xs leading-6 text-muted sm:text-sm sm:leading-7">
           Diócesis de Huacho · Parroquia La Santa Cruz
@@ -137,7 +137,7 @@ export function BrotherhoodOverview() {
 
       <section className="border-l-2 border-clay pl-4 sm:pl-5">
         <p className="font-display text-xl leading-relaxed sm:text-2xl">
-          “Somos parte de tu historia de amor.”
+          “¡Somos parte de tu historia de amor!”
         </p>
       </section>
     </div>

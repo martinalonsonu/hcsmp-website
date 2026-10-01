@@ -27,7 +27,7 @@ export function SiteFooter() {
               Parroquia La Santa Cruz · Diócesis de Huacho
             </p>
             <p className="mt-4 text-xs text-[#b89b5e]">
-              Somos parte de tu historia de amor.
+              ¡Somos parte de tu historia de amor!
             </p>
           </div>
         </div>

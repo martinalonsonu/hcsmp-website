@@ -25,7 +25,7 @@ export function HomeClosingSection() {
           Una historia que comenzó hace generaciones y continúa en nosotros.
         </h2>
         <p className="mt-7 font-display text-lg italic text-[#d9d0c0] sm:text-2xl">
-          Somos parte de tu historia de amor.
+          ¡Somos parte de tu historia de amor!
         </p>
         <Link
           className="mt-9 inline-flex min-h-12 items-center justify-center border border-white/45 px-5 text-sm font-semibold text-white transition-colors hover:bg-white/10"

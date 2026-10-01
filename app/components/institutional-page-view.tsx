@@ -400,7 +400,7 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
       <section className="border-t border-line bg-mist/50 py-10 sm:py-12">
         <div className="mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-col gap-3 sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)] md:flex-row md:items-center md:justify-between">
           <p className="font-display text-lg">
-            Somos parte de tu historia de amor.
+            ¡Somos parte de tu historia de amor!
           </p>
           <Link
             className="inline-flex min-h-11 items-center gap-3 text-xs font-semibold text-forest-link hover:text-clay"
