@@ -18,7 +18,7 @@ const brotherhoodAreas = [
   },
   {
     number: "05",
-    title: "Convivenciax",
+    title: "Convivencia",
     detail: "Espacios para participar y sumarse a la vida común.",
   },
 ];

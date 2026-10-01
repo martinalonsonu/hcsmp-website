@@ -18,7 +18,7 @@ export function HomeIdentitySections() {
       >
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-fixed bg-cover bg-position-[center_48%] grayscale"
+          className="absolute inset-0 bg-scroll bg-cover bg-position-[center_48%] grayscale"
           style={{ backgroundImage: `url("${assetUrl("smp-cruz.jpg")}")` }}
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[#111111]/80" />
