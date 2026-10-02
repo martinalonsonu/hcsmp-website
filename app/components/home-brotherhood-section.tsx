@@ -38,7 +38,7 @@ export function HomeBrotherhoodSection() {
             La devoción continúa en la formación, el encuentro y el servicio
             compartido.
           </p>
-          <SectionCta href="/hermandad">Conoce a la Hermandad</SectionCta>
+          <SectionCta href="/hermandad/vida">Nuestro carisma</SectionCta>
         </div>
         <div className="border-t border-line">
           {brotherhoodAreas.map(({ number, title, detail }) => (

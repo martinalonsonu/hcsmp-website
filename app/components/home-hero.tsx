@@ -8,7 +8,6 @@ export function HomeHero() {
       <PrimaryImageBackground
         alt="Imagen de San Martín de Porres sobre su anda procesional"
         className="translate-y-0 scale-[1.08] object-cover object-top md:translate-y-[-4%] md:object-[center_4%]"
-        showLoadingScreen
         src={`${assetUrl("home_hero.jpg")}?w=2560&quality=85`}
       />
       <div className="absolute inset-0 bg-linear-to-r from-black/45 via-black/20 to-transparent" />

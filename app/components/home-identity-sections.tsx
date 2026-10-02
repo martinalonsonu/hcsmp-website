@@ -18,7 +18,7 @@ export function HomeIdentitySections() {
       >
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-scroll bg-cover bg-position-[center_48%] grayscale"
+          className="absolute inset-0 bg-scroll bg-cover bg-position-[center_48%] grayscale md:bg-fixed"
           style={{ backgroundImage: `url("${assetUrl("smp-cruz.jpg")}")` }}
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[#111111]/80" />
@@ -32,11 +32,10 @@ export function HomeIdentitySections() {
                 Nuestra historia
               </h2>
               <p className="mt-3 max-w-sm text-xs leading-6 text-white/75 sm:mt-5 sm:text-sm sm:leading-7">
-                Hitos reunidos desde antecedentes institucionales y la
-                cronología histórica compartida por la Hermandad.
+                Principales hitos que marcaron la historia de nuestra devoción.
               </p>
-              <SectionCta href="/contacto" inverse>
-                Sé parte
+              <SectionCta href="/hermandad/ " inverse>
+                Conoce más
               </SectionCta>
             </div>
             <ol className="relative ml-1 grid border-l border-[#b89b5e]/70 md:ml-0 md:grid-cols-3 md:gap-y-10 md:border-l-0">

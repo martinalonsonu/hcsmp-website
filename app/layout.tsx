@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { Libre_Baskerville, Poppins } from "next/font/google";
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
+import { NovemberCountdownRibbon } from "@/app/components/november-countdown-ribbon";
+import { getTimeUntilNovember } from "@/app/data/november-countdown";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -39,6 +41,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const initialCountdown = getTimeUntilNovember();
+
   return (
     <html
       lang="es"
@@ -52,6 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Saltar al contenido
         </a>
+        <NovemberCountdownRibbon initialCountdown={initialCountdown} />
         <SiteHeader />
         <main id="contenido" className="min-h-[60vh]">
           {children}
