@@ -4,6 +4,7 @@ import { Libre_Baskerville, Poppins } from "next/font/google";
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
 import { NovemberCountdownRibbon } from "@/app/components/november-countdown-ribbon";
+import { ScrollToTopButton } from "@/app/components/scroll-to-top-button";
 import { getTimeUntilNovember } from "@/app/data/november-countdown";
 import "./globals.css";
 
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <SiteFooter />
+        <ScrollToTopButton />
       </body>
     </html>
   );
