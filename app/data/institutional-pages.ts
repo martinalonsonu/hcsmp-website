@@ -17,8 +17,6 @@ export type InstitutionalPage = {
     | "history"
     | "people"
     | "archive"
-    | "feast"
-    | "route"
     | "news";
   sections: InstitutionalSection[];
   related?: string[];
@@ -288,11 +286,11 @@ export const institutionalPages: InstitutionalPage[] = [
   {
     path: "/hermandad/fundadores",
     title: "Quienes dieron los primeros pasos",
-    eyebrow: "Archivo de personas",
+    eyebrow: "Memoria",
     description:
       "Memoria de fundadores y protagonistas de los primeros años de la Hermandad.",
     introduction:
-      "Los primeros nombres llegan hasta nosotros a través de la memoria institucional compartida. Este registro conserva esas referencias y señala qué falta documentar.",
+      "Nombres que marcaron nuestra historia y fijaron nuestro nacimiento. Nuestra institución es también un legado de sus manos.",
     kind: "founders",
     sections: [],
     related: ["/hermandad/historia"],
@@ -303,7 +301,7 @@ export const institutionalPages: InstitutionalPage[] = [
     eyebrow: "Continuidad institucional",
     description: "Registro histórico de las presidencias de la Hermandad.",
     introduction:
-      "Algunas presidencias aparecen asociadas a momentos concretos de la memoria institucional. Publicamos esas referencias sin atribuir periodos de gestión que aún no están documentados.",
+      "Los nombres que dirigieron nuestra institución. Su legado, aporte, gestión y dirigencia es guía para las nuevas generaciones martinianas",
     kind: "presidents",
     sections: [],
     related: ["/hermandad/historia"],
@@ -371,34 +369,24 @@ export const institutionalPages: InstitutionalPage[] = [
     title: "Fiesta de San Martín",
     eyebrow: "Noviembre · Cruz Blanca",
     description:
-      "Información institucional sobre la Fiesta de San Martín y sus actividades.",
+      "La tradición, la fe y el encuentro comunitario en honor a San Martín de Porres en Cruz Blanca.",
     introduction:
-      "Noviembre vuelve a reunirnos alrededor de una devoción que forma parte de nuestra historia. La programación oficial se publicará una vez confirmada por la Hermandad.",
-    kind: "feast",
+      "En Cruz Blanca, la fiesta se vive caminando junto a Martín, encontrándonos como comunidad y renovando una devoción que ha acompañado al barrio por generaciones.",
     sections: [
       {
-        title: "La celebración",
-        body: "Programa, actividades, misa, procesión, guardada y recorridos se organizarán aquí por edición anual.",
+        title: "Una tradición que creció con el barrio",
+        body: "La festividad se celebraba tradicionalmente el 4 y 5 de noviembre, en recuerdo de la llegada de la imagen de San Martín de Porres a nuestro barrio, y era organizada por la Mayordomía. Con el nacimiento de la Hermandad, se sumaron al calendario las salidas del 6 de mayo, aniversario de su canonización, y del 3 de noviembre, solemnidad de San Martín, que hoy es nuestra fiesta y recorrido principal. En sus primeros años, la imagen recorría el barrio y luego llegó hasta la Urb. Pacocha o Puquio Cano. En el año 2000 realizó por primera vez un recorrido al centro de Huacho: un hecho histórico que se mantiene hasta hoy, con variaciones a lo largo de los años.",
       },
-    ],
-    related: ["/fiesta/programa", "/fiesta/procesion", "/fiesta/recorridos"],
-  },
-  {
-    path: "/fiesta/programa",
-    title: "Programa de fiesta 2026",
-    eyebrow: "Edición 2026 · Octubre y noviembre",
-    description:
-      "Fechas de referencia para las actividades de la Fiesta de San Martín 2026.",
-    introduction:
-      "El calendario reúne las actividades principales de la festividad, desde el solemne novenario hasta la celebración de guardada.",
-    kind: "feast",
-    sections: [
       {
-        title: "Agenda de noviembre",
-        body: "La programación contempla el novenario, la romería, las vísperas, el concurso de alfombras, el recorrido principal y la guardada.",
+        title: "Noviembre se vive en comunidad",
+        body: "Los nueve días del novenario nos preparan para la fiesta mediante la Eucaristía y la oración. El 1 de noviembre, la romería nos reúne para recordar a nuestros difuntos; ese mismo día, los niños del barrio comparten un momento de alegría en el show infantil. El 2 de noviembre, instituciones, vecinos y otros participantes crean las alfombras del tradicional concurso, una costumbre que lleva 20 años acompañándonos. Después de la misa de vísperas, la procesión recorre el perímetro de la plazuela de Cruz Blanca y visita las casas de quienes elaboraron sus alfombras.",
+      },
+      {
+        title: "Caminar juntos durante el año",
+        body: "El 6 de mayo salimos para recordar el aniversario de la canonización de San Martín. En noviembre, la procesión de vísperas del día 2 recorre el perímetro de la plazuela Félix B. Cárdemas y visita las casas de quienes prepararon las alfombras; muy temprano el día 3 celebramos la Eucaristía y emprendemos el recorrido principal hacia el centro de Huacho, para regresar a nuestro templo a la medianoche. Después, la Mayordomía celebra tradicionalmente los días 4 y 5. El último fin de semana del mes, la guardada institucional nos permite despedir el mes que vivimos con Martín y cerrar las celebraciones con un último recorrido.",
       },
     ],
-    related: ["/fiesta/procesion", "/fiesta/recorridos"],
+    related: ["/fiesta/procesion"],
   },
   {
     path: "/fiesta/procesion",
@@ -414,24 +402,7 @@ export const institutionalPages: InstitutionalPage[] = [
         body: "La experiencia procesional forma parte de una vida de Hermandad que se extiende durante todo el año.",
       },
     ],
-    related: ["/fiesta/recorridos", "/fiesta/programa"],
-  },
-  {
-    path: "/fiesta/recorridos",
-    title: "Recorridos procesionales",
-    eyebrow: "Fechas que reúnen a la comunidad",
-    description:
-      "Fechas y recorridos de la devoción a San Martín de Porres durante el año.",
-    introduction:
-      "Los recorridos acompañan momentos distintos de la vida de la Hermandad: la memoria de la canonización, las vísperas, la solemnidad y la guardada institucional.",
-    kind: "route",
-    sections: [
-      {
-        title: "Puntos de encuentro",
-        body: "El recorrido del 2 de noviembre rodea la plazuela Félix B. Cárdemas. El 3 de noviembre la procesión principal visita el centro de la ciudad de Huacho.",
-      },
-    ],
-    related: ["/fiesta/procesion", "/fiesta/programa"],
+    related: ["/fiesta"],
   },
   {
     path: "/hermandad/vida",
@@ -444,15 +415,15 @@ export const institutionalPages: InstitutionalPage[] = [
     sections: [
       {
         title: "Formación cristiana",
-        body: "Crecer en la fe también forma parte de nuestro camino como hermanos. La información de encuentros, materiales y convocatorias formativas se publicará cuando el calendario institucional esté disponible.",
+        body: "Crecer en la fe también forma parte de nuestro camino como hermanos. Vivimos la fe inspirados por la figura de San Martin de Porres. Su espiritualidad es la base de nuestro carisma: humildad, oración, caridad.",
       },
       {
         title: "Servicio y apostolado",
-        body: "Inspirados en San Martín, buscamos que nuestra devoción se traduzca en servicio y cercanía con quienes más lo necesitan. Las iniciativas de apostolado se incorporarán con sus objetivos, responsables y fechas cuando sean comunicadas por la Hermandad.",
+        body: "A ejemplo de San Martín, buscamos que nuestra devoción se traduzca en servicio y cercanía con quienes más lo necesitan. Anualmente nuestra institución fija objetivos de acción social. ¡Somos la extensión de las manos de Martin!",
       },
       {
         title: "Encuentros y actividades",
-        body: "La vida de la Hermandad se fortalece en el encuentro y en las actividades compartidas. Este espacio reunirá convocatorias internas y abiertas; las fechas y detalles se publicarán cuando estén confirmados. Actualmente no hay actividades publicadas.",
+        body: "La vida de la Hermandad se fortalece en el encuentro y en las actividades compartidas. Mensualmente nos reunimos los primeros domingos a las 11:00 AM. en donde compartimos nuestra Asamblea General. En ella damos opiniones, tomamos decisiones, y vivimos nuestra devoción. Adicionalmente tenemos diversas actividades que nos permiten formar lazos de hermandad.",
       },
     ],
     related: ["/hermandad", "/hermandad/historia", "/san-martin-de-porres"],
@@ -481,12 +452,12 @@ export const institutionalPages: InstitutionalPage[] = [
     description:
       "Archivo fotográfico de procesiones, celebraciones y vida de Hermandad.",
     introduction:
-      "Un registro visual de hermanos, celebraciones y generaciones, construido con fotografías aportadas por la comunidad.",
+      "Explora los álbumes públicos de Facebook con fotografías de procesiones, celebraciones y vida de Hermandad.",
     kind: "archive",
     sections: [
       {
-        title: "Colección en preparación",
-        body: "Las fotografías históricas propias se incorporarán con fecha, autoría y contexto cuando esos datos estén disponibles.",
+        title: "Álbumes de nuestra historia",
+        body: "Cada álbum abre en una pestaña nueva la publicación original de la página oficial de la Hermandad.",
       },
     ],
     related: ["/memoria"],
@@ -496,14 +467,14 @@ export const institutionalPages: InstitutionalPage[] = [
     title: "Documentos",
     eyebrow: "Archivo institucional",
     description:
-      "Documentos institucionales y antecedentes históricos de la Hermandad.",
+      "Documentos institucionales y antecedentes históricos de la Hermandad, disponibles para consulta.",
     introduction:
-      "Documentos que dan cuenta de la vida y el reconocimiento institucional de la Hermandad.",
+      "Consulta los documentos disponibles de nuestra vida institucional y eclesial.",
     kind: "archive",
     sections: [
       {
-        title: "Documentación por digitalizar",
-        body: "Los documentos se publicarán con su fecha, procedencia y descripción, respetando su integridad y los datos personales que corresponda proteger.",
+        title: "Documentos disponibles",
+        body: "Accede a los documentos institucionales disponibles para consulta.",
       },
     ],
     related: ["/memoria", "/hermandad/historia"],

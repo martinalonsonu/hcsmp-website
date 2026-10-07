@@ -35,9 +35,7 @@ export const navigationGroups: NavigationGroup[] = [
     label: "Fiesta",
     href: "/fiesta",
     links: [
-      { label: "Programa", href: "/fiesta/programa" },
       { label: "Procesión", href: "/fiesta/procesion" },
-      { label: "Recorridos", href: "/fiesta/recorridos" },
     ],
   },
   {

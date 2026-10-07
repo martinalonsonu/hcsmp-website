@@ -5,6 +5,9 @@ import { assetUrl } from "@/app/data/assets";
 import { newsArticles } from "@/app/data/news";
 import { PrimaryImageBackground } from "@/app/components/primary-image-background";
 import { BrotherhoodHistoryPage } from "@/app/components/brotherhood-history-page";
+import { DocumentArchive } from "@/app/components/document-archive";
+import { FiestaPage } from "@/app/components/fiesta-page";
+import { PhotoAlbumArchive } from "@/app/components/photo-album-archive";
 import { SanMartinPage } from "@/app/components/san-martin-page";
 import {
   BrotherhoodOverview,
@@ -13,11 +16,9 @@ import {
 } from "@/app/components/brotherhood-section-content";
 import { ArchiveFilter } from "@/app/components/archive-filter";
 import {
-  fiestaEvents,
   founders,
   historicalEvents,
   institutionalPageByPath,
-  processionalRouteEvents,
   presidents,
 } from "@/app/data/institutional-pages";
 import type { InstitutionalPage } from "@/app/data/institutional-pages";
@@ -102,66 +103,6 @@ function HistoryTimeline() {
   );
 }
 
-function FeastSchedule() {
-  return (
-    <ol className="grid border-t border-line sm:grid-cols-2 lg:grid-cols-3">
-      {fiestaEvents.map((event) => (
-        <li
-          className="border-b border-line py-5 sm:border-l sm:px-5 sm:py-6 lg:min-h-40"
-          key={event.id}
-        >
-          <p className="flex items-center gap-2 text-[10px] font-semibold tracking-[0.14em] text-clay">
-            <CalendarDays aria-hidden="true" size={14} /> {event.date}
-          </p>
-          <h2 className="mt-4 font-display text-lg leading-snug sm:text-xl">
-            {event.title}
-          </h2>
-          {event.detail && (
-            <p className="mt-3 text-xs leading-5 text-muted">{event.detail}</p>
-          )}
-          {event.time && (
-            <p className="mt-3 text-xs font-semibold text-forest-link">
-              {event.time}
-            </p>
-          )}
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-function RouteGuide() {
-  return (
-    <ol className="divide-y divide-line border-y border-line">
-      {processionalRouteEvents.map((event) => (
-        <li
-          className="grid gap-2 py-5 sm:grid-cols-[12rem_1fr] sm:gap-6 sm:py-6"
-          key={event.id}
-        >
-          <p className="flex items-start gap-2 text-xs font-semibold text-clay sm:text-sm">
-            <CalendarDays
-              aria-hidden="true"
-              className="mt-0.5 shrink-0"
-              size={15}
-            />
-            <span>{event.date}</span>
-          </p>
-          <div>
-            <h2 className="font-display text-lg leading-snug sm:text-xl">
-              {event.title}
-            </h2>
-            {event.detail && (
-              <p className="mt-2 text-sm leading-6 text-muted">
-                {event.detail}
-              </p>
-            )}
-          </div>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
 function EmptyPeopleState({ page }: { page: InstitutionalPage }) {
   const records = page.path.endsWith("fundadores") ? founders : presidents;
   if (records.length > 0) return null;
@@ -233,12 +174,13 @@ function NewsList() {
 }
 
 function PageKindContent({ page }: { page: InstitutionalPage }) {
+  if (page.path === "/memoria/fotografias") return <PhotoAlbumArchive />;
+  if (page.path === "/memoria") return <DocumentArchive />;
+  if (page.path === "/memoria/documentos") return <DocumentArchive />;
   if (page.kind === "brotherhood") return <BrotherhoodOverview />;
   if (page.kind === "founders") return <FoundersArchive />;
   if (page.kind === "presidents") return <PresidentsArchive />;
   if (page.kind === "history") return <HistoryTimeline />;
-  if (page.kind === "feast") return <FeastSchedule />;
-  if (page.kind === "route") return <RouteGuide />;
   if (page.kind === "archive") return <ArchiveFilter />;
   if (page.kind === "people") return <EmptyPeopleState page={page} />;
   if (page.kind === "news") return <NewsList />;
@@ -250,6 +192,7 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
     return <BrotherhoodHistoryPage />;
   }
   if (page.path === "/san-martin-de-porres") return <SanMartinPage />;
+  if (page.path === "/fiesta") return <FiestaPage page={page} />;
 
   const hasBrotherhoodBackground = page.path === "/hermandad";
   const hasPresidentsBackground = page.path === "/hermandad/presidentes";
@@ -388,7 +331,10 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
               </div>
             </section>
           ))}
-          {page.kind === "archive" && (
+          {page.kind === "archive" &&
+            page.path !== "/memoria" &&
+            page.path !== "/memoria/fotografias" &&
+            page.path !== "/memoria/documentos" && (
             <p className="flex items-center gap-2 text-xs leading-6 text-muted">
               <Archive aria-hidden="true" size={15} /> Colección institucional
               en preparación.

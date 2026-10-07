@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { assetUrl } from "@/app/data/assets";
 import { HomeClosingSection } from "@/app/components/home-closing-section";
+import { HomeNewsSection } from "@/app/components/home-archive-sections";
 import { SectionCta } from "@/app/components/section-cta";
 import {
-  fiestaEvents,
   historicalEvents,
   processionalRouteEvents,
 } from "@/app/data/institutional-pages";
@@ -120,6 +120,7 @@ export function HomeIdentitySections() {
         </div>
       </section>
 
+      <HomeNewsSection />
       <HomeClosingSection />
 
       <section
@@ -212,64 +213,38 @@ export function HomeIdentitySections() {
       </section>
 
       <section
-        className="relative isolate overflow-hidden bg-[#111111] py-10 text-[#f4f0e6] sm:py-16 md:py-24"
+        className="relative isolate overflow-hidden bg-[#111111] py-7 text-[#f4f0e6] sm:py-9 md:py-12"
         id="fiesta"
       >
         <Image
           alt=""
           aria-hidden="true"
-          className="object-cover object-[center_38%] grayscale opacity-45"
+          className="object-cover object-[center_25%] grayscale opacity-45"
           fill
           quality={90}
           sizes="100vw"
           src={assetUrl("acuarela.jpg")}
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[#111111]/65" />
-        <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
-          <div className="flex flex-col justify-between gap-3 sm:gap-5 md:flex-row md:items-end">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
-                Noviembre · Cruz Blanca
-              </p>
-              <h2 className="mt-3 font-display text-2xl font-normal leading-tight text-[#f4f0e6] sm:mt-4 sm:text-4xl md:text-5xl">
-                Solemne Festividad 2026
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm leading-6 text-[#f4f0e6]/80">
-              Programa de actividades de la Festividad de San Martín 2026.
+        <div className="relative z-10 mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-col gap-4 sm:w-[calc(100%-2.5rem)] sm:gap-5 md:w-[calc(100%-4rem)] md:flex-row md:items-center md:justify-between">
+          <div className="max-w-3xl">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
+              Noviembre · Cruz Blanca
             </p>
+            <h2 className="mt-2 font-display text-2xl font-normal leading-tight text-[#f4f0e6] sm:text-3xl md:text-4xl">
+              Solemne Festividad 2026
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-[#f4f0e6]/80">
+              Una tradición de fe y encuentro que cada noviembre reúne a nuestra
+              comunidad en torno a San Martín de Porres.
+            </p>
+            <Link
+              className="mt-3 inline-flex min-h-11 shrink-0 items-center gap-4 border-b border-[#b89b5e] pb-1 text-sm font-semibold text-[#fffefa] transition-colors hover:text-[#d9c28f]"
+              href="/noticias/programa-festividad-san-martin-2026/"
+            >
+              Conoce nuestra fiesta <span aria-hidden="true">→</span>
+            </Link>
           </div>
-          <ol className="mt-5 grid border-t border-white/25 sm:mt-8 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
-            {fiestaEvents.map(({ id, date, title, detail, time }) => (
-              <li
-                className="relative border-b border-white/25 py-4 sm:border-l sm:border-white/25 sm:px-5 sm:py-6 lg:min-h-36"
-                key={id}
-              >
-                <span className="text-[10px] font-semibold tracking-[0.14em] text-[#d9c28f]">
-                  {date}
-                </span>
-                <h3 className="mt-2 font-display text-base leading-snug text-[#fffefa] sm:mt-3 sm:text-xl">
-                  {title}
-                </h3>
-                {detail && (
-                  <p className="mt-2 text-sm leading-6 text-[#f4f0e6]/80">
-                    {detail}
-                  </p>
-                )}
-                {time && (
-                  <p className="mt-2 text-xs font-semibold text-[#d9c28f]">
-                    {time}
-                  </p>
-                )}
-              </li>
-            ))}
-          </ol>
-          <Link
-            className="mt-7 inline-flex min-h-11 items-center gap-4 border-b border-[#b89b5e] pb-1 text-sm font-semibold text-[#fffefa] transition-colors hover:text-[#d9c28f]"
-            href="/fiesta/programa"
-          >
-            Ver programa completo <span aria-hidden="true">→</span>
-          </Link>
         </div>
       </section>
 
@@ -314,9 +289,7 @@ export function HomeIdentitySections() {
               ))}
             </ol>
             <div className="flex justify-center">
-              <SectionCta href="/fiesta/recorridos">
-                Consultar recorridos
-              </SectionCta>
+              <SectionCta href="/fiesta">Conoce nuestros recorridos</SectionCta>
             </div>
           </div>
         </div>

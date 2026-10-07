@@ -6,7 +6,12 @@ const milestones = [
   {
     date: "9 dic 1579",
     title: "Nace en Lima",
-    detail: "Hijo de Juan de Porres y Ana Velázquez.",
+    detail: "Hijo de Juan de Porres y Ana Velázquez, mujer libre de origen africano.",
+  },
+  {
+    date: "A los 15 años",
+    title: "Ingresa al convento",
+    detail: "Comienza su vida de servicio en el Convento de Nuestra Señora del Rosario.",
   },
   {
     date: "3 nov 1639",
@@ -95,7 +100,8 @@ export function SanMartinPage() {
             ["Espiritualidad", "#espiritualidad"],
             ["Servicio", "#servicio"],
             ["Tradición", "#tradicion"],
-          ].map(([label, href]) => (
+          ["Legado", "#legado"],
+        ].map(([label, href]) => (
             <li className="shrink-0" key={href}>
               <Link
                 className="inline-flex min-h-12 items-center border-b-2 border-transparent text-[11px] font-semibold text-muted transition-colors hover:border-clay hover:text-ink sm:text-xs"
@@ -121,17 +127,29 @@ export function SanMartinPage() {
           <div className="space-y-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
             <p>
               San Martín de Porres Velázquez nació en Lima, Perú, el 9 de
-              diciembre de 1579. Hijo de Juan de Porres y Ana Velázquez, creció
-              en una sociedad marcada por diferencias sociales y raciales. Esa
-              experiencia hizo crecer en él una profunda sensibilidad hacia las
-              personas empobrecidas, enfermas y excluidas.
+              diciembre de 1579, durante los primeros años del Virreinato. Fue
+              hijo de Juan de Porres, caballero español de la Orden de
+              Alcántara, y de Ana Velázquez, mujer libre de origen africano.
+              Martín y su hermana Juana crecieron inicialmente junto a su
+              madre; por las diferencias sociales y raciales de la época, su
+              padre no pudo reconocerlos plenamente durante sus primeros años.
             </p>
             <p>
-              Desde temprano se inclinó por la oración y el servicio. Aprendió
-              los oficios de barbero y practicante de medicina, y puso esos
-              conocimientos al servicio de los demás. Más tarde ingresó al
-              Convento de Nuestra Señora del Rosario de los dominicos de Lima,
-              donde vivió como hermano de la Orden de Predicadores.
+              A pesar de las dificultades económicas, su madre procuró darle
+              una formación cristiana. Desde niño mostró una especial
+              sensibilidad hacia quienes sufrían, junto con un carácter humilde
+              y una profunda confianza en Dios. Las desigualdades que conoció
+              marcaron su cercanía con las personas de origen africano y
+              humilde.
+            </p>
+            <p>
+              En su juventud aprendió el oficio de barbero, que entonces
+              comprendía cuidados prácticos de salud, como curar heridas y
+              atender dolencias. A los 15 años ingresó al Convento de Nuestra
+              Señora del Rosario, de la Orden de Predicadores. Entró como
+              donado, realizando labores de servicio sin los mismos derechos
+              que los religiosos profesos; con el tiempo profesó como hermano
+              cooperador dominico.
             </p>
           </div>
         </div>
@@ -140,9 +158,9 @@ export function SanMartinPage() {
       <section className="bg-forest-deep py-10 text-white-warm sm:py-14 md:py-16">
         <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d9c28f]">
-            Timeline
+            Hitos de su vida
           </p>
-          <ol className="mt-6 grid sm:grid-cols-2 md:mt-8 md:grid-cols-4">
+          <ol className="mt-6 grid sm:grid-cols-2 md:mt-8 md:grid-cols-5">
             {milestones.map((milestone) => (
               <li
                 className="border-t border-[#d9c28f]/65 py-4 sm:px-4 sm:first:pl-0 md:px-5 md:py-5 md:first:pl-0"
@@ -195,13 +213,20 @@ export function SanMartinPage() {
                 El hermano donado
               </h3>
               <p className="py-4 text-sm leading-7 text-muted sm:text-base sm:leading-8">
-                Ingresó al convento como donado, entregado al servicio de la
-                comunidad sin acceder al sacerdocio. Atendió la enfermería,
-                ejerció la barbería y cuidó a sus hermanos. En cada tarea, por
+                Ingresó al convento como donado y aceptó con humildad las
+                tareas más sencillas: limpiar, cocinar, atender a los enfermos
+                y ayudar en cuanto necesitaba la comunidad. Con el tiempo
+                profesó como hermano cooperador dominico. En cada tarea, por
                 sencilla que pareciera, encontró una forma de amar a Dios y al
                 prójimo.
               </p>
             </div>
+            <p className="mt-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+              Para Martín, la oración y el servicio eran inseparables: buscar a
+              Dios en la contemplación y compartir con los demás aquello que
+              había contemplado. Atender al enfermo, alimentar al hambriento o
+              acompañar al necesitado era también servir a Dios.
+            </p>
           </div>
         </div>
       </section>
@@ -223,10 +248,23 @@ export function SanMartinPage() {
               servir al mismo Cristo.
             </p>
             <p className="mt-4 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+              Organizaba la distribución de alimentos y medicinas, y se cuenta
+              que destinó parte de su habitación a recibir a personas
+              necesitadas. Muchos acudían al convento para pedir su ayuda; él
+              no preguntaba por su origen, color de piel o posición social,
+              sino cómo aliviar su sufrimiento.
+            </p>
+            <p className="mt-4 text-sm leading-7 text-muted sm:text-base sm:leading-8">
               La humildad, la obediencia, la paciencia, la pureza de corazón, la
               pobreza voluntaria y el espíritu de sacrificio dieron forma a su
               vida. Nunca buscó privilegios ni reconocimiento; su servicio
               también acercaba y reconciliaba a las personas.
+            </p>
+            <p className="mt-4 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+              Su preocupación se extendía a los animales abandonados o
+              heridos, a los que recogía y cuidaba. La tradición cuenta que
+              procuraba alimentarlos y protegerlos junto con las personas que
+              acudían a él.
             </p>
           </div>
           <figure className="relative aspect-4/3 overflow-hidden bg-forest">
@@ -288,6 +326,47 @@ export function SanMartinPage() {
               Más que los relatos extraordinarios, permanece una vida entregada
               a la oración y a la caridad.
             </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-mist py-14 sm:py-20 md:py-28" id="legado">
+        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-8 sm:w-[calc(100%-2.5rem)] sm:gap-12 md:w-[calc(100%-4rem)] md:grid-cols-[0.7fr_1.3fr] md:gap-20">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+              Lima · 1639 · 1962
+            </p>
+            <h2 className="mt-3 max-w-md font-display text-3xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
+              Una vida que sigue dando fruto.
+            </h2>
+          </div>
+          <div className="space-y-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+            <p>
+              En 1639, durante una epidemia que afectó Lima, Martín se dedicó
+              especialmente a atender a los enfermos. Su propia salud empeoró y
+              murió en la ciudad el 3 de noviembre de ese año, a los 59 años.
+              Personas de distintos grupos sociales acudieron a despedir a
+              quien muchos ya consideraban un hombre santo.
+            </p>
+            <p>
+              La devoción se extendió desde Lima a otros territorios de
+              América. El papa Gregorio XVI lo beatificó el 29 de octubre de
+              1837 y San Juan XXIII lo canonizó el 6 de mayo de 1962, en la
+              Basílica de San Pedro. Fue el primer santo de origen africano
+              canonizado de América. Su fiesta litúrgica se celebra el 3 de
+              noviembre.
+            </p>
+            <p>
+              Más allá de los hechos extraordinarios que le atribuye la
+              tradición, la Iglesia destaca su virtud, humildad, caridad y vida
+              de servicio. Recordado como fray Martín de la caridad, fue un
+              hombre profundamente dominico, dedicado a la oración, al trabajo
+              y a los pobres, enfermos y marginados.
+            </p>
+            <p className="border-l-2 border-clay pl-4 font-display text-lg leading-relaxed text-ink sm:text-2xl">
+              San Martín de Porres: hombre de fe, humilde servidor y hermano de
+              los pobres y enfermos.
+            </p>
           </div>
         </div>
       </section>

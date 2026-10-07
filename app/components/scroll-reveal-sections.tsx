@@ -26,7 +26,7 @@ export function ScrollRevealSections({ children }: { children: ReactNode }) {
             }
           }
         },
-        { threshold: mobileQuery.matches ? 0.5 : 0.2 },
+        { threshold: 0.2 },
       );
 
       content.forEach((element) => {

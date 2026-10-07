@@ -168,10 +168,10 @@ export function FoundersArchive() {
         ))}
       </section>
       <p className="text-xs leading-6 text-muted sm:text-sm sm:leading-7">
-        Esta relación recoge figuras mencionadas en la memoria compartida; no
-        pretende ser la nómina completa de fundadores. Los libros fundacionales
-        se perdieron con el paso del tiempo y el archivo podrá ampliarse con
-        testimonios y documentos identificados.
+        Debido a la pérdida de los documentos fundacionales y de los primeros
+        años de nuestra historia, no tenemos un referencia completa de la nómina
+        de hermanos fundadores. Poco a poco estamos reconstruyendo nuestra
+        historia.
       </p>
     </div>
   );
