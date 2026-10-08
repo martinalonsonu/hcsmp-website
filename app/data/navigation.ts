@@ -11,7 +11,7 @@ export type NavigationGroup = {
 
 export const navigationGroups: NavigationGroup[] = [
   {
-    label: "La Hermandad",
+    label: "Hermandad",
     href: "/hermandad",
     links: [
       { label: "Historia", href: "/hermandad/historia" },
@@ -21,7 +21,7 @@ export const navigationGroups: NavigationGroup[] = [
     ],
   },
   {
-    label: "San Martín",
+    label: "San Martin De Porres",
     href: "/san-martin-de-porres",
     links: [
       { label: "Biografía", href: "/san-martin-de-porres#biografia" },
@@ -32,11 +32,9 @@ export const navigationGroups: NavigationGroup[] = [
     ],
   },
   {
-    label: "Fiesta",
+    label: "Festividad",
     href: "/fiesta",
-    links: [
-      { label: "Procesión", href: "/fiesta/procesion" },
-    ],
+    links: [],
   },
   {
     label: "Memoria",
@@ -47,7 +45,7 @@ export const navigationGroups: NavigationGroup[] = [
       { label: "Videos", href: "/memoria/videos" },
     ],
   },
-  { label: "Noticias", href: "/noticias", links: [] },
+  { label: "Actualidad", href: "/noticias", links: [] },
 ];
 
 export const footerNavigation: NavigationLink[] = [

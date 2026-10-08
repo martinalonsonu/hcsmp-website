@@ -10,6 +10,7 @@ export type HistoryChapter = {
     alt: string;
     caption: string;
   };
+  position?: string;
   facts?: {
     date: string;
     title: string;
@@ -49,6 +50,12 @@ export const historyChapters: HistoryChapter[] = [
           "La imagen llega al templo de Cruz Blanca y se funda la Mayordomía del Señor del Auxilio Fray Martín de Porres.",
       },
     ],
+    image: {
+      src: "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/651244755_26049865191301302_111588460350318562_n.jpg",
+      alt: "Estampa antigua de la imagen.",
+      caption: "Antigua estampa de la imagen de San Martin de Porres",
+    },
+    position: "center 10%",
   },
   {
     id: "earthquake-and-pilgrimage",
@@ -59,11 +66,11 @@ export const historyChapters: HistoryChapter[] = [
       "El 23 de abril de 1967 se formó en el local del Círculo Deportivo de Cruz Blanca el Comité Central Pro-Construcción del Templo de San Martín de Porres, presidido por el señor Marcelino Mundo. En esos años la imagen comenzó a peregrinar por distintos sectores del norte chico.",
     ],
     image: {
-      src: assetUrl("antigua.jpg"),
-      alt: "Hermanos y devotos reunidos junto a la imagen de San Martín de Porres frente a un templo",
-      caption:
-        "Fotografía de archivo de la Hermandad. Fecha y protagonistas por identificar.",
+      src: "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/29683490_10211613813357475_1888083931312422912_n.jpg",
+      alt: "Peregrinaciones de la imagen.",
+      caption: "Peregrinaciones luego del terremoto del 66.",
     },
+    position: "center 25%",
   },
   {
     id: "beginnings-and-recognition",
@@ -74,6 +81,12 @@ export const historyChapters: HistoryChapter[] = [
       "Los documentos y recuerdos conservados presentan dos fechas relacionadas con el nacimiento institucional. Un sello señala el 5 de noviembre de 1974. Al perderse los libros fundacionales y para formalizar el reconocimiento eclesiástico, se fijó como fecha de fundación institucional el 3 de noviembre de 1975. Se mantienen ambas referencias con su procedencia, valorando en ellas una riqueza de nuestra historia.",
       "En octubre de 1991, durante el periodo del hermano Jorge Núñez y bajo el episcopado de monseñor Lorenzo León Alvarado, la Diócesis de Huacho otorgó el reconocimiento episcopal. El Decreto Episcopal N.° 01, Registro N.° 088, formalizó el nombre que continúa hasta hoy: Hermandad de Cargadores de San Martín de Porres.",
     ],
+    image: {
+      src: "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/00005409-rotated-1-e1791380815329.jpg",
+      alt: "Hermandad en pleno.",
+      caption: "Nuestra hermandad. Año 2003",
+    },
+    position: "center 50%",
     facts: [
       {
         date: "1974 y 1975",
@@ -99,6 +112,12 @@ export const historyChapters: HistoryChapter[] = [
       "El recorrido hacia el centro de Huacho marcó otro momento. El primer recorrido en esa dirección se realizó el 3 de noviembre de 2000, durante las bodas de plata, en el periodo del hermano Martín Núñez Azahuanche. La ruta incluyó el Hospital Regional, EsSalud, la Catedral de Huacho y la avenida 28 de Julio.",
       "Entre los hermanos recordados por impulsar esa expansión figura el hermano Víctor Vega, promotor de llevar a San Martín al corazón de la ciudad. Lamentablemente no pudo ver su deseo cumplido en vida.",
     ],
+    image: {
+      src: "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/00005235.jpg",
+      alt: "Salida Procesional.",
+      caption: "Salida Procesional. 03 de noviembre de 1999.",
+    },
+    position: "center 50%",
   },
   {
     id: "jubilee-2012",
@@ -108,6 +127,12 @@ export const historyChapters: HistoryChapter[] = [
       "En 2012, al cumplirse cincuenta años de la canonización de San Martín de Porres, la imagen titular ingresó a la Catedral de Huacho como parte de las actividades conmemorativas.",
       "Ese mismo año, el 10 de junio, la Hermandad recibió la visita de reliquias de primer grado de San Martín de Porres, un encuentro significativo para la comunidad de Cruz Blanca.",
     ],
+    image: {
+      src: "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/643441610_25899733869647769_2952487230789753739_n.jpg",
+      alt: "La imagen llega a la Catedral de Huacho",
+      caption: "La imagen llega a la Catedral de Huacho",
+    },
+    position: "center 50%",
     facts: [
       {
         date: "6 de mayo de 2012",
@@ -131,5 +156,10 @@ export const historyChapters: HistoryChapter[] = [
       "Los hermanos se unieron virtualmente para rezar por las personas enfermas, las familias y la ciudad. Aunque no fue posible acompañar a San Martín por las calles, la institución sostuvo su vínculo y su vocación de servicio.",
       "La experiencia dejó una certeza compartida: el amor y la fraternidad no se cancelan cuando cambia la forma de encontrarse. La vida de Hermandad continuó, y con ella la memoria viva de una devoción.",
     ],
+    image: {
+      src: "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/123794233_3390478907666586_4009985927145514438_n.jpg",
+      alt: "Solemnidad de San Martin de Porres en Pandemia.",
+      caption: "03 de noviembre 2020: Pandemia. Fotografía: Renzo Aragón.",
+    },
   },
 ];

@@ -1,19 +1,8 @@
 "use client";
 
-import {
-  ChevronLeft,
-  ChevronRight,
-  Pause,
-  Play,
-  X,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play, X } from "lucide-react";
 import Image from "next/image";
-import {
-  useEffect,
-  useRef,
-  useState,
-  type KeyboardEvent,
-} from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { assetUrl } from "@/app/data/assets";
 
 const slides = [
@@ -51,6 +40,34 @@ const slides = [
     title: "Procesión de los Pasos de la Pasión",
     caption: "Convento de Santo Domingo de Lima · Martes Santo Dominico 2026",
     position: "center 70%",
+  },
+  {
+    src: "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/09/antigua.jpg",
+    alt: "Fotografía antigua de nuestra hermandad.",
+    title: "Actividad Oficial",
+    caption: "Presentación de nuestra hermandad en pleno. Año 2006.",
+    position: "center 40%",
+  },
+  {
+    src: "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/09/primeros-pasos.jpg",
+    alt: "Carguío al Señor de los Milagros",
+    title: "Carguío al Señor de los Milagros",
+    caption: "Presentación de nuestra institución",
+    position: "",
+  },
+  {
+    src: "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/56478674_2552517768156471_2960457524760805376_n.jpg",
+    alt: "Sesión de fotos de nuestra imagen en el 2018.",
+    title: "San Martin de Porres en el Convento de Santo Domingo",
+    caption: "Sesión de fotos post restauración. 2018.",
+    position: "",
+  },
+  {
+    src: "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/00005413.jpg",
+    alt: "San Martin de Porres frente a la catedral de Huacho.",
+    title: "Primer recorrido a Huacho",
+    caption: "Frente a la catedral de Huacho. 3 de noviembre del 2000.",
+    position: "",
   },
 ] as const;
 
@@ -370,7 +387,8 @@ export function MultimediaCarousel() {
           </div>
 
           <p className="shrink-0 py-3 text-right text-xs text-white/65">
-            {String(lightboxIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+            {String(lightboxIndex + 1).padStart(2, "0")} /{" "}
+            {String(slides.length).padStart(2, "0")}
           </p>
         </div>
       </dialog>

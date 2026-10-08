@@ -122,11 +122,13 @@ export function BrotherhoodHistoryPage() {
                   <figure className="relative mb-5 aspect-[4/3] overflow-hidden bg-mist sm:mb-7 sm:aspect-[16/9]">
                     <Image
                       alt={chapter.image.alt}
-                      className="object-cover"
-                      fill
+                      className="object-cover w-full h-full"
+                      width={400}
+                      height={300}
                       quality={90}
-                      sizes="(max-width: 768px) 100vw, 70vw"
+                      sizes="(max-width: 768px)"
                       src={chapter.image.src}
+                      style={{ objectPosition: chapter?.position }}
                     />
                     <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/75 to-transparent px-4 pb-3 pt-12 text-[10px] leading-5 text-white/90 sm:px-5 sm:pb-4 sm:text-xs">
                       {chapter.image.caption}

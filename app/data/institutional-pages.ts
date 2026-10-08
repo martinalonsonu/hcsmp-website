@@ -247,7 +247,7 @@ export const processionalRouteEvents: ProcessionalRouteEvent[] = [
 export const institutionalPages: InstitutionalPage[] = [
   {
     path: "/hermandad",
-    title: "La Hermandad",
+    title: "Hermandad",
     eyebrow: "Una comunidad, una historia",
     description:
       "Identidad, memoria y generaciones de la Hermandad de Cargadores de San Martín de Porres de Cruz Blanca.",

@@ -15,7 +15,7 @@ const heroSlides = [
   },
   {
     image:
-      "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/img_8654-2-1.jpg",
+      "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/45537561_1880803785300780_5270040655920365568_n.jpg",
     description: "Recorrido de Guardada. Noviembre del 2019.",
     imagePosition:
       "translate-y-0 scale-[1.08] object-cover object-[center_40%]",
