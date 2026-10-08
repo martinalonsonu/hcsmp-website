@@ -2,7 +2,6 @@
 
 import { Pause, Play, Volume2, X } from "lucide-react";
 import { useRef, useState } from "react";
-
 interface AudioPillProps {
   left?: boolean;
 }
@@ -12,13 +11,12 @@ export const AudioPill = ({ left = false }: AudioPillProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showAudioPill, setShowAudioPill] = useState(true);
 
+  const audioSrc = "/hcsmp-website/audio/HIMNO_SMP.m4a";
+
   const toggleAudio = async () => {
     const audio = audioRef.current;
 
-    if (!audio) {
-      alert("❌ No se encontró el elemento de audio.");
-      return;
-    }
+    if (!audio) return;
 
     if (isPlaying) {
       audio.pause();
@@ -27,56 +25,12 @@ export const AudioPill = ({ left = false }: AudioPillProps) => {
     }
 
     try {
-      // Forzamos a Safari a cargar el recurso.
       audio.load();
-
       await audio.play();
-
       setIsPlaying(true);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-
-      console.error("❌ Error reproduciendo audio:", error);
-
-      alert(
-        `❌ ERROR DE AUDIO
-
-Mensaje:
-${message}
-
-URL:
-${audio.currentSrc || audio.src}
-
-ReadyState:
-${audio.readyState}
-
-NetworkState:
-${audio.networkState}
-
-MediaError:
-${audio.error?.message ?? "sin error"}
-
-MediaError code:
-${audio.error?.code ?? "sin código"}`,
-      );
+    } catch {
+      setIsPlaying(false);
     }
-  };
-
-  const handleAudioError = () => {
-    const audio = audioRef.current;
-
-    if (!audio) return;
-
-    console.error("❌ Error nativo del elemento audio:", {
-      src: audio.currentSrc,
-      error: audio.error,
-      readyState: audio.readyState,
-      networkState: audio.networkState,
-    });
-  };
-
-  const handleCanPlay = () => {
-    console.log("✅ Safari puede reproducir el audio");
   };
 
   const closeAudioPill = () => {
@@ -92,28 +46,12 @@ ${audio.error?.code ?? "sin código"}`,
   };
 
   if (!showAudioPill) {
-    return (
-      <audio
-        ref={audioRef}
-        loop
-        preload="metadata"
-        src="/audio/HIMNO_SMP.m4a"
-        onError={handleAudioError}
-        onCanPlay={handleCanPlay}
-      />
-    );
+    return <audio ref={audioRef} loop preload="metadata" src={audioSrc} />;
   }
 
   return (
     <>
-      <audio
-        ref={audioRef}
-        loop
-        preload="metadata"
-        src="/audio/HIMNO_SMP.m4a"
-        onError={handleAudioError}
-        onCanPlay={handleCanPlay}
-      />
+      <audio ref={audioRef} loop preload="metadata" src={audioSrc} />
 
       <div
         className={`pointer-events-auto fixed z-[9999] ${
