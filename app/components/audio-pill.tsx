@@ -30,7 +30,7 @@ export const AudioPill = ({ left = false }: AudioPillProps) => {
   };
   if (!showAudioPill) {
     return (
-      <audio ref={audioRef} loop preload="none" src="/audio/HIMNO_SMP.mp3" />
+      <audio ref={audioRef} loop preload="none" src="/audio/HIMNO_SMP.m4a" />
     );
   }
   return (
@@ -40,7 +40,7 @@ export const AudioPill = ({ left = false }: AudioPillProps) => {
         ref={audioRef}
         loop
         preload="none"
-        src="/audio/HIMNO_SMP.mp3"
+        src="/audio/HIMNO_SMP.m4a"
       />{" "}
       <div
         className={`fixed z-[9999] pointer-events-auto ${left ? "bottom-7 left-6" : "bottom-20 right-6"}`}
