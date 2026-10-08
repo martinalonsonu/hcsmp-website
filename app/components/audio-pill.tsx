@@ -52,10 +52,9 @@ export const AudioPill = ({ left = false }: AudioPillProps) => {
   return (
     <>
       <audio ref={audioRef} loop preload="metadata" src={audioSrc} />
-
       <div
         className={`pointer-events-auto fixed z-[9999] ${
-          left ? "bottom-7 left-6" : "bottom-20 right-6"
+          left ? "bottom-5 left-2 md:left-6" : "bottom-20 right-6"
         }`}
       >
         <div className="flex items-center gap-2 rounded-full border border-white/15 bg-forest-deep/95 px-3 py-2 text-white shadow-xl backdrop-blur-md">
@@ -63,19 +62,16 @@ export const AudioPill = ({ left = false }: AudioPillProps) => {
             aria-hidden="true"
             className="size-4 shrink-0 text-[#d9c28f]"
           />
-
           <span className="text-xs font-medium">
             <span className="sm:hidden">
               {isPlaying ? "Escuchando himno" : "Himno a San Martín"}
             </span>
-
             <span className="hidden sm:inline">
               {isPlaying
                 ? "Escuchando himno a San Martín de Porres"
                 : "Escucha el himno a San Martín de Porres"}
             </span>
           </span>
-
           <button
             type="button"
             onClick={toggleAudio}
@@ -88,7 +84,6 @@ export const AudioPill = ({ left = false }: AudioPillProps) => {
               <Play aria-hidden="true" className="ml-0.5 size-4" />
             )}
           </button>
-
           <button
             type="button"
             onClick={closeAudioPill}

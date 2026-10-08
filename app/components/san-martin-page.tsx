@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AudioPill } from "@/app/components/audio-pill";
+import { ArrowUpRight } from "lucide-react";
 
 const milestones = [
   {
@@ -69,7 +70,7 @@ const virtues = [
 export function SanMartinPage() {
   return (
     <>
-      <AudioPill />
+      <AudioPill left />
       <header className="relative isolate flex aspect-square items-end overflow-hidden rounded-b-3xl bg-forest-deep text-white-warm md:aspect-auto md:min-h-[min(640px,calc(100svh-5rem))]">
         <Image
           alt="Imagen de San Martín de Porres"
@@ -354,7 +355,6 @@ export function SanMartinPage() {
           ))}
         </div>
       </section>
-
       <section className="py-14 sm:py-20 md:py-28" id="tradicion">
         <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-8 sm:w-[calc(100%-2.5rem)] sm:gap-12 md:w-[calc(100%-4rem)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
           <figure className="relative aspect-4/3 overflow-hidden bg-mist">
@@ -438,6 +438,72 @@ export function SanMartinPage() {
         </div>
       </section>
 
+      <section className="py-14 sm:py-20 md:py-28" id="tradicion">
+        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-8 sm:w-[calc(100%-2.5rem)] sm:gap-12 md:w-[calc(100%-4rem)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
+          <figure className="relative aspect-4/3 md:aspect-3/4 overflow-hidden bg-mist">
+            <Image
+              alt="Imagen de San Martín de Porres"
+              className="object-cover object-center"
+              fill
+              quality={90}
+              sizes="(max-width: 768px) 100vw, 42vw"
+              src="https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/smp-sesion.jpg"
+            />
+          </figure>
+
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+              APRENDAMOS JUNTOS
+            </p>
+
+            <h2 className="mt-3 max-w-2xl font-display text-3xl font-normal leading-tight sm:mt-5">
+              Himno a San Martin de Porres
+            </h2>
+            <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+              CORO
+            </p>
+            <p className="text-sm text-muted sm:text-base">
+              ¡Gloria inmortal a tu bendito nombre <br /> sol de amor de los
+              pobres,
+              <br /> San Martín astro divino del Perú de América,
+              <br /> de la Iglesia invencible paladín!
+              <br /> Son tus hermanos de ideal y patria <br />
+              los que hoy llegan fervientes a tu altar;
+              <br /> danos la luz que iluminó tu mente,
+              <br />
+              danos la fe que te enseñó a triunfar. (BIS)
+            </p>
+            <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+              ESTROFA I
+            </p>
+            <p className="text-sm text-muted sm:text-base">
+              ¡Radiante flor del suelo americano <br />
+              que diste olor de augusta santidad;
+              <br /> gala y blasón del pueblo peruano;
+              <br /> que en ti encendió la antorcha de piedad!
+              <br /> Protégenos, tu caridad sagrada
+              <br /> todo el Perú ardiente en su emoción;
+              <br /> si viene a él tu excelsa llamarada
+              <br /> de un pueblo hará
+              <br /> tan sólo un corazón
+            </p>
+            <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+              ESTROFA II
+            </p>
+            <p className="text-sm text-muted sm:text-base">
+              Te dio el solar de Rosa, la divina <br />
+              Cuna de ardor para tu noble afán; <br />
+              Tu fe sin par, su alma peregrina;
+              <br /> Pasión de Dios, Domingo de Guzmán
+              <br /> Hoy como ayer, por tu virtud, reciben
+              <br /> pan de verdad, los pobres de tu amor <br />
+              Hoy como ayer, para su gloria viven
+              <br /> Bendícelos y ampara su dolor.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-forest-deep py-12 text-white-warm sm:py-16 md:py-20">
         <div className="mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-col gap-5 sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)] md:flex-row md:items-end md:justify-between">
           <div>
@@ -455,7 +521,7 @@ export function SanMartinPage() {
             href="/hermandad"
           >
             Conoce la Hermandad
-            {/* <ArrowUpRight aria-hidden="true" size={16} className="!bottom-20" /> */}
+            <ArrowUpRight aria-hidden="true" size={16} className="!bottom-20" />
           </Link>
         </div>
       </section>
