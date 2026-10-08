@@ -49,12 +49,11 @@ export const navigationGroups: NavigationGroup[] = [
 ];
 
 export const footerNavigation: NavigationLink[] = [
-  { label: "La Hermandad", href: "/hermandad" },
+  { label: "Hermandad", href: "/hermandad" },
   { label: "Historia", href: "/hermandad/historia" },
-  { label: "San Martín", href: "/san-martin-de-porres" },
-  { label: "Fiesta", href: "/fiesta" },
-  { label: "Vida de Hermandad", href: "/hermandad/vida" },
+  { label: "San Martin De Porres", href: "/san-martin-de-porres" },
+  { label: "Festividad", href: "/fiesta" },
   { label: "Memoria", href: "/memoria" },
-  { label: "Noticias", href: "/noticias" },
+  { label: "Actualidad", href: "/noticias" },
   { label: "Contacto", href: "/contacto" },
 ];
