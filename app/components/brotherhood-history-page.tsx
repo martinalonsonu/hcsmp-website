@@ -49,9 +49,7 @@ export function BrotherhoodHistoryPage() {
           </p>
           <p className="mt-4 max-w-3xl border-l border-[#d3b778] pl-4 text-xs leading-6 text-white/75 sm:text-sm sm:leading-7">
             Los relatos orales, las fechas de documentos y los recuerdos
-            institucionales se distinguen a lo largo de esta página. Cuando las
-            fuentes ofrecen fechas diferentes, ambas quedan visibles con su
-            contexto.
+            institucionales se distinguen a lo largo de esta página.
           </p>
         </div>
       </header>
