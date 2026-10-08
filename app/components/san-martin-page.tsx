@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import AudioPill from "./audio-pill";
+import { AudioPill } from "@/app/components/audio-pill";
 
 const milestones = [
   {

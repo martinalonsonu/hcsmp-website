@@ -3,7 +3,7 @@ import { HomeBrotherhoodSection } from "@/app/components/home-brotherhood-sectio
 import { HomeHero } from "@/app/components/home-hero";
 import { HomeIdentitySections } from "@/app/components/home-identity-sections";
 import { ScrollRevealSections } from "@/app/components/scroll-reveal-sections";
-import AudioPill from "./components/audio-pill";
+import { AudioPill } from "@/app/components/audio-pill";
 
 export default function HomePage() {
   return (
