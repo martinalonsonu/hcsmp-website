@@ -37,8 +37,8 @@ jobs:
       - name: Build static export
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages-paths.outputs.base_path }}
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages-paths.outputs.origin }}
+          NEXT_PUBLIC_BASE_PATH: ""          
+          NEXT_PUBLIC_SITE_URL: "https://hermandadsanmartinhuacho.org"
 
       - name: Disable Jekyll processing
         run: touch out/.nojekyll
