@@ -11,7 +11,7 @@ export const AudioPill = ({ left = false }: AudioPillProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showAudioPill, setShowAudioPill] = useState(true);
 
-  const audioSrc = "/hcsmp-website/audio/HIMNO_SMP.m4a";
+  const audioSrc = "/audio/HIMNO_SMP.m4a";
 
   const toggleAudio = async () => {
     const audio = audioRef.current;

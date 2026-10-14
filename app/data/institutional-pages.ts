@@ -406,8 +406,8 @@ export const institutionalPages: InstitutionalPage[] = [
   },
   {
     path: "/hermandad/vida",
-    title: "Vida de Hermandad",
-    eyebrow: "Vida Eclesial",
+    title: "Hermandad",
+    eyebrow: "Vida EclesiaL",
     description:
       "Formación, servicio, fraternidad y actividades de la Hermandad.",
     introduction:

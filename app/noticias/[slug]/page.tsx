@@ -82,14 +82,15 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
         <CalendarDays aria-hidden="true" size={14} /> {article.date}
       </p>
       {article.image && (
-        <figure className="relative mt-8 aspect-video overflow-hidden bg-mist sm:mt-10">
+        <figure className="relative mt-8 overflow-hidden sm:mt-10">
           <Image
             alt={article.title}
-            className="object-cover"
-            fill
+            className=" w-full"
             priority
             quality={90}
-            sizes="(max-width: 768px) 100vw, 768px"
+            width={768}
+            height={400}
+            sizes="(max-width: 1080px) 100vw, 1080px"
             src={article.image}
           />
         </figure>

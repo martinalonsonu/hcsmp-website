@@ -27,6 +27,8 @@ export const newsArticles: NewsArticle[] = [
     eyebrow: "SOLEMNES CULTOS · CRUZ BLANCA",
     summary:
       "La Hermandad invita a la comunidad a vivir los cultos en honor a San Martín de Porres, con jornadas de oración, solidaridad y tradición.",
+    image:
+      "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/portada-para-facebook-salon-de-belleza-simple-beige.png",
     content: `# Programa de festividad en honor a San Martín de Porres
 
 La Hermandad de Cargadores de San Martín de Porres de la Parroquia La Santa Cruz, Diócesis de Huacho, invita a los hermanos, devotos y a toda la comunidad a participar en los solemnes cultos en honor a nuestro santo patrón.
@@ -78,8 +80,8 @@ Al recordar los 387 años de la partida de San Martín de Porres al encuentro co
 
 Se cumplen 387 años de la partida de San Martín de Porres al encuentro con el Señor. La tradición recuerda que, en sus últimos momentos, rodeado por sus hermanos religiosos y con un crucifijo entre las manos, recitó el Credo y pronunció: «Et homo factus est» («Y se hizo hombre»). Con su vida entregada al servicio de Dios y de los más necesitados, continúa siendo ejemplo para nuestra comunidad.
 
-- **8:00 a. m.** Celebración eucarística por la solemnidad de San Martín de Porres y el 51.º aniversario institucional de la Hermandad. Preside S. E. R. Mons. Luis Alberto Barrera Pacheco, M.C.C.J., Administrador Apostólico de la Diócesis de Huacho. Acompaña el coro de la I. E. Parroquial Santa Rosa de Lima.
-- **9:30 a. m.** Segundo recorrido procesional de la venerada imagen, con el acompañamiento musical de la Agrupación Musical Los Auténticos del Callao.
+- **8:00 a. m.** Celebración eucarística por la solemnidad de San Martín de Porres y el 51.º aniversario institucional de la Hermandad. Acompaña el coro de la I. E. Parroquial Santa Rosa de Lima.
+- **9:30 a. m.** Segundo recorrido procesional de la venerada imagen, con el acompañamiento musical de la Agrupación Musical "Clase Juvenil" y la Agrupación Musical "Los Auténticos del Callao".
 
 ### Recorrido procesional
 

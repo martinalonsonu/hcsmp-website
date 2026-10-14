@@ -163,7 +163,7 @@ function NewsList() {
                 {article.summary}
               </p>
               <span className="mt-5 inline-flex min-h-10 items-center gap-2 text-xs font-semibold text-forest-link">
-                Leer boletín <ArrowUpRight aria-hidden="true" size={15} />
+                Leer más <ArrowUpRight aria-hidden="true" size={15} />
               </span>
             </div>
           </Link>
@@ -335,11 +335,11 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
             page.path !== "/memoria" &&
             page.path !== "/memoria/fotografias" &&
             page.path !== "/memoria/documentos" && (
-            <p className="flex items-center gap-2 text-xs leading-6 text-muted">
-              <Archive aria-hidden="true" size={15} /> Colección institucional
-              en preparación.
-            </p>
-          )}
+              <p className="flex items-center gap-2 text-xs leading-6 text-muted">
+                <Archive aria-hidden="true" size={15} /> Colección institucional
+                en preparación.
+              </p>
+            )}
         </div>
       </div>
 

@@ -34,7 +34,7 @@ export function HomeIdentitySections() {
               <p className="mt-3 max-w-sm text-xs leading-6 text-white/75 sm:mt-5 sm:text-sm sm:leading-7">
                 Principales hitos que marcaron la historia de nuestra devoción.
               </p>
-              <SectionCta href="/hermandad/ " inverse>
+              <SectionCta href="/hermandad" inverse>
                 Conoce más
               </SectionCta>
             </div>
@@ -223,7 +223,7 @@ export function HomeIdentitySections() {
           fill
           quality={90}
           sizes="100vw"
-          src={assetUrl("acuarela.jpg")}
+          src="https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/portada-para-facebook-salon-de-belleza-simple-beige.png"
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[#111111]/65" />
         <div className="relative z-10 mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-col gap-4 sm:w-[calc(100%-2.5rem)] sm:gap-5 md:w-[calc(100%-4rem)] md:flex-row md:items-center md:justify-between">

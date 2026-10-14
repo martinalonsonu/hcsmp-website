@@ -32,7 +32,7 @@ export function HomeBrotherhoodSection() {
             Vida Eclesial
           </p>
           <h2 className="mt-3 font-display text-2xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
-            Vida de Hermandad
+            Hermandad
           </h2>
           <p className="mt-3 max-w-sm text-xs leading-6 text-muted sm:mt-5 sm:text-sm sm:leading-7">
             La devoción continúa en la formación, el encuentro y el servicio
