@@ -65,6 +65,11 @@ export const presidencyReferences: PresidencyReference[] = [
     date: "1990 · 1991",
   },
   {
+    id: "oscar-pacora",
+    name: "Óscar Pacora Echegaray",
+    date: "1994 · 1995",
+  },
+  {
     id: "martin-nunez-1999-2000",
     name: "Hno. Martin Nuñez Azahuanche",
     date: "1999–2000",

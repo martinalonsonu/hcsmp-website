@@ -70,7 +70,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
         className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
         href="/blog"
       >
-        <ArrowLeft aria-hidden="true" size={15} /> Volver a noticias
+        <ArrowLeft aria-hidden="true" size={15} /> Volver al blog
       </Link>
       <p className="mt-10 text-[10px] font-semibold uppercase tracking-[0.16em] text-clay">
         {article.eyebrow ?? article.category}

@@ -6,7 +6,6 @@ import { newsArticles } from "@/app/data/news";
 import { PrimaryImageBackground } from "@/app/components/primary-image-background";
 import { BrotherhoodHistoryPage } from "@/app/components/brotherhood-history-page";
 import { DocumentArchive } from "@/app/components/document-archive";
-import { FiestaPage } from "@/app/components/fiesta-page";
 import { PhotoAlbumArchive } from "@/app/components/photo-album-archive";
 import { SanMartinPage } from "@/app/components/san-martin-page";
 import {
@@ -22,6 +21,8 @@ import {
   presidents,
 } from "@/app/data/institutional-pages";
 import type { InstitutionalPage } from "@/app/data/institutional-pages";
+import { VideoArchive } from "./video-archive";
+import { BrotherhoodImagePage } from "./brotherhood-image-page";
 
 function PageBreadcrumb({
   page,
@@ -177,6 +178,7 @@ function PageKindContent({ page }: { page: InstitutionalPage }) {
   if (page.path === "/archivo/fotografias") return <PhotoAlbumArchive />;
   if (page.path === "/archivo") return <DocumentArchive />;
   if (page.path === "/archivo/documentos") return <DocumentArchive />;
+  if (page.path === "/archivo/videos") return <VideoArchive />;
   if (page.kind === "brotherhood") return <BrotherhoodOverview />;
   if (page.kind === "founders") return <FoundersArchive />;
   if (page.kind === "presidents") return <PresidentsArchive />;
@@ -190,6 +192,9 @@ function PageKindContent({ page }: { page: InstitutionalPage }) {
 export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
   if (page.path === "/hermandad/historia") {
     return <BrotherhoodHistoryPage />;
+  }
+  if (page.path === "/hermandad/imagen") {
+    return <BrotherhoodImagePage />;
   }
   if (page.path === "/san-martin-de-porres") return <SanMartinPage />;
 
@@ -333,6 +338,7 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
           {page.kind === "archive" &&
             page.path !== "/archivo" &&
             page.path !== "/archivo/fotografias" &&
+            page.path !== "/archivo/videos" &&
             page.path !== "/archivo/documentos" && (
               <p className="flex items-center gap-2 text-xs leading-6 text-muted">
                 <Archive aria-hidden="true" size={15} /> Colección institucional

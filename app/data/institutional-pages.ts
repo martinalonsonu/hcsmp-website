@@ -261,6 +261,26 @@ export const institutionalPages: InstitutionalPage[] = [
       "/hermandad/presidentes",
       "/hermandad/pilares",
       "/hermandad/fiesta",
+      "/hermandad/imagen",
+    ],
+  },
+  {
+    path: "/hermandad/imagen",
+    title: "Nuestra Imagen",
+    eyebrow: "Una imagen, miles de historias",
+    description:
+      "Identidad, memoria y generaciones de la Hermandad de Cargadores de San Martín de Porres de Cruz Blanca.",
+    introduction:
+      "Fundado el 3 de Noviembre de 1975 - Parroquia “La Santa Cruz” - Diócesis de Huacho. Reconocido por Decreto Supremo Episcopal N° 01 29-10-1991. Reconocido por Decreto Episcopal N° 01 08-05-2007 / Hermandades",
+    kind: "brotherhood",
+    sections: [],
+    related: [
+      "/hermandad/historia",
+      "/hermandad/fundadores",
+      "/hermandad/presidentes",
+      "/hermandad/pilares",
+      "/hermandad/fiesta",
+      "/hermandad/imagen",
     ],
   },
   {
@@ -494,12 +514,7 @@ export const institutionalPages: InstitutionalPage[] = [
     introduction:
       "Videos y testimonios que ayudan a conservar la memoria de la vida institucional y la devoción compartida.",
     kind: "archive",
-    sections: [
-      {
-        title: "Colección en preparación",
-        body: "El material audiovisual se incorporará cuando la Hermandad confirme su procedencia y autorización de publicación.",
-      },
-    ],
+    sections: [],
     related: ["/archivo", "/archivo/fotografias"],
   },
   {
