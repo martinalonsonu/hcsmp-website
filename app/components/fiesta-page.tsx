@@ -18,7 +18,6 @@ export function FiestaPage({ page }: { page: InstitutionalPage }) {
           fill
           priority
           quality={90}
-          sizes="100vw"
           src="https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/489105222_9402938193087264_7697141976573185879_n.jpg"
         />
         <div

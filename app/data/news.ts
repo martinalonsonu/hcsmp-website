@@ -68,7 +68,7 @@ Al recordar los 387 años de la partida de San Martín de Porres al encuentro co
 
 ## Lunes 2 de noviembre
 
-- **9:00 a. m.** Romería al Cementerio Campo Santo para honrar la memoria de nuestros hermanos difuntos.
+- **11:00 a. m.** Romería al Cementerio Campo Santo para honrar la memoria de nuestros hermanos difuntos.
 - **6:00 p. m.** Concurso de alfombras.
 - **7:00 p. m.** Solemne misa de vísperas en honor a San Martín de Porres, ofrecida por la familia Villarreal Alcántara.
 - **8:00 p. m.** Reconocimiento a los ganadores del concurso de alfombras.

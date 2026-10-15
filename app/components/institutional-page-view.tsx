@@ -135,7 +135,7 @@ function NewsList() {
         >
           <Link
             className="group grid sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
-            href={`/noticias/${article.slug}`}
+            href={`/blog/${article.slug}`}
           >
             {article.image && (
               <div className="relative aspect-16/10 overflow-hidden bg-mist sm:aspect-auto sm:min-h-64">
@@ -174,9 +174,9 @@ function NewsList() {
 }
 
 function PageKindContent({ page }: { page: InstitutionalPage }) {
-  if (page.path === "/memoria/fotografias") return <PhotoAlbumArchive />;
-  if (page.path === "/memoria") return <DocumentArchive />;
-  if (page.path === "/memoria/documentos") return <DocumentArchive />;
+  if (page.path === "/archivo/fotografias") return <PhotoAlbumArchive />;
+  if (page.path === "/archivo") return <DocumentArchive />;
+  if (page.path === "/archivo/documentos") return <DocumentArchive />;
   if (page.kind === "brotherhood") return <BrotherhoodOverview />;
   if (page.kind === "founders") return <FoundersArchive />;
   if (page.kind === "presidents") return <PresidentsArchive />;
@@ -192,13 +192,12 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
     return <BrotherhoodHistoryPage />;
   }
   if (page.path === "/san-martin-de-porres") return <SanMartinPage />;
-  if (page.path === "/fiesta") return <FiestaPage page={page} />;
 
   const hasBrotherhoodBackground = page.path === "/hermandad";
   const hasPresidentsBackground = page.path === "/hermandad/presidentes";
   const hasFoundersBackground = page.path === "/hermandad/fundadores";
-  const hasLifeBackground = page.path === "/hermandad/vida";
-  const hasFiestaBackground = page.path === "/fiesta";
+  const hasLifeBackground = page.path === "/hermandad/pilares";
+  const hasFiestaBackground = page.path === "/hermandad/fiesta";
   const hasImageBackground =
     hasBrotherhoodBackground ||
     hasPresidentsBackground ||
@@ -209,7 +208,7 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
   return (
     <>
       <header
-        className={`relative isolate overflow-hidden border-b py-12 sm:py-16 md:py-20 ${hasPresidentsBackground || hasFoundersBackground || hasLifeBackground || hasFiestaBackground ? "min-h-[340px] border-[#48443d] bg-[#111111] text-[#f4f0e6] sm:min-h-[380px] md:min-h-[420px]" : hasBrotherhoodBackground ? "border-[#48443d] bg-[#111111] text-[#f4f0e6]" : "border-line bg-mist/50"}`}
+        className={`relative isolate overflow-hidden border-b py-12 sm:py-16 md:py-20 ${hasPresidentsBackground || hasFoundersBackground || hasLifeBackground || hasFiestaBackground ? "min-h-85 border-[#48443d] bg-forest-deep text-[#f4f0e6] sm:min-h-95 md:min-h-105" : hasBrotherhoodBackground ? "border-[#48443d] bg-forest-deep text-[#f4f0e6]" : "border-line bg-mist/50"}`}
       >
         {hasImageBackground && (
           <>
@@ -332,9 +331,9 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
             </section>
           ))}
           {page.kind === "archive" &&
-            page.path !== "/memoria" &&
-            page.path !== "/memoria/fotografias" &&
-            page.path !== "/memoria/documentos" && (
+            page.path !== "/archivo" &&
+            page.path !== "/archivo/fotografias" &&
+            page.path !== "/archivo/documentos" && (
               <p className="flex items-center gap-2 text-xs leading-6 text-muted">
                 <Archive aria-hidden="true" size={15} /> Colección institucional
                 en preparación.

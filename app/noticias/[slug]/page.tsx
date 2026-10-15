@@ -68,7 +68,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
     <article className="mx-auto w-[calc(100%-2rem)] max-w-4xl py-14 sm:w-[calc(100%-2.5rem)] sm:py-20 md:py-28">
       <Link
         className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
-        href="/noticias"
+        href="/blog"
       >
         <ArrowLeft aria-hidden="true" size={15} /> Volver a noticias
       </Link>

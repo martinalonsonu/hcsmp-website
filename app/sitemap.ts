@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           page.path !== "/san-martin" && !page.path.startsWith("/san-martin/"),
       )
       .map((page) => page.path),
-    ...newsArticles.map((article) => `/noticias/${article.slug}`),
+    ...newsArticles.map((article) => `/blog/${article.slug}`),
   ];
 
   return paths.map((path) => {

@@ -17,7 +17,7 @@ export const navigationGroups: NavigationGroup[] = [
       { label: "Historia", href: "/hermandad/historia" },
       { label: "Fundadores", href: "/hermandad/fundadores" },
       { label: "Presidentes", href: "/hermandad/presidentes" },
-      { label: "Vida de Hermandad", href: "/hermandad/vida" },
+      { label: "Vida de Hermandad", href: "/hermandad/pilares" },
     ],
   },
   {
@@ -32,28 +32,22 @@ export const navigationGroups: NavigationGroup[] = [
     ],
   },
   {
-    label: "Festividad",
-    href: "/fiesta",
-    links: [],
-  },
-  {
-    label: "Memoria",
-    href: "/memoria",
+    label: "Archivo",
+    href: "/archivo",
     links: [
-      { label: "Fotografías", href: "/memoria/fotografias" },
-      { label: "Documentos", href: "/memoria/documentos" },
-      { label: "Videos", href: "/memoria/videos" },
+      { label: "Fotografías", href: "/archivo/fotografias" },
+      { label: "Documentos", href: "/archivo/documentos" },
+      { label: "Videos", href: "/archivo/videos" },
     ],
   },
-  { label: "Actualidad", href: "/noticias", links: [] },
+  { label: "Blog", href: "/blog", links: [] },
 ];
 
 export const footerNavigation: NavigationLink[] = [
   { label: "Hermandad", href: "/hermandad" },
   { label: "Historia", href: "/hermandad/historia" },
   { label: "San Martin De Porres", href: "/san-martin-de-porres" },
-  { label: "Festividad", href: "/fiesta" },
-  { label: "Memoria", href: "/memoria" },
-  { label: "Actualidad", href: "/noticias" },
+  { label: "Archivo", href: "/archivo" },
+  { label: "Blog", href: "/blog" },
   { label: "Contacto", href: "/contacto" },
 ];

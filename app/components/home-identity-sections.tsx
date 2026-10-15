@@ -240,7 +240,7 @@ export function HomeIdentitySections() {
             </p>
             <Link
               className="mt-3 inline-flex min-h-11 shrink-0 items-center gap-4 border-b border-[#b89b5e] pb-1 text-sm font-semibold text-[#fffefa] transition-colors hover:text-[#d9c28f]"
-              href="/noticias/programa-festividad-san-martin-2026/"
+              href="/blog/programa-festividad-san-martin-2026/"
             >
               Conoce nuestra fiesta <span aria-hidden="true">→</span>
             </Link>

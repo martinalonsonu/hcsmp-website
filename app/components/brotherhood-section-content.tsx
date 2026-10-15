@@ -22,6 +22,12 @@ const sectionLinks = [
     detail:
       "Referencias de liderazgo vinculadas a momentos de nuestra historia.",
   },
+  {
+    href: "/fiesta",
+    number: "04",
+    title: "Festividad",
+    detail: "Referencias del desarrollo de nuestra festividad.",
+  },
 ];
 
 export function BrotherhoodOverview() {
