@@ -2,7 +2,6 @@ import { ArrowLeft, CalendarDays, FileText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
-import { firstSisters } from "@/app/data/brotherhood";
 import { assetUrl } from "@/app/data/assets";
 import { historyChapters } from "@/app/data/history";
 import { historicalEvents } from "@/app/data/institutional-pages";
