@@ -14,14 +14,14 @@ export function HomeNewsSection() {
         <div className="mb-5 flex flex-col justify-between gap-3 sm:mb-10 sm:flex-row sm:items-end sm:gap-4">
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8d7443]">
-              Vida institucional
+              Noticias y actualidad institucional
             </p>
             <h2 className="mt-3 font-display text-2xl font-normal sm:mt-4 sm:text-4xl md:text-5xl">
-              Noticias y comunicados
+              Blog
             </h2>
           </div>
           <p className="max-w-sm text-xs leading-6 text-[#625e57]">
-            Actualizaciones, convocatorias y memoria de la Hermandad.
+            Actualizaciones y convocatorias de la Hermandad.
           </p>
         </div>
         {newsArticles.length > 0 ? (
@@ -40,20 +40,20 @@ export function HomeNewsSection() {
                 </h3>
                 <Link
                   className="mt-5 inline-flex min-h-10 items-center gap-3 text-xs font-semibold text-[#2a2a2a] hover:text-[#8d7443]"
-                  href={`/noticias/${article.slug}`}
+                  href={`/blog/${article.slug}`}
                 >
-                  Leer noticia<span aria-hidden="true">→</span>
+                  Leer nota<span aria-hidden="true">→</span>
                 </Link>
               </article>
             ))}
           </div>
         ) : (
           <p className="border-t border-[#c9beaa] py-6 text-sm leading-7 text-[#625e57]">
-            Los comunicados oficiales se publicarán aquí cuando sean
-            confirmados por la Junta Directiva.
+            Los comunicados oficiales se publicarán aquí cuando sean confirmados
+            por la Junta Directiva.
           </p>
         )}
-        <SectionCta href="/noticias">Ver noticias y comunicados</SectionCta>
+        <SectionCta href="/blog">Ver blog</SectionCta>
       </div>
     </section>
   );
@@ -78,7 +78,7 @@ export function HomeArchiveSections() {
             </p>
           </div>
           <MultimediaCarousel />
-          <SectionCta href="/memoria/fotografias">
+          <SectionCta href="/archivo/fotografias">
             Explora el archivo fotográfico
           </SectionCta>
         </div>

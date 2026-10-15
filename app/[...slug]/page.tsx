@@ -11,13 +11,13 @@ type PageProps = {
 };
 
 const legacyRouteRedirects = new Map([
-  ["/vida-de-hermandad", "/hermandad/vida"],
-  ["/vida-de-hermandad/formacion", "/hermandad/vida"],
-  ["/vida-de-hermandad/servicio", "/hermandad/vida"],
-  ["/vida-de-hermandad/actividades", "/hermandad/vida"],
-  ["/hermandad/vida/formacion", "/hermandad/vida"],
-  ["/hermandad/vida/servicio", "/hermandad/vida"],
-  ["/hermandad/vida/actividades", "/hermandad/vida"],
+  ["/vida-de-hermandad", "/hermandad/pilares"],
+  ["/vida-de-hermandad/formacion", "/hermandad/pilares"],
+  ["/vida-de-hermandad/servicio", "/hermandad/pilares"],
+  ["/vida-de-hermandad/actividades", "/hermandad/pilares"],
+  ["/hermandad/pilares/formacion", "/hermandad/pilares"],
+  ["/hermandad/pilares/servicio", "/hermandad/pilares"],
+  ["/hermandad/pilares/actividades", "/hermandad/pilares"],
 ]);
 
 export const dynamicParams = false;

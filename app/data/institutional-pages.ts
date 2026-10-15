@@ -259,7 +259,8 @@ export const institutionalPages: InstitutionalPage[] = [
       "/hermandad/historia",
       "/hermandad/fundadores",
       "/hermandad/presidentes",
-      "/hermandad/vida",
+      "/hermandad/pilares",
+      "/hermandad/fiesta",
     ],
   },
   {
@@ -280,7 +281,7 @@ export const institutionalPages: InstitutionalPage[] = [
     related: [
       "/hermandad/fundadores",
       "/hermandad/presidentes",
-      "/memoria/documentos",
+      "/archivo/documentos",
     ],
   },
   {
@@ -362,10 +363,10 @@ export const institutionalPages: InstitutionalPage[] = [
         body: "Para la Hermandad, su ejemplo invita a que la devoción se traduzca en fraternidad y cercanía, más allá de la celebración anual.",
       },
     ],
-    related: ["/hermandad/vida", "/san-martin-de-porres"],
+    related: ["/hermandad/pilares", "/san-martin-de-porres"],
   },
   {
-    path: "/fiesta",
+    path: "/hermandad/fiesta",
     title: "Fiesta de San Martín",
     eyebrow: "Noviembre · Cruz Blanca",
     description:
@@ -386,7 +387,12 @@ export const institutionalPages: InstitutionalPage[] = [
         body: "El 6 de mayo salimos para recordar el aniversario de la canonización de San Martín. En noviembre, la procesión de vísperas del día 2 recorre el perímetro de la plazuela Félix B. Cárdemas y visita las casas de quienes prepararon las alfombras; muy temprano el día 3 celebramos la Eucaristía y emprendemos el recorrido principal hacia el centro de Huacho, para regresar a nuestro templo a la medianoche. Después, la Mayordomía celebra tradicionalmente los días 4 y 5. El último fin de semana del mes, la guardada institucional nos permite despedir el mes que vivimos con Martín y cerrar las celebraciones con un último recorrido.",
       },
     ],
-    related: ["/fiesta/procesion"],
+    related: [
+      "/hermandad/historia",
+      "/hermandad/fundadores",
+      "/hermandad/presidentes",
+      "/hermandad/pilares",
+    ],
   },
   {
     path: "/fiesta/procesion",
@@ -405,9 +411,9 @@ export const institutionalPages: InstitutionalPage[] = [
     related: ["/fiesta"],
   },
   {
-    path: "/hermandad/vida",
-    title: "Hermandad",
-    eyebrow: "Vida EclesiaL",
+    path: "/hermandad/pilares",
+    title: "Pilares",
+    eyebrow: "Vida Común",
     description:
       "Formación, servicio, fraternidad y actividades de la Hermandad.",
     introduction:
@@ -429,9 +435,9 @@ export const institutionalPages: InstitutionalPage[] = [
     related: ["/hermandad", "/hermandad/historia", "/san-martin-de-porres"],
   },
   {
-    path: "/memoria",
-    title: "Nuestra memoria",
-    eyebrow: "Archivo vivo",
+    path: "/archivo",
+    title: "Nuestro archivo",
+    eyebrow: "Memoria institucional",
     description:
       "Fotografías, documentos, programas y videos de la historia de la Hermandad.",
     introduction:
@@ -443,10 +449,10 @@ export const institutionalPages: InstitutionalPage[] = [
         body: "El archivo digital crecerá con material propio descrito, fechado y revisado con la comunidad.",
       },
     ],
-    related: ["/memoria/fotografias", "/memoria/documentos", "/memoria/videos"],
+    related: ["/archivo/fotografias", "/archivo/documentos", "/archivo/videos"],
   },
   {
-    path: "/memoria/fotografias",
+    path: "/archivo/fotografias",
     title: "Fotografías",
     eyebrow: "Archivo visual",
     description:
@@ -460,10 +466,10 @@ export const institutionalPages: InstitutionalPage[] = [
         body: "Cada álbum abre en una pestaña nueva la publicación original de la página oficial de la Hermandad.",
       },
     ],
-    related: ["/memoria"],
+    related: ["/archivo"],
   },
   {
-    path: "/memoria/documentos",
+    path: "/archivo/documentos",
     title: "Documentos",
     eyebrow: "Archivo institucional",
     description:
@@ -477,12 +483,12 @@ export const institutionalPages: InstitutionalPage[] = [
         body: "Accede a los documentos institucionales disponibles para consulta.",
       },
     ],
-    related: ["/memoria", "/hermandad/historia"],
+    related: ["/archivo", "/hermandad/historia"],
   },
   {
-    path: "/memoria/videos",
+    path: "/archivo/videos",
     title: "Videos y testimonios",
-    eyebrow: "Memoria audiovisual",
+    eyebrow: "Archivo audiovisual",
     description:
       "Registro audiovisual de celebraciones y testimonios de la Hermandad.",
     introduction:
@@ -494,11 +500,11 @@ export const institutionalPages: InstitutionalPage[] = [
         body: "El material audiovisual se incorporará cuando la Hermandad confirme su procedencia y autorización de publicación.",
       },
     ],
-    related: ["/memoria", "/memoria/fotografias"],
+    related: ["/archivo", "/archivo/fotografias"],
   },
   {
-    path: "/noticias",
-    title: "Noticias y comunicados",
+    path: "/blog",
+    title: "Blog",
     eyebrow: "Actualidad institucional",
     description:
       "Noticias, comunicados, formación y actividades de la Hermandad.",
@@ -506,7 +512,7 @@ export const institutionalPages: InstitutionalPage[] = [
       "Un espacio para comunicados oficiales, actividades y noticias de la vida de la Hermandad.",
     kind: "news",
     sections: [],
-    related: ["/hermandad/vida", "/fiesta"],
+    related: ["/hermandad/pilares", "/fiesta"],
   },
 ];
 

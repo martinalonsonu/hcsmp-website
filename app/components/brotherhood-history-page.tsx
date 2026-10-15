@@ -185,7 +185,7 @@ export function BrotherhoodHistoryPage() {
         </Link>
         <Link
           className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
-          href="/memoria/documentos"
+          href="/archivo/documentos"
         >
           Explorar memoria documental <FileText aria-hidden="true" size={15} />
         </Link>

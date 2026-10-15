@@ -155,7 +155,7 @@ export function SiteHeader() {
               className="inline-flex min-h-11 items-center justify-center whitespace-nowrap border border-forest/30 px-3 text-xs font-semibold text-forest-text transition-colors hover:bg-forest hover:text-white-warm 2xl:px-4"
               href="/contacto/"
             >
-              Sé parte
+              Contáctanos
             </Link>
           </nav>
         </div>
@@ -234,7 +234,7 @@ export function SiteHeader() {
               href="/contacto/"
               onClick={() => setIsMenuOpen(false)}
             >
-              Sé parte
+              Contáctanos
             </Link>
           </div>
         </nav>

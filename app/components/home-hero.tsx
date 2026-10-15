@@ -92,7 +92,7 @@ export function HomeHero() {
             </Link>
             <Link
               className="inline-flex min-h-12 min-w-0 flex-1 items-center justify-center whitespace-nowrap border border-white/70 px-2 text-xs font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:flex-none sm:px-5 sm:text-sm"
-              href="/noticias/programa-festividad-san-martin-2026/"
+              href="/blog/programa-festividad-san-martin-2026/"
             >
               <span className="sm:hidden">Festividad 2026</span>
               <span className="hidden sm:inline">Solemne Festividad 2026</span>
