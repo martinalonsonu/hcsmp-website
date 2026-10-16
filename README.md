@@ -31,6 +31,12 @@ El servidor local muestra la dirección en la que puedes revisar los cambios. Lo
 
 Antes de publicar cambios, ejecuta lint y build. No edites `out/`: es una salida generada y se reemplaza en cada compilación. El proyecto no define actualmente un comando de pruebas automatizadas.
 
+## Pruebas automatizadas
+
+Las pruebas usan Vitest, React Testing Library y jsdom. Ejecuta `npm run test` para correr la suite o `npm run test:coverage` para correrla y generar el reporte en `coverage/`. Este segundo comando exige al menos 75% de cobertura en branches, funciones, lÃ­neas y sentencias.
+
+El workflow de GitHub Actions ejecuta `npm run test:coverage` antes del build. Si una prueba falla o la cobertura queda bajo el umbral, el build y el despliegue se detienen. AÃ±ade las pruebas junto a los dominios existentes en `tests/` y mantÃ©n cubiertos los casos lÃ­mite y las ramas condicionales.
+
 ## Estructura del proyecto
 
 | Ruta | Contenido |

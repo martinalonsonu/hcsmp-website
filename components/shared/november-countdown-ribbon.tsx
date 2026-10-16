@@ -28,7 +28,7 @@ export function NovemberCountdownRibbon({
       ) : (
         <>
           <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-clay sm:text-[10px]">
-            Noviembre Martiniano 2026
+            Noviembre Martiniano {countdown.year}
           </span>
           <span aria-hidden="true" className="h-4 w-px bg-line" />
           <p className="flex items-baseline gap-2 font-display text-xs tabular-nums sm:gap-3 sm:text-sm">

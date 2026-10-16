@@ -1,3 +1,9 @@
+import {
+  assertCanonicalPath,
+  assertRequiredText,
+  assertUniqueValues,
+} from "@/utils/validate-static-content";
+
 export type InstitutionalSection = {
   title: string;
   body: string;
@@ -534,3 +540,15 @@ export const institutionalPages: InstitutionalPage[] = [
 export const institutionalPageByPath = new Map(
   institutionalPages.map((page) => [page.path, page]),
 );
+
+assertUniqueValues(
+  institutionalPages.map((page) => page.path),
+  "institutional page path",
+);
+
+for (const page of institutionalPages) {
+  assertCanonicalPath(page.path, "institutional page path");
+  assertRequiredText(page.title, `title for "${page.path}"`);
+  assertRequiredText(page.description, `description for "${page.path}"`);
+  assertRequiredText(page.introduction, `introduction for "${page.path}"`);
+}
