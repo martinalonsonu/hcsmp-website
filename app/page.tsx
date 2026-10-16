@@ -6,7 +6,7 @@ import { HomeHero } from "@/components/home/home-hero";
 import { HomeIdentitySections } from "@/components/home/home-identity-sections";
 import { ScrollRevealSections } from "@/components/shared/scroll-reveal-sections";
 import { AudioPill } from "@/components/shared/audio-pill";
-import { assetUrl } from "@/models/shared/assets";
+import { assetUrl, wordpressImageUrl } from "@/models/shared/assets";
 import {
   createSiteGraph,
   createWebPageSchema,
@@ -15,7 +15,7 @@ import {
 } from "@/models/seo/schemas";
 import { SITE_NAME, getCanonicalUrl } from "@/models/seo/site";
 
-const homeSocialImage = assetUrl("home_hero.jpg");
+const homeSocialImage = wordpressImageUrl(assetUrl("home_hero.jpg"), 1200);
 
 export const metadata: Metadata = {
   title: "Hermandad de San Martín de Porres",

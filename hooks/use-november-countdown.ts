@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import {
+  getNextCountdownUpdateDelay,
   getTimeUntilNovember,
   type Countdown,
 } from "@/utils/november-countdown";
@@ -12,19 +13,22 @@ export function useNovemberCountdown(
   const [countdown, setCountdown] = useState(initialCountdown);
 
   useEffect(() => {
+    let timeoutId: number;
+
     const updateCountdown = () => {
-      const nextCountdown = getTimeUntilNovember();
+      const now = Date.now();
+      const nextCountdown = getTimeUntilNovember(now);
+      const nextUpdateDelay = getNextCountdownUpdateDelay(now);
       setCountdown(nextCountdown);
-      return nextCountdown !== false;
+      timeoutId = window.setTimeout(
+        updateCountdown,
+        Math.min(nextUpdateDelay, 2_147_000_000),
+      );
     };
 
-    if (!updateCountdown()) return;
+    updateCountdown();
 
-    const intervalId = window.setInterval(() => {
-      if (!updateCountdown()) window.clearInterval(intervalId);
-    }, 1000);
-
-    return () => window.clearInterval(intervalId);
+    return () => window.clearTimeout(timeoutId);
   }, []);
 
   return countdown;

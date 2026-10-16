@@ -1,3 +1,11 @@
+import { wordpressImageUrl } from "@/models/shared/assets";
+import {
+  assertIsoDate,
+  assertRequiredText,
+  assertSlug,
+  assertUniqueValues,
+} from "@/utils/validate-static-content";
+
 export type NewsCategory =
   | "Institucional"
   | "Fiesta"
@@ -27,8 +35,10 @@ export const newsArticles: NewsArticle[] = [
     eyebrow: "SOLEMNES CULTOS · CRUZ BLANCA",
     summary:
       "La Hermandad invita a la comunidad a vivir los cultos en honor a San Martín de Porres, con jornadas de oración, solidaridad y tradición.",
-    image:
+    image: wordpressImageUrl(
       "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/portada-para-facebook-salon-de-belleza-simple-beige.png",
+      1280,
+    ),
     content: `# Programa de festividad en honor a San Martín de Porres
 
 La Hermandad de Cargadores de San Martín de Porres de la Parroquia La Santa Cruz, Diócesis de Huacho, invita a los hermanos, devotos y a toda la comunidad a participar en los solemnes cultos en honor a nuestro santo patrón.
@@ -97,8 +107,10 @@ Parroquia La Santa Cruz → Av. Cruz Blanca → Av. Domingo Mandamiento → Av. 
     eyebrow: "BOLETÍN INFORMATIVO",
     summary:
       "La Hermandad convoca a sus hermanos, devotos y a toda la comunidad al recorrido principal de San Martín de Porres.",
-    image:
+    image: wordpressImageUrl(
       "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/whatsapp-image-2026-09-05-at-10.12.46-pm.jpeg",
+      1280,
+    ),
     content: `La **Hermandad de Cargadores de San Martín de Porres de Cruz Blanca** comunica a todos sus hermanos, devotos y comunidad en general que el próximo **lunes 3 de noviembre**, a partir de las **09:30 a. m.**, se llevará a cabo el **recorrido principal de la venerada imagen de San Martín de Porres**, en el marco de los solemnes cultos en honor a nuestro santo patrón.
 
 La salida tendrá lugar desde la **Parroquia La Santa Cruz**, contando con el acompañamiento musical de la **Agrupación Musical Clase Juvenil** y de la **Agrupación Musical Los Auténticos del Callao**.
@@ -119,6 +131,23 @@ Invitamos a toda la comunidad a acompañar con fe y devoción el paso de San Mar
 **“¡Somos parte de tu historia de amor!”**`,
   },
 ];
+
+assertUniqueValues(
+  newsArticles.map((article) => article.slug),
+  "blog slug",
+);
+
+for (const article of newsArticles) {
+  assertSlug(article.slug, "blog slug");
+  assertRequiredText(article.title, `title for blog article "${article.slug}"`);
+  assertRequiredText(article.date, `display date for blog article "${article.slug}"`);
+  assertRequiredText(article.summary, `summary for blog article "${article.slug}"`);
+  assertRequiredText(article.content, `content for blog article "${article.slug}"`);
+
+  if (article.publishedAt !== undefined) {
+    assertIsoDate(article.publishedAt, `publishedAt for blog article "${article.slug}"`);
+  }
+}
 
 export const getNewsArticle = (slug: string) =>
   newsArticles.find((article) => article.slug === slug);

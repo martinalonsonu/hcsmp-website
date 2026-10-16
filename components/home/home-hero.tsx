@@ -8,36 +8,67 @@ import { heroSlides } from "@/models/home/hero-slides";
 
 
 export function HomeHero() {
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [slideState, setSlideState] = useState({
+    activeIndex: 0,
+    previousIndex: null as number | null,
+  });
+  const { activeIndex: activeSlideIndex, previousIndex } = slideState;
   const activeSlide = heroSlides[activeSlideIndex];
+  const nextSlideIndex = (activeSlideIndex + 1) % heroSlides.length;
 
   useEffect(() => {
     const interval = window.setInterval(() => {
-      setActiveSlideIndex(
-        (currentIndex) => (currentIndex + 1) % heroSlides.length,
-      );
+      setSlideState((current) => ({
+        activeIndex: (current.activeIndex + 1) % heroSlides.length,
+        previousIndex: current.activeIndex,
+      }));
     }, 6000);
 
     return () => window.clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (previousIndex === null) return;
+
+    const timeout = window.setTimeout(() => {
+      setSlideState((current) =>
+        current.previousIndex === previousIndex
+          ? { ...current, previousIndex: null }
+          : current,
+      );
+    }, 1000);
+
+    return () => window.clearTimeout(timeout);
+  }, [previousIndex]);
+
   return (
     <section className="relative flex aspect-[7/6] items-end overflow-hidden rounded-b-3xl bg-[#111111] text-white sm:aspect-auto sm:min-h-[min(420px,calc(100svh-5rem))] md:min-h-[min(500px,calc(100svh-5rem))] lg:mx-4 lg:min-h-[min(560px,calc(100svh-5rem))]">
       <div aria-hidden="true" className="absolute inset-0">
-        {heroSlides.map(({ image, imagePosition }, index) => (
-          <Image
-            alt=""
-            aria-hidden="true"
-            className={`absolute inset-0 ${imagePosition} transition-opacity duration-1000 ${
-              activeSlideIndex === index ? "opacity-100" : "opacity-0"
-            }`}
-            fill
-            key={image}
-            preload={index === 0}
-            sizes="100vw"
-            src={image}
-          />
-        ))}
+        {heroSlides.map(({ image, imagePosition }, index) => {
+          if (
+            index !== activeSlideIndex &&
+            index !== nextSlideIndex &&
+            index !== previousIndex
+          ) {
+            return null;
+          }
+
+          return (
+            <Image
+              alt=""
+              aria-hidden="true"
+              className={`absolute inset-0 ${imagePosition} transition-opacity duration-1000 ${
+                activeSlideIndex === index ? "opacity-100" : "opacity-0"
+              }`}
+              fill
+              key={image}
+              loading={index === activeSlideIndex ? "eager" : "lazy"}
+              preload={index === 0 && activeSlideIndex === 0}
+              sizes="100vw"
+              src={image}
+            />
+          );
+        })}
       </div>
       <div className="absolute inset-0 bg-linear-to-r from-black/45 via-black/20 to-transparent" />
       <div className="absolute inset-0 bg-linear-to-t from-black/55 via-black/10 to-transparent" />
