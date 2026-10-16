@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/shared/site-footer";
 import { SiteHeader } from "@/components/shared/site-header";
 import { NovemberCountdownRibbon } from "@/components/shared/november-countdown-ribbon";
 import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
+import { SITE_NAME, SITE_URL } from "@/models/seo/site";
 import { getTimeUntilNovember } from "@/utils/november-countdown";
 import "./globals.css";
 
@@ -21,24 +22,25 @@ const libreBaskerville = Libre_Baskerville({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    `${(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/+$/, "")}${process.env.NEXT_PUBLIC_BASE_PATH === "/" ? "" : (process.env.NEXT_PUBLIC_BASE_PATH ?? "")}/`,
-  ),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Hermandad de Cargadores de San Martín de Porres | Cruz Blanca",
-    template: "%s | Hermandad de San Martín de Porres",
+    default: `${SITE_NAME} de Cruz Blanca | Santa María, Huaura`,
+    template: "%s | HCSMP Cruz Blanca",
   },
   description:
-    "Sitio oficial de la Hermandad de Cargadores de San Martín de Porres de Cruz Blanca. Historia, devoción, fiesta y memoria institucional.",
+    "Conoce la historia, la fe y las actividades de la Hermandad de Cargadores de San Martín de Porres de Cruz Blanca, Santa María, Huaura.",
   openGraph: {
-    title: "Hermandad de Cargadores de San Martín de Porres | Cruz Blanca",
-    description:
-      "La memoria viva de una devoción en Cruz Blanca, Santa María, Diócesis de Huacho, Perú.",
-    siteName: "Hermandad de Cargadores de San Martín de Porres",
+    title: `${SITE_NAME} de Cruz Blanca | Santa María, Huaura`,
+    description: "Historia, fe, actividades y memoria de la Hermandad en Cruz Blanca, Santa María, Huaura.",
+    siteName: SITE_NAME,
     locale: "es_PE",
     type: "website",
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary",
+    title: `${SITE_NAME} de Cruz Blanca`,
+    description: "Historia, fe y actividades de la Hermandad en Santa María, Huaura.",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

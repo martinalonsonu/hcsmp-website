@@ -1,18 +1,11 @@
 import type { MetadataRoute } from "next";
+import { getCanonicalUrl } from "@/models/seo/site";
 
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  ).replace(/\/+$/, "");
-  const basePath =
-    process.env.NEXT_PUBLIC_BASE_PATH === "/"
-      ? ""
-      : (process.env.NEXT_PUBLIC_BASE_PATH ?? "");
-
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: `${siteUrl}${basePath}/sitemap.xml`,
+    sitemap: getCanonicalUrl("/sitemap.xml").replace(/\/$/, ""),
   };
 }
