@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import { InstitutionalPageView } from "@/app/components/institutional-page-view";
+import { InstitutionalPageView } from "@/components/hermandad/institutional-page-view";
+import { JsonLd } from "@/components/seo/json-ld";
 import {
   institutionalPageByPath,
   institutionalPages,
-} from "@/app/data/institutional-pages";
+} from "@/models/hermandad/institutional-pages";
+import {
+  createBreadcrumbSchema,
+  createSaintSchema,
+  createSiteGraph,
+  createWebPageSchema,
+} from "@/models/seo/schemas";
+import { getCanonicalUrl } from "@/models/seo/site";
 
 type PageProps = {
   params: Promise<{ slug: string[] }>;
@@ -42,9 +50,12 @@ export async function generateMetadata({
   return {
     title: page.title,
     description: page.description,
+    alternates: { canonical: getCanonicalUrl(page.path) },
     openGraph: {
       title: `${page.title} | Hermandad de San Martín de Porres`,
       description: page.description,
+      url: getCanonicalUrl(page.path),
+      siteName: "Hermandad de Cargadores de San Martín de Porres",
       type: "website",
       locale: "es_PE",
     },
@@ -72,5 +83,46 @@ export default async function InstitutionalRoute({ params }: PageProps) {
   const page = institutionalPageByPath.get(path);
   if (!page) notFound();
 
-  return <InstitutionalPageView page={page} />;
+  const pageType =
+    page.kind === "archive" || page.kind === "news"
+      ? "CollectionPage"
+      : page.path === "/hermandad" ||
+          page.path === "/san-martin-de-porres" ||
+          page.path === "/hermandad/pilares"
+        ? "AboutPage"
+        : "WebPage";
+  const breadcrumbItems = [
+    { name: "Inicio", path: "/" },
+    ...page.path
+      .split("/")
+      .filter(Boolean)
+      .map((segment, index, segments) => {
+        const itemPath = `/${segments.slice(0, index + 1).join("/")}`;
+        return {
+          name:
+            institutionalPageByPath.get(itemPath)?.title ??
+            segment.replaceAll("-", " "),
+          path: itemPath,
+        };
+      }),
+  ];
+  const pageStructuredData = createSiteGraph(
+    createWebPageSchema({
+      name: page.title,
+      description: page.description,
+      path: page.path,
+      type: pageType,
+    }),
+    createBreadcrumbSchema(breadcrumbItems),
+    ...(page.path === "/san-martin-de-porres"
+      ? [createSaintSchema({ description: page.description })]
+      : []),
+  );
+
+  return (
+    <>
+      <JsonLd data={pageStructuredData} />
+      <InstitutionalPageView page={page} />
+    </>
+  );
 }

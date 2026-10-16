@@ -1,36 +1,32 @@
 import type { MetadataRoute } from "next";
-import { institutionalPages } from "@/app/data/institutional-pages";
-import { newsArticles } from "@/app/data/news";
+import { institutionalPages } from "@/models/hermandad/institutional-pages";
+import { newsArticles } from "@/models/blog/news";
+import { getCanonicalUrl } from "@/models/seo/site";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  ).replace(/\/+$/, "");
-  const basePath =
-    process.env.NEXT_PUBLIC_BASE_PATH === "/"
-      ? ""
-      : (process.env.NEXT_PUBLIC_BASE_PATH ?? "");
-  const paths = [
+  const paths = new Set([
     "/",
     "/contacto",
+    "/vida",
+    "/blog",
     ...institutionalPages
       .filter(
         (page) =>
-          page.path !== "/san-martin" && !page.path.startsWith("/san-martin/"),
+          page.path !== "/san-martin" &&
+          !page.path.startsWith("/san-martin/") &&
+          page.path !== "/vida-de-hermandad" &&
+          !page.path.startsWith("/vida-de-hermandad/") &&
+          !page.path.startsWith("/hermandad/pilares/"),
       )
       .map((page) => page.path),
     ...newsArticles.map((article) => `/blog/${article.slug}`),
-  ];
+  ]);
 
-  return paths.map((path) => {
-    const urlPath = path === "/" ? path : `${path}/`;
-
-    return {
-      url: `${siteUrl}${basePath}${urlPath}`,
+  return Array.from(paths, (path) => ({
+      url: getCanonicalUrl(path),
       changeFrequency: path === "/" ? "weekly" : "monthly",
       priority: path === "/" ? 1 : 0.7,
-    };
-  });
+    }));
 }

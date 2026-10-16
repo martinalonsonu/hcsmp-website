@@ -4,7 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
-import { getNewsArticle, newsArticles } from "@/app/data/news";
+import { JsonLd } from "@/components/seo/json-ld";
+import { getNewsArticle, newsArticles } from "@/models/blog/news";
+import {
+  createBreadcrumbSchema,
+  createSiteGraph,
+  createWebPageSchema,
+  organizationSchema,
+} from "@/models/seo/schemas";
+import { SITE_URL, getCanonicalUrl } from "@/models/seo/site";
 
 type NewsPageProps = {
   params: Promise<{ slug: string }>;
@@ -27,6 +35,7 @@ export async function generateMetadata({
     return {
       title: "Noticias",
       description: "Aún no hay noticias publicadas.",
+      alternates: { canonical: getCanonicalUrl("/blog/sin-publicaciones") },
     };
   }
   if (!article) notFound();
@@ -34,11 +43,20 @@ export async function generateMetadata({
   return {
     title: article.title,
     description: article.summary,
+    alternates: { canonical: getCanonicalUrl(`/blog/${article.slug}`) },
     openGraph: {
       title: article.title,
       description: article.summary,
+      url: getCanonicalUrl(`/blog/${article.slug}`),
+      siteName: "Hermandad de Cargadores de San Martín de Porres",
       type: "article",
       publishedTime: article.publishedAt,
+      images: article.image ? [article.image] : undefined,
+    },
+    twitter: {
+      card: article.image ? "summary_large_image" : "summary",
+      title: article.title,
+      description: article.summary,
       images: article.image ? [article.image] : undefined,
     },
   };
@@ -64,7 +82,36 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
   }
   if (!article) notFound();
 
+  const canonicalUrl = getCanonicalUrl(`/blog/${article.slug}`);
+  const articleStructuredData = createSiteGraph(
+    createWebPageSchema({
+      name: article.title,
+      description: article.summary,
+      path: `/blog/${article.slug}`,
+      type: "WebPage",
+    }),
+    {
+      "@type": "Article",
+      "@id": `${canonicalUrl}#article`,
+      mainEntityOfPage: canonicalUrl,
+      headline: article.title,
+      description: article.summary,
+      image: article.image ? [article.image] : undefined,
+      datePublished: article.publishedAt,
+      author: { "@id": `${SITE_URL}/#organization` },
+      publisher: organizationSchema,
+      inLanguage: "es-PE",
+    },
+    createBreadcrumbSchema([
+      { name: "Inicio", path: "/" },
+      { name: "Blog", path: "/blog" },
+      { name: article.title, path: `/blog/${article.slug}` },
+    ]),
+  );
+
   return (
+    <>
+      <JsonLd data={articleStructuredData} />
     <article className="mx-auto w-[calc(100%-2rem)] max-w-4xl py-14 sm:w-[calc(100%-2.5rem)] sm:py-20 md:py-28">
       <Link
         className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
@@ -146,5 +193,6 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
         </ReactMarkdown>
       </div>
     </article>
+    </>
   );
 }
