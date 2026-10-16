@@ -17,7 +17,8 @@ export const navigationGroups: NavigationGroup[] = [
       { label: "Historia", href: "/hermandad/historia" },
       { label: "Fundadores", href: "/hermandad/fundadores" },
       { label: "Presidentes", href: "/hermandad/presidentes" },
-      { label: "Vida de Hermandad", href: "/hermandad/pilares" },
+      { label: "Pilares", href: "/hermandad/pilares" },
+      { label: "Nuestra imagen", href: "/hermandad/imagen" },
     ],
   },
   {

@@ -289,7 +289,9 @@ export function HomeIdentitySections() {
               ))}
             </ol>
             <div className="flex justify-center">
-              <SectionCta href="/fiesta">Conoce nuestros recorridos</SectionCta>
+              <SectionCta href="/hermandad/fiesta">
+                Conoce nuestros recorridos
+              </SectionCta>
             </div>
           </div>
         </div>
