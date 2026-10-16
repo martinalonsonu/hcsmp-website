@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import { InstitutionalPageView } from "@/app/components/institutional-page-view";
+import { InstitutionalPageView } from "@/components/hermandad/institutional-page-view";
 import {
   institutionalPageByPath,
   institutionalPages,
-} from "@/app/data/institutional-pages";
+} from "@/models/hermandad/institutional-pages";
 
 type PageProps = {
   params: Promise<{ slug: string[] }>;

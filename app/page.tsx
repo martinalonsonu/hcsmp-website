@@ -1,9 +1,9 @@
-import { HomeArchiveSections } from "@/app/components/home-archive-sections";
-import { HomeBrotherhoodSection } from "@/app/components/home-brotherhood-section";
-import { HomeHero } from "@/app/components/home-hero";
-import { HomeIdentitySections } from "@/app/components/home-identity-sections";
-import { ScrollRevealSections } from "@/app/components/scroll-reveal-sections";
-import { AudioPill } from "@/app/components/audio-pill";
+import { HomeArchiveSections } from "@/components/home/home-archive-sections";
+import { HomeBrotherhoodSection } from "@/components/home/home-brotherhood-section";
+import { HomeHero } from "@/components/home/home-hero";
+import { HomeIdentitySections } from "@/components/home/home-identity-sections";
+import { ScrollRevealSections } from "@/components/shared/scroll-reveal-sections";
+import { AudioPill } from "@/components/shared/audio-pill";
 
 export default function HomePage() {
   return (

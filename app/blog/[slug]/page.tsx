@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
-import { getNewsArticle, newsArticles } from "@/app/data/news";
+import { getNewsArticle, newsArticles } from "@/models/blog/news";
 
 type NewsPageProps = {
   params: Promise<{ slug: string }>;

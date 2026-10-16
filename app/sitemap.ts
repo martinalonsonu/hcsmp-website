@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { institutionalPages } from "@/app/data/institutional-pages";
-import { newsArticles } from "@/app/data/news";
+import { institutionalPages } from "@/models/hermandad/institutional-pages";
+import { newsArticles } from "@/models/blog/news";
 
 export const dynamic = "force-static";
 
