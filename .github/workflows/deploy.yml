@@ -7,16 +7,117 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
+  security:
+    name: GHAS vulnerability gate
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      vulnerability-alerts: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+
+      - name: Analyze with CodeQL
+        uses: github/codeql-action/analyze@v4
+
+      - name: Enforce GHAS alert thresholds
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const limits = { critical: 0, high: 0, moderate: 10, low: 100 };
+            const counts = {
+              critical: 0,
+              high: 0,
+              moderate: 0,
+              low: 0,
+            };
+            const sources = { codeScanning: 0, dependabot: 0 };
+            const normalizeSeverity = (severity) =>
+              severity === "medium" ? "moderate" : severity;
+
+            const codeAlerts = await github.paginate(
+              github.rest.codeScanning.listAlertsForRepo,
+              {
+                owner,
+                repo,
+                state: "open",
+                ref: context.ref,
+                per_page: 100,
+              },
+            );
+
+            for (const alert of codeAlerts) {
+              const severity = normalizeSeverity(
+                alert.rule.security_severity_level,
+              );
+              if (Object.hasOwn(counts, severity)) {
+                counts[severity] += 1;
+                sources.codeScanning += 1;
+              }
+            }
+
+            const dependabotAlerts = await github.paginate(
+              github.rest.dependabot.listAlertsForRepo,
+              { owner, repo, state: "open", per_page: 100 },
+            );
+
+            for (const alert of dependabotAlerts) {
+              const bucket = normalizeSeverity(
+                alert.security_vulnerability.severity,
+              );
+              if (Object.hasOwn(counts, bucket)) {
+                counts[bucket] += 1;
+                sources.dependabot += 1;
+              }
+            }
+
+            const rows = Object.keys(limits).map((severity) => [
+              severity,
+              String(counts[severity]),
+              String(limits[severity]),
+              counts[severity] <= limits[severity] ? "OK" : "EXCEEDS LIMIT",
+            ]);
+
+            await core.summary
+              .addHeading("GHAS vulnerability threshold check")
+              .addTable([
+                ["Severity", "Open alerts", "Maximum", "Result"],
+                ...rows,
+              ])
+              .addRaw(
+                `Scanned ${sources.codeScanning} CodeQL and ${sources.dependabot} Dependabot alerts.`,
+              )
+              .write();
+
+            const exceeded = Object.entries(limits)
+              .filter(([severity, maximum]) => counts[severity] > maximum)
+              .map(([severity, maximum]) => `${severity}: ${counts[severity]} > ${maximum}`);
+
+            if (exceeded.length > 0) {
+              core.setFailed(`GHAS limits exceeded: ${exceeded.join(", ")}`);
+            }
+
+  build:
+    needs: security
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,7 +135,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run unit tests with coverage threshold
+      - name: Enforce 75% coverage gate
         run: npm run test:coverage
 
       - name: Build static export
@@ -54,6 +155,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

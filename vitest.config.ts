@@ -18,13 +18,10 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "lcov", "json-summary"],
       include: [
-        "utils/**/*.ts",
+        "app/**/*.{ts,tsx}",
+        "components/**/*.tsx",
         "hooks/**/*.ts",
-        "components/shared/**/*.tsx",
-        "components/archivo/archive-filter.tsx",
-        "components/home/home-hero.tsx",
-        "components/home/multimedia-carousel.tsx",
-        "components/seo/json-ld.tsx",
+        "utils/**/*.ts",
       ],
       exclude: ["**/*.test.{ts,tsx}", "**/*.d.ts"],
       thresholds: {
