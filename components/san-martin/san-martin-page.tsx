@@ -107,7 +107,7 @@ export function SanMartinPage() {
             </h2>
           </div>
 
-          <div className="space-y-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+          <div className="flex flex-col gap-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
             <p>
               San Martín de Porres Velázquez nació en Lima, Perú, el 9 de
               diciembre de 1579, durante los primeros años del Virreinato. Fue
@@ -346,7 +346,7 @@ export function SanMartinPage() {
             </h2>
           </div>
 
-          <div className="space-y-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+          <div className="flex flex-col gap-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
             <p>
               En 1639, durante una epidemia que afectó Lima, Martín se dedicó
               especialmente a atender a los enfermos. Su propia salud empeoró y

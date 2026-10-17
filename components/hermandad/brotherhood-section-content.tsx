@@ -7,7 +7,7 @@ import { foundingFigures, presidencyReferences } from "@/models/hermandad/brothe
 
 export function BrotherhoodOverview() {
   return (
-    <div className="space-y-12 sm:space-y-14">
+    <div className="flex flex-col gap-12 sm:gap-14">
       <section className="border-y border-line py-5 sm:py-7">
         <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay">
           Nuestra identidad
@@ -127,7 +127,7 @@ export function BrotherhoodOverview() {
 
 export function FoundersArchive() {
   return (
-    <div className="space-y-10 sm:space-y-12">
+    <div className="flex flex-col gap-10 sm:gap-12">
       <section className="border-y border-line">
         {foundingFigures.map((figure, index) => (
           <article
@@ -160,7 +160,7 @@ export function FoundersArchive() {
 
 export function PresidentsArchive() {
   return (
-    <div className="space-y-7 sm:space-y-9">
+    <div className="flex flex-col gap-7 sm:gap-9">
       <ol className="relative border-l border-line">
         {presidencyReferences.map((reference) => (
           <li

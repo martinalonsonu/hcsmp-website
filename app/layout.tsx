@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <body className="min-h-screen bg-paper font-sans text-ink antialiased">
         <a
-          className="fixed left-4 top-4 z-50 -translate-y-24 rounded-sm bg-white px-4 py-3 text-forest shadow-lg transition-transform focus:translate-y-0"
+          className="fixed left-4 top-4 z-50 -translate-y-24 rounded-xs bg-white px-4 py-3 text-forest shadow-lg transition-transform focus:translate-y-0"
           href="#contenido"
         >
           Saltar al contenido

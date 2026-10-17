@@ -128,7 +128,7 @@ function EmptyPeopleState({ page }: { page: InstitutionalPage }) {
 
 function NewsList() {
   return (
-    <div className="space-y-5">
+    <div className="flex flex-col gap-5">
       {newsArticles.map((article) => (
         <article
           className="overflow-hidden border border-line"
@@ -287,7 +287,7 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
           </nav>
         </aside>
 
-        <div className="min-w-0 space-y-12 sm:space-y-14">
+        <div className="min-w-0 flex flex-col gap-12 sm:gap-14">
           {page.kind && (
             <section aria-label={page.title}>
               <PageKindContent page={page} />

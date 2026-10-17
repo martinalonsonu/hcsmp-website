@@ -89,7 +89,7 @@ export function FiestaPage({ page }: { page: InstitutionalPage }) {
                 {section.title}
               </h2>
             </div>
-            <div className="space-y-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+            <div className="flex flex-col gap-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
               <p>{section.body}</p>
               {index === 2 && (
                 <ol className="divide-y divide-line border-y border-line">
