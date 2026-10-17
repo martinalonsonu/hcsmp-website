@@ -38,7 +38,7 @@ jobs:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const limits = { critical: 0, high: 10, moderate: 20, low: 100 };
+            const limits = { critical: 0, high: 0, moderate: 10, low: 100 };
             const counts = {
               critical: 0,
               high: 0,
@@ -162,7 +162,7 @@ jobs:
       - name: Build static export
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: ""
+          NEXT_PUBLIC_BASE_PATH: ""          
           NEXT_PUBLIC_SITE_URL: "https://hermandadsanmartinhuacho.org"
 
       - name: Disable Jekyll processing
