@@ -198,7 +198,7 @@ export function MultimediaCarousel() {
                 ? "Reanudar carrusel automático"
                 : "Pausar carrusel automático"
             }
-            className="grid size-10 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-sm transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="grid size-10 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             onClick={() => setIsPaused((paused) => !paused)}
             type="button"
           >
@@ -211,7 +211,7 @@ export function MultimediaCarousel() {
           <div className="flex gap-2">
             <button
               aria-label="Fotografía anterior"
-              className="grid size-10 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-sm transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="grid size-10 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               onClick={showPrevious}
               type="button"
             >
@@ -219,7 +219,7 @@ export function MultimediaCarousel() {
             </button>
             <button
               aria-label="Fotografía siguiente"
-              className="grid size-10 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-sm transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="grid size-10 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               onClick={showNext}
               type="button"
             >

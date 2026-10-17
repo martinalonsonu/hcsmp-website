@@ -417,7 +417,7 @@ export function BrotherhoodImagePage() {
                   </figure>
                 )}
 
-                <div className="mt-5 space-y-4 sm:space-y-5">
+                <div className="mt-5 flex flex-col gap-4 sm:gap-5">
                   {chapter.paragraphs.map((paragraph) => (
                     <p
                       className="text-sm leading-7 text-muted sm:text-base sm:leading-8"

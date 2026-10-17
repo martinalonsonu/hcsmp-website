@@ -172,12 +172,12 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
               <strong className="font-semibold text-ink">{children}</strong>
             ),
             ol: ({ children }) => (
-              <ol className="mt-5 list-decimal space-y-2 pl-6 text-sm leading-7 text-muted sm:text-base">
+              <ol className="mt-5 flex flex-col gap-2 list-decimal pl-6 text-sm leading-7 text-muted sm:text-base">
                 {children}
               </ol>
             ),
             ul: ({ children }) => (
-              <ul className="mt-5 list-disc space-y-2 pl-6 text-sm leading-7 text-muted sm:text-base">
+              <ul className="mt-5 flex flex-col gap-2 list-disc pl-6 text-sm leading-7 text-muted sm:text-base">
                 {children}
               </ul>
             ),

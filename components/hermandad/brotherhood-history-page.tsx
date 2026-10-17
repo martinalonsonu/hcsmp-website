@@ -132,7 +132,7 @@ export function BrotherhoodHistoryPage() {
                     </figcaption>
                   </figure>
                 )}
-                <div className="space-y-4 sm:space-y-5">
+                <div className="flex flex-col gap-4 sm:gap-5">
                   {chapter.paragraphs.map((paragraph) => (
                     <p
                       className="text-sm leading-7 text-muted sm:text-base sm:leading-8"
