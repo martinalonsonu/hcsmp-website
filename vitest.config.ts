@@ -3,7 +3,6 @@ import { defineConfig } from "vitest/config";
 const projectRoot = process.cwd();
 
 export default defineConfig({
-  esbuild: { jsx: "automatic" },
   resolve: {
     alias: {
       "@": projectRoot,
