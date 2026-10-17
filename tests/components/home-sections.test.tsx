@@ -32,6 +32,19 @@ describe("home page sections", () => {
     }
   });
 
+  it("shows the empty state when there are no published articles", () => {
+    const publishedArticles = newsArticles.splice(0);
+
+    try {
+      render(<HomeNewsSection />);
+
+      expect(screen.getByText(/Los comunicados oficiales se publicar/)).toBeInTheDocument();
+      expect(screen.queryByRole("article")).not.toBeInTheDocument();
+    } finally {
+      newsArticles.push(...publishedArticles);
+    }
+  });
+
   it("renders multimedia and board member content in the home archive", () => {
     const { container } = render(<HomeArchiveSections />);
     expect(container.querySelector("#multimedia")).toBeInTheDocument();
