@@ -8,7 +8,8 @@
     "build": "next build",
     "lint": "eslint",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "validate:export": "node scripts/validate-export.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.48.0",
