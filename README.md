@@ -7,35 +7,35 @@ Sitio institucional de la Hermandad de Cargadores de San Martín de Porres de Hu
 - Next.js 16 con App Router y exportación estática.
 - React y TypeScript en modo estricto.
 - Tailwind CSS para estilos.
-- npm y `package-lock.json` para instalar dependencias.
+- pnpm 10.34.6 y `pnpm-lock.yaml` para instalar dependencias.
 - GitHub Actions y GitHub Pages para la publicación.
 
 La exportación estática significa que la web publicada no necesita un servidor de Next.js en tiempo de ejecución. Las rutas dinámicas deben conocerse y generarse durante la compilación.
 
 ## Requisitos y comandos
 
-Usa Node.js 22, igual que el workflow de despliegue. Desde la raíz del repositorio:
+Usa Node.js 22, igual que el workflow de despliegue. Activa Corepack una vez con `corepack enable` y, desde la raíz del repositorio:
 
 ```bash
-npm ci
-npm run dev
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
 El servidor local muestra la dirección en la que puedes revisar los cambios. Los comandos disponibles son:
 
 | Comando | Uso |
 | --- | --- |
-| `npm run dev` | Inicia el entorno de desarrollo local. |
-| `npm run lint` | Revisa el código con ESLint. |
-| `npm run build` | Compila y exporta el sitio estático en `out/`. |
+| `pnpm dev` | Inicia el entorno de desarrollo local. |
+| `pnpm lint` | Revisa el código con ESLint. |
+| `pnpm build` | Compila y exporta el sitio estático en `out/`. |
 
 Antes de publicar cambios, ejecuta lint y build. No edites `out/`: es una salida generada y se reemplaza en cada compilación. El proyecto no define actualmente un comando de pruebas automatizadas.
 
 ## Pruebas automatizadas
 
-Las pruebas usan Vitest, React Testing Library y jsdom. Ejecuta `npm run test` para correr la suite o `npm run test:coverage` para correrla y generar el reporte en `coverage/`. Este segundo comando exige al menos 75% de cobertura en branches, funciones, lÃ­neas y sentencias.
+Las pruebas usan Vitest, React Testing Library y jsdom. Ejecuta `pnpm test` para correr la suite o `pnpm test:coverage` para correrla y generar el reporte en `coverage/`. Este segundo comando exige al menos 75% de cobertura en branches, funciones, lÃ­neas y sentencias.
 
-El workflow de GitHub Actions ejecuta `npm run test:coverage` antes del build. Si una prueba falla o la cobertura queda bajo el umbral, el build y el despliegue se detienen. AÃ±ade las pruebas junto a los dominios existentes en `tests/` y mantÃ©n cubiertos los casos lÃ­mite y las ramas condicionales.
+El workflow de GitHub Actions ejecuta `pnpm test:coverage` antes del build. Si una prueba falla o la cobertura queda bajo el umbral, el build y el despliegue se detienen. AÃ±ade las pruebas junto a los dominios existentes en `tests/` y mantÃ©n cubiertos los casos lÃ­mite y las ramas condicionales.
 
 ## Estructura del proyecto
 
@@ -122,7 +122,7 @@ El workflow configura el dominio de producción mediante `NEXT_PUBLIC_SITE_URL` 
 
 1. Identifica la página y modifica su modelo o componente correspondiente.
 2. Mantén datos, UI, lógica reutilizable y SEO en sus ubicaciones respectivas.
-3. Ejecuta `npm run lint` y `npm run build`.
+3. Ejecuta `pnpm lint` y `pnpm build`.
 4. Comprueba localmente las rutas modificadas y revisa que la exportación incluya sus páginas y recursos.
 5. Envía los cambios a `main` para activar el workflow de GitHub Pages.
 

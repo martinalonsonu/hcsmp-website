@@ -86,9 +86,9 @@ Las variables de compilación usadas por SEO son `NEXT_PUBLIC_SITE_URL` y `NEXT_
 
 La configuración `output: "export"` genera el directorio `out/`; `images.unoptimized: true` evita depender del optimizador de imágenes de un servidor Next.js. No se debe editar `out/` manualmente porque es una salida generada.
 
-El workflow de GitHub Actions se activa con cambios en `main` o manualmente. Primero ejecuta un control de alertas de seguridad con CodeQL y Dependabot. Después usa Node.js 22, instala dependencias con `npm ci`, ejecuta Vitest con un umbral de cobertura mínimo de 75 %, compila el sitio, crea `.nojekyll`, sube `out/` como artefacto de Pages y despliega el artefacto.
+El workflow de GitHub Actions se activa con cambios en `main` o manualmente. Primero ejecuta un control de alertas de seguridad con CodeQL y Dependabot. Después usa Node.js 22, instala dependencias con `pnpm install --frozen-lockfile`, ejecuta Vitest con un umbral de cobertura mínimo de 75 %, compila el sitio, crea `.nojekyll`, sube `out/` como artefacto de Pages y despliega el artefacto.
 
-Para desarrollo local se usan `npm run dev`, `npm run lint`, `npm run test` y `npm run build`. Vitest corre con React Testing Library y jsdom; la configuración de cobertura incluye `app/`, `components/`, `hooks/` y `utils/`.
+Para desarrollo local se usan `pnpm dev`, `pnpm lint`, `pnpm test` y `pnpm build`. Vitest corre con React Testing Library y jsdom; la configuración de cobertura incluye `app/`, `components/`, `hooks/` y `utils/`.
 
 ## Límites y consideraciones de evolución
 
