@@ -45,7 +45,10 @@ jobs:
               moderate: 0,
               low: 0,
             };
-            const sources = { codeScanning: 0, dependabot: 0 };
+            const sourceCounts = {
+              codeScanning: { critical: 0, high: 0, moderate: 0, low: 0 },
+              dependabot: { critical: 0, high: 0, moderate: 0, low: 0 },
+            };
             const normalizeSeverity = (severity) =>
               severity === "medium" ? "moderate" : severity;
 
@@ -66,7 +69,7 @@ jobs:
               );
               if (Object.hasOwn(counts, severity)) {
                 counts[severity] += 1;
-                sources.codeScanning += 1;
+                sourceCounts.codeScanning[severity] += 1;
               }
             }
 
@@ -81,25 +84,43 @@ jobs:
               );
               if (Object.hasOwn(counts, bucket)) {
                 counts[bucket] += 1;
-                sources.dependabot += 1;
+                sourceCounts.dependabot[bucket] += 1;
               }
             }
 
-            const rows = Object.keys(limits).map((severity) => [
-              severity,
-              String(counts[severity]),
-              String(limits[severity]),
-              counts[severity] <= limits[severity] ? "OK" : "EXCEEDS LIMIT",
-            ]);
+            const severityLabels = {
+              critical: "Crítica",
+              high: "Alta",
+              moderate: "Moderada",
+              low: "Baja",
+            };
+            const rows = Object.keys(limits).map((severity) => {
+              const withinLimit = counts[severity] <= limits[severity];
+              return [
+                severityLabels[severity],
+                String(sourceCounts.codeScanning[severity]),
+                String(sourceCounts.dependabot[severity]),
+                String(counts[severity]),
+                String(limits[severity]),
+                withinLimit ? "✅ Dentro del límite" : "❌ Supera el límite",
+              ];
+            });
 
             await core.summary
-              .addHeading("GHAS vulnerability threshold check")
+              .addHeading("Resumen de vulnerabilidades GHAS")
               .addTable([
-                ["Severity", "Open alerts", "Maximum", "Result"],
+                [
+                  "Severidad",
+                  "CodeQL",
+                  "Dependabot",
+                  "Total",
+                  "Máximo",
+                  "Estado",
+                ],
                 ...rows,
               ])
               .addRaw(
-                `Scanned ${sources.codeScanning} CodeQL and ${sources.dependabot} Dependabot alerts.`,
+                `Se contaron alertas abiertas de seguridad de código y Dependabot.`,
               )
               .write();
 
