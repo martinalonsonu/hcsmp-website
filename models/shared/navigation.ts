@@ -22,7 +22,7 @@ export const navigationGroups: NavigationGroup[] = [
     ],
   },
   {
-    label: "San Martin De Porres",
+    label: "San Martín de Porres",
     href: "/san-martin-de-porres",
     links: [
       { label: "Biografía", href: "/san-martin-de-porres#biografia" },
@@ -47,7 +47,7 @@ export const navigationGroups: NavigationGroup[] = [
 export const footerNavigation: NavigationLink[] = [
   { label: "Hermandad", href: "/hermandad" },
   { label: "Historia", href: "/hermandad/historia" },
-  { label: "San Martin De Porres", href: "/san-martin-de-porres" },
+  { label: "San Martín de Porres", href: "/san-martin-de-porres" },
   { label: "Archivo", href: "/archivo" },
   { label: "Blog", href: "/blog" },
   { label: "Contacto", href: "/contacto" },

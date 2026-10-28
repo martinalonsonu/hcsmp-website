@@ -8,8 +8,8 @@ export default function ContactPage() {
   return (
     <>
       <ContactIntroSection />
-      <MembershipSection />
       <ContactChannelsSection />
+      <MembershipSection />
       <AssemblySection />
       <ContactClosingSection />
     </>

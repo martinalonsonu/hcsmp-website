@@ -1,8 +1,14 @@
-import { Archive, ArrowUpRight, CalendarDays, UsersRound } from "lucide-react";
+import { Archive, ArrowUpRight, UsersRound } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
-import { assetUrl } from "@/models/shared/assets";
-import { newsArticles } from "@/models/blog/news";
+import clsx from "clsx";
+import { getPageBackground } from "@/models/hermandad/page-presentation";
+import { getInstitutionalBreadcrumbs } from "@/models/hermandad/breadcrumbs";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { SectionIndex } from "@/components/shared/section-index";
+import { RelatedPages } from "@/components/hermandad/related-pages";
+import { ArchiveOverview } from "@/components/archivo/archive-overview";
+import { FiestaPage } from "@/components/fiesta/fiesta-page";
+import { NewsList } from "@/components/blog/news-list";
 import { PrimaryImageBackground } from "@/components/shared/primary-image-background";
 import { BrotherhoodHistoryPage } from "@/components/hermandad/brotherhood-history-page";
 import { DocumentArchive } from "@/components/archivo/document-archive";
@@ -17,7 +23,6 @@ import { ArchiveFilter } from "@/components/archivo/archive-filter";
 import {
   founders,
   historicalEvents,
-  institutionalPageByPath,
   presidents,
 } from "@/models/hermandad/institutional-pages";
 import type { InstitutionalPage } from "@/models/hermandad/institutional-pages";
@@ -31,50 +36,10 @@ function PageBreadcrumb({
   page: InstitutionalPage;
   inverse?: boolean;
 }) {
-  const parts = page.path.split("/").filter(Boolean);
-  const currentPath = parts.reduce<string[]>((accumulator, part) => {
-    accumulator.push(`${accumulator.at(-1) ?? ""}/${part}`);
-    return accumulator;
-  }, []);
-
-  return (
-    <nav
-      aria-label="Ruta de navegación"
-      className={`flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] ${inverse ? "text-white/75" : "text-muted"}`}
-    >
-      <Link
-        className={`transition-colors ${inverse ? "hover:text-white" : "hover:text-ink"}`}
-        href="/"
-      >
-        Inicio
-      </Link>
-      {currentPath.map((path, index) => {
-        const isCurrent = index === currentPath.length - 1;
-        const crumb = institutionalPageByPath.get(path);
-        const label = crumb?.title ?? parts[index].replaceAll("-", " ");
-        return (
-          <span className="flex items-center gap-2" key={path}>
-            <span aria-hidden="true">/</span>
-            {isCurrent ? (
-              <span
-                aria-current="page"
-                className={inverse ? "text-white" : "text-ink"}
-              >
-                {label}
-              </span>
-            ) : (
-              <Link
-                className={`capitalize transition-colors ${inverse ? "hover:text-white" : "hover:text-ink"}`}
-                href={path}
-              >
-                {label}
-              </Link>
-            )}
-          </span>
-        );
-      })}
-    </nav>
-  );
+  const items = getInstitutionalBreadcrumbs(page)
+    .slice(1)
+    .map(({ name, path }) => ({ label: name, href: path }));
+  return <Breadcrumbs items={items} inverse={inverse} />;
 }
 
 function HistoryTimeline() {
@@ -126,57 +91,9 @@ function EmptyPeopleState({ page }: { page: InstitutionalPage }) {
   );
 }
 
-function NewsList() {
-  return (
-    <div className="flex flex-col gap-5">
-      {newsArticles.map((article) => (
-        <article
-          className="overflow-hidden border border-line"
-          key={article.slug}
-        >
-          <Link
-            className="group grid sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
-            href={`/blog/${article.slug}`}
-          >
-            {article.image && (
-              <div className="relative aspect-16/10 overflow-hidden bg-mist sm:aspect-auto sm:min-h-64">
-                <Image
-                  alt={article.title}
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                  fill
-                  quality={90}
-                  sizes="(max-width: 640px) 100vw, 40vw"
-                  src={article.image}
-                />
-              </div>
-            )}
-            <div className="flex flex-col justify-center p-5 sm:p-7 md:p-9">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay">
-                {article.eyebrow ?? article.category}
-              </p>
-              <h2 className="mt-3 font-display text-2xl leading-tight group-hover:text-clay sm:text-3xl">
-                {article.title}
-              </h2>
-              <p className="mt-4 flex items-center gap-2 text-xs text-muted">
-                <CalendarDays aria-hidden="true" size={14} /> {article.date}
-              </p>
-              <p className="mt-4 text-sm leading-7 text-muted">
-                {article.summary}
-              </p>
-              <span className="mt-5 inline-flex min-h-10 items-center gap-2 text-xs font-semibold text-forest-link">
-                Leer más <ArrowUpRight aria-hidden="true" size={15} />
-              </span>
-            </div>
-          </Link>
-        </article>
-      ))}
-    </div>
-  );
-}
-
 function PageKindContent({ page }: { page: InstitutionalPage }) {
   if (page.path === "/archivo/fotografias") return <PhotoAlbumArchive />;
-  if (page.path === "/archivo") return <DocumentArchive />;
+  if (page.path === "/archivo") return <ArchiveOverview />;
   if (page.path === "/archivo/documentos") return <DocumentArchive />;
   if (page.path === "/archivo/videos") return <VideoArchive />;
   if (page.kind === "brotherhood") return <BrotherhoodOverview />;
@@ -197,95 +114,78 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
     return <BrotherhoodImagePage />;
   }
   if (page.path === "/san-martin-de-porres") return <SanMartinPage />;
+  if (page.path === "/hermandad/fiesta") return <FiestaPage page={page} />;
 
-  const hasBrotherhoodBackground = page.path === "/hermandad";
-  const hasPresidentsBackground = page.path === "/hermandad/presidentes";
-  const hasFoundersBackground = page.path === "/hermandad/fundadores";
-  const hasLifeBackground = page.path === "/hermandad/pilares";
-  const hasFiestaBackground = page.path === "/hermandad/fiesta";
-  const hasImageBackground =
-    hasBrotherhoodBackground ||
-    hasPresidentsBackground ||
-    hasFoundersBackground ||
-    hasLifeBackground ||
-    hasFiestaBackground;
+  const background = getPageBackground(page.path);
+  const relatedPaths = page.path === "/archivo" ? [] : (page.related ?? []);
 
   return (
     <>
       <header
-        className={`relative isolate overflow-hidden border-b py-12 sm:py-16 md:py-20 ${hasPresidentsBackground || hasFoundersBackground || hasLifeBackground || hasFiestaBackground ? "min-h-85 border-[#48443d] bg-forest-deep text-[#f4f0e6] sm:min-h-95 md:min-h-105" : hasBrotherhoodBackground ? "border-[#48443d] bg-forest-deep text-[#f4f0e6]" : "border-line bg-mist/50"}`}
+        className={clsx(
+          "relative isolate overflow-hidden border-b py-10 sm:py-14 md:py-20",
+          background
+            ? "border-line/20 bg-forest-deep text-paper"
+            : "border-line bg-mist/50",
+        )}
       >
-        {hasImageBackground && (
+        {background && (
           <>
             <PrimaryImageBackground
-              alt=""
-              className={`object-cover grayscale ${hasPresidentsBackground ? "object-[center_48%]" : hasFoundersBackground ? "object-[center_55%]" : hasLifeBackground ? "object-[center_48%] md:object-[center_35%]" : "object-center"}`}
+              className={clsx("object-cover grayscale", background.position)}
               quality={90}
-              src={
-                hasPresidentsBackground
-                  ? assetUrl("presidentes.jpg")
-                  : hasFoundersBackground
-                    ? assetUrl("primeros-pasos.jpg")
-                    : hasLifeBackground
-                      ? "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/70595698_2344695052244982_6646925837222281216_n.jpg"
-                      : hasFiestaBackground
-                        ? "https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/489105222_9402938193087264_7697141976573185879_n.jpg"
-                        : assetUrl("estandarte-1.jpg")
-              }
+              src={background.src}
             />
-            <div
-              aria-hidden="true"
-              className={`absolute inset-0 ${hasPresidentsBackground ? "bg-black/45" : "bg-black/65"}`}
-            />
+            <div aria-hidden="true" className="absolute inset-0 bg-black/70" />
           </>
         )}
-        <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
-          <div className={hasImageBackground ? "text-white/75" : undefined}>
-            <PageBreadcrumb page={page} inverse={hasImageBackground} />
+        <div className="site-container relative z-10">
+          <div className={background ? "text-white/75" : undefined}>
+            <PageBreadcrumb page={page} inverse={Boolean(background)} />
           </div>
-          <p className="mt-9 text-[10px] font-semibold uppercase tracking-[0.18em] text-clay sm:mt-12">
+          <p
+            className={clsx(
+              "mt-6 text-xs font-semibold uppercase tracking-[0.16em] sm:mt-8",
+              background ? "text-[#d9c28f]" : "text-clay-text",
+            )}
+          >
             {page.eyebrow}
           </p>
           <h1
-            className={`mt-4 max-w-4xl font-display text-4xl font-normal leading-[1.12] sm:text-5xl md:text-6xl ${hasImageBackground ? "text-white" : "text-ink"}`}
+            className={clsx(
+              "mt-4 max-w-4xl font-display text-4xl font-normal leading-[1.12] sm:text-5xl md:text-6xl",
+              background ? "text-white" : "text-ink",
+            )}
           >
             {page.title}
           </h1>
           <p
-            className={`mt-5 max-w-3xl text-sm leading-7 sm:text-base sm:leading-8 ${hasImageBackground ? "text-white/85" : "text-muted"}`}
+            className={clsx(
+              "mt-5 max-w-3xl text-sm leading-7 sm:text-base sm:leading-8",
+              background ? "text-white/85" : "text-muted",
+            )}
           >
             {page.introduction}
           </p>
         </div>
       </header>
+      {page.sections.length > 1 && (
+        <SectionIndex
+          items={page.sections.map((section, index) => ({
+            id: "section-" + (index + 1),
+            label: section.title,
+          }))}
+        />
+      )}
 
-      <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-12 py-12 sm:w-[calc(100%-2.5rem)] sm:py-16 md:w-[calc(100%-4rem)] md:grid-cols-[minmax(12rem,0.65fr)_minmax(0,1.35fr)] md:gap-20 md:py-20">
-        <aside className="hidden md:sticky md:top-24 md:block md:self-start">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
-            En esta sección
-          </p>
-          <nav
-            aria-label="Secciones relacionadas"
-            className="mt-4 flex flex-wrap gap-x-4 gap-y-2 md:flex-col md:gap-0"
-          >
-            {page.related?.map((path) => {
-              const relatedPage = institutionalPageByPath.get(path);
-              if (!relatedPage) return null;
-              return (
-                <Link
-                  className="py-1 text-xs text-forest-link transition-colors hover:text-clay md:border-b md:border-line md:py-3"
-                  href={path}
-                  key={path}
-                >
-                  {relatedPage.title}
-                  <span aria-hidden="true" className="ml-2">
-                    ↗
-                  </span>
-                </Link>
-              );
-            })}
-          </nav>
-        </aside>
+      <div
+        className={clsx(
+          "site-container grid gap-12 py-12 sm:py-16 md:py-20",
+          relatedPaths.length > 0 &&
+            "lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16",
+        )}
+      >
+        <RelatedPages paths={relatedPaths} />
 
         <div className="min-w-0 flex flex-col gap-12 sm:gap-14">
           {page.kind && (
@@ -293,12 +193,13 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
               <PageKindContent page={page} />
             </section>
           )}
-          {page.sections.map((section) => (
+          {page.sections.map((section, index) => (
             <section
               className="border-t border-line pt-6 sm:pt-8"
+              id={"section-" + (index + 1)}
               key={section.title}
             >
-              <div className="grid gap-4 sm:grid-cols-[minmax(10rem,0.6fr)_minmax(0,1.4fr)] sm:gap-8">
+              <div className="grid gap-5">
                 <h2 className="font-display text-2xl leading-tight sm:text-3xl">
                   {section.title}
                 </h2>
@@ -311,11 +212,11 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
                       {section.items.map((item) => (
                         <Link
                           className="group flex min-h-16 items-center justify-between gap-4 py-4"
-                          href={item.href ?? "#"}
+                          href={item.href}
                           key={item.label}
                         >
                           <span>
-                            <span className="block font-display text-lg group-hover:text-clay">
+                            <span className="block font-display text-lg group-hover:text-clay-text">
                               {item.label}
                             </span>
                             <span className="mt-1 block text-xs leading-5 text-muted">
@@ -349,7 +250,7 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
       </div>
 
       <section className="border-t border-line bg-mist/50 py-10 sm:py-12">
-        <div className="mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-col gap-3 sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)] md:flex-row md:items-center md:justify-between">
+        <div className="site-container flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <p className="font-display text-lg">
             ¡Somos parte de tu historia de amor!
           </p>

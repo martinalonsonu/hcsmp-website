@@ -1,15 +1,16 @@
 import { sectionLinks } from "@/models/hermandad/content";
 import { ArrowUpRight, UsersRound } from "lucide-react";
 import Link from "next/link";
-import { foundingFigures, presidencyReferences } from "@/models/hermandad/brotherhood";
-
-
+import {
+  foundingFigures,
+  presidencyReferences,
+} from "@/models/hermandad/brotherhood";
 
 export function BrotherhoodOverview() {
   return (
     <div className="flex flex-col gap-12 sm:gap-14">
       <section className="border-y border-line py-5 sm:py-7">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-clay-text">
           Nuestra identidad
         </p>
         <p className="mt-4 max-w-3xl font-display text-xl leading-relaxed sm:text-2xl">
@@ -18,7 +19,7 @@ export function BrotherhoodOverview() {
           devoción a San Martín de Porres y una vida de fe, fraternidad y
           caridad.
         </p>
-        <p className="mt-4 text-xs leading-6 text-muted sm:text-sm sm:leading-7">
+        <p className="mt-4 text-sm leading-7 text-muted sm:text-sm sm:leading-7">
           Diócesis de Huacho · Parroquia La Santa Cruz
         </p>
       </section>
@@ -41,7 +42,7 @@ export function BrotherhoodOverview() {
           ].map(([title, detail]) => (
             <article className="border-t border-clay/70 pt-3" key={title}>
               <h2 className="font-display text-lg sm:text-xl">{title}</h2>
-              <p className="mt-2 text-xs leading-6 text-muted sm:text-sm">
+              <p className="mt-2 text-sm leading-7 text-muted sm:text-sm">
                 {detail}
               </p>
             </article>
@@ -50,27 +51,27 @@ export function BrotherhoodOverview() {
       </section>
 
       <section className="bg-mist/70 px-5 py-6 sm:px-7 sm:py-8">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-clay">
+        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-clay-text">
           Una historia con dos referencias fundacionales
         </p>
         <div className="mt-5 grid gap-5 sm:grid-cols-2">
           <div>
             <p className="font-display text-2xl">5 nov 1974</p>
-            <p className="mt-1 text-xs leading-6 text-muted">
+            <p className="mt-1 text-sm leading-7 text-muted">
               Fecha que aparece en el sello institucional más antiguo que se
               conserva en una carta institucional.
             </p>
           </div>
           <div>
             <p className="font-display text-2xl">3 nov 1975</p>
-            <p className="mt-1 text-xs leading-6 text-muted">
+            <p className="mt-1 text-sm leading-7 text-muted">
               Fecha fijada posteriormente como referencia institucional tras
               perderse los libros fundacionales y al ser requerido para el
               reconocimiento eclesial.
             </p>
           </div>
         </div>
-        <p className="mt-5 border-t border-line pt-4 text-xs leading-6 text-muted">
+        <p className="mt-5 border-t border-line pt-4 text-sm leading-7 text-muted">
           Conservamos ambas fechas con su contexto y como parte de la riqueza de
           nuestra historia.
         </p>
@@ -79,14 +80,18 @@ export function BrotherhoodOverview() {
       <section>
         <div className="mb-5 flex items-end justify-between gap-4">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-clay">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-clay-text">
               Recorrido institucional
             </p>
             <h2 className="mt-2 font-display text-2xl sm:text-3xl">
               Explora la sección
             </h2>
           </div>
-          <UsersRound aria-hidden="true" className="mb-1 text-clay" size={20} />
+          <UsersRound
+            aria-hidden="true"
+            className="mb-1 text-clay-text"
+            size={20}
+          />
         </div>
         <div className="divide-y divide-line border-y border-line">
           {sectionLinks.map((link) => (
@@ -95,20 +100,20 @@ export function BrotherhoodOverview() {
               href={link.href}
               key={link.href}
             >
-              <span className="font-display text-sm text-clay">
+              <span className="font-display text-sm text-clay-text">
                 {link.number}
               </span>
               <span>
-                <span className="block font-display text-lg leading-snug group-hover:text-clay sm:text-xl">
+                <span className="block font-display text-lg leading-snug group-hover:text-clay-text sm:text-xl">
                   {link.title}
                 </span>
-                <span className="mt-1 block text-xs leading-5 text-muted">
+                <span className="mt-1 block text-sm leading-6 text-muted">
                   {link.detail}
                 </span>
               </span>
               <ArrowUpRight
                 aria-hidden="true"
-                className="text-clay transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                className="text-clay-text transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 size={18}
               />
             </Link>
@@ -134,21 +139,21 @@ export function FoundersArchive() {
             className="grid gap-2 border-b border-line py-5 last:border-b-0 sm:grid-cols-[3rem_1fr] sm:gap-5 sm:py-6"
             key={figure.id}
           >
-            <span className="font-display text-sm text-clay">
+            <span className="font-display text-sm text-clay-text">
               {String(index + 1).padStart(2, "0")}
             </span>
             <div>
               <h2 className="font-display text-xl sm:text-2xl">
                 {figure.name}
               </h2>
-              <p className="mt-2 text-xs leading-6 text-muted sm:text-sm">
+              <p className="mt-2 text-sm leading-7 text-muted sm:text-sm">
                 {figure.note}
               </p>
             </div>
           </article>
         ))}
       </section>
-      <p className="text-xs leading-6 text-muted sm:text-sm sm:leading-7">
+      <p className="text-sm leading-7 text-muted sm:text-sm sm:leading-7">
         Debido a la pérdida de los documentos fundacionales y de los primeros
         años de nuestra historia, no tenemos un referencia completa de la nómina
         de hermanos fundadores. Poco a poco estamos reconstruyendo nuestra
@@ -171,21 +176,21 @@ export function PresidentsArchive() {
               aria-hidden="true"
               className="absolute -left-[5px] top-1 size-[9px] rounded-full bg-clay ring-4 ring-paper"
             />
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-clay">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-clay-text">
               {reference.date}
             </p>
             <h2 className="mt-1 font-display text-xl sm:text-2xl">
               {reference.name}
             </h2>
             {reference.context && (
-              <p className="mt-2 max-w-2xl text-xs leading-6 text-muted sm:text-sm">
+              <p className="mt-2 max-w-2xl text-sm leading-7 text-muted sm:text-sm">
                 {reference.context}
               </p>
             )}
           </li>
         ))}
       </ol>
-      <p className="border-t border-line pt-4 text-xs leading-6 text-muted sm:text-sm">
+      <p className="border-t border-line pt-4 text-sm leading-7 text-muted sm:text-sm">
         Reconocer a quienes dirigieron nuestra institución es reconocer la
         riqueza de nuestra historia.
       </p>

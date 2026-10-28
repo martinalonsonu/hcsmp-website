@@ -32,7 +32,9 @@ describe("shared presentational components", () => {
   });
 
   it("renders the CTA with normal and inverse variants", () => {
-    const { rerender } = render(<SectionCta href="/historia">Historia</SectionCta>);
+    const { rerender } = render(
+      <SectionCta href="/historia">Historia</SectionCta>,
+    );
     expect(screen.getByRole("link", { name: "Historia" })).toHaveAttribute(
       "href",
       "/historia",
@@ -51,7 +53,10 @@ describe("shared presentational components", () => {
     const { container, rerender } = render(
       <PrimaryImageBackground src="/decorative.jpg" />,
     );
-    expect(container.querySelector("img")).toHaveAttribute("aria-hidden", "true");
+    expect(container.querySelector("img")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
     expect(container.querySelector("img")).toHaveAttribute("alt", "");
 
     rerender(
@@ -62,24 +67,28 @@ describe("shared presentational components", () => {
         src="/meaningful.jpg"
       />,
     );
-    expect(screen.getByRole("img", { name: "Imagen de la hermandad" })).toHaveAttribute(
-      "src",
-      "/meaningful.jpg",
-    );
+    expect(
+      screen.getByRole("img", { name: "Imagen de la hermandad" }),
+    ).toHaveAttribute("src", "/meaningful.jpg");
   });
 
   it("renders the site footer navigation and copyright year", () => {
     render(<SiteFooter />);
     expect(screen.getByRole("contentinfo")).toBeInTheDocument();
-    expect(screen.getByRole("navigation", { name: /pie de p[aá]gina/i })).toBeInTheDocument();
-    expect(screen.getByText(/Todos los derechos reservados/)).toBeInTheDocument();
+    expect(
+      screen.getByRole("navigation", { name: /pie de p[aá]gina/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Todos los derechos reservados/),
+    ).toBeInTheDocument();
   });
 
   it("escapes less-than characters in JSON-LD", () => {
     const { container } = render(<JsonLd data={{ text: "</script><tag>" }} />);
-    expect(container.querySelector('script[type="application/ld+json"]')?.textContent).toBe(
-      '{"text":"\\u003c/script>\\u003ctag>"}',
-    );
+    expect(
+      container.querySelector('script[type="application/ld+json"]')
+        ?.textContent,
+    ).toBe('{"text":"\\u003c/script>\\u003ctag>"}');
   });
 });
 
@@ -93,7 +102,9 @@ describe("NovemberCountdownRibbon", () => {
   };
 
   it("renders nothing when the seasonal ribbon is inactive", () => {
-    const { container } = render(<NovemberCountdownRibbon initialCountdown={false} />);
+    const { container } = render(
+      <NovemberCountdownRibbon initialCountdown={false} />,
+    );
     expect(container).toBeEmptyDOMElement();
   });
 
@@ -123,39 +134,61 @@ describe("NovemberCountdownRibbon", () => {
 
 describe("AudioPill", () => {
   it("plays and pauses the hymn", async () => {
-    const play = vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue();
-    const pause = vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
+    const play = vi
+      .spyOn(HTMLMediaElement.prototype, "play")
+      .mockResolvedValue();
+    const pause = vi
+      .spyOn(HTMLMediaElement.prototype, "pause")
+      .mockImplementation(() => {});
     vi.spyOn(HTMLMediaElement.prototype, "load").mockImplementation(() => {});
     const { user } = renderWithUser(<AudioPill left />);
 
     await user.click(screen.getByRole("button", { name: "Escuchar himno" }));
     expect(play).toHaveBeenCalledOnce();
-    expect(screen.getByRole("button", { name: "Pausar himno" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Pausar himno" }),
+    ).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "Pausar himno" }));
     expect(pause).toHaveBeenCalledOnce();
-    expect(screen.getByRole("button", { name: "Escuchar himno" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Escuchar himno" }),
+    ).toBeInTheDocument();
   });
 
   it("keeps playback stopped if the browser rejects play", async () => {
-    vi.spyOn(HTMLMediaElement.prototype, "play").mockRejectedValue(new Error("blocked"));
+    vi.spyOn(HTMLMediaElement.prototype, "play").mockRejectedValue(
+      new Error("blocked"),
+    );
     vi.spyOn(HTMLMediaElement.prototype, "load").mockImplementation(() => {});
     const { user } = renderWithUser(<AudioPill />);
 
     await user.click(screen.getByRole("button", { name: "Escuchar himno" }));
-    expect(screen.getByRole("button", { name: "Escuchar himno" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Escuchar himno" }),
+    ).toBeInTheDocument();
   });
 
   it("closes the control and resets the audio", async () => {
-    const pause = vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
+    const pause = vi
+      .spyOn(HTMLMediaElement.prototype, "pause")
+      .mockImplementation(() => {});
     const { user, container } = renderWithUser(<AudioPill />);
     const audio = container.querySelector("audio")!;
-    Object.defineProperty(audio, "currentTime", { configurable: true, writable: true, value: 12 });
+    Object.defineProperty(audio, "currentTime", {
+      configurable: true,
+      writable: true,
+      value: 12,
+    });
 
-    await user.click(screen.getByRole("button", { name: "Cerrar reproductor" }));
+    await user.click(
+      screen.getByRole("button", { name: "Cerrar reproductor" }),
+    );
     expect(pause).toHaveBeenCalled();
     expect(audio.currentTime).toBe(0);
-    expect(screen.queryByRole("button", { name: "Cerrar reproductor" })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Cerrar reproductor" }),
+    ).not.toBeInTheDocument();
   });
 });
 
@@ -180,7 +213,9 @@ describe("ScrollToTopButton", () => {
     const user = userEvent.setup();
     render(<ScrollToTopButton />);
 
-    expect(screen.queryByRole("button", { name: "Volver arriba" })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Volver arriba" }),
+    ).not.toBeInTheDocument();
     setScrollY(321);
     fireEvent.scroll(window);
     const button = screen.getByRole("button", { name: "Volver arriba" });
@@ -236,7 +271,10 @@ describe("ScrollRevealSections", () => {
       matches: true,
       media: "(max-width: 767px)",
       onchange: null,
-      addEventListener: (_event: string, callback: EventListenerOrEventListenerObject) => {
+      addEventListener: (
+        _event: string,
+        callback: EventListenerOrEventListenerObject,
+      ) => {
         onChange = callback as () => void;
       },
       removeEventListener: removeListener,
@@ -253,14 +291,23 @@ describe("ScrollRevealSections", () => {
         </section>
       </ScrollRevealSections>,
     );
-    const content = container.querySelectorAll("section > div:not([aria-hidden='true'])");
+    const content = container.querySelectorAll(
+      "section > div:not([aria-hidden='true'])",
+    );
     expect(observers[0].observed).toEqual(Array.from(content));
     expect(content[0]).toHaveClass("scroll-reveal");
 
-    act(() => observers[0].callback(
-      [{ isIntersecting: true, target: content[0] } as IntersectionObserverEntry],
-      observers[0] as unknown as IntersectionObserver,
-    ));
+    act(() =>
+      observers[0].callback(
+        [
+          {
+            isIntersecting: true,
+            target: content[0],
+          } as IntersectionObserverEntry,
+        ],
+        observers[0] as unknown as IntersectionObserver,
+      ),
+    );
     expect(content[0]).toHaveClass("scroll-reveal-visible");
     expect(observers[0].unobserve).toHaveBeenCalledWith(content[0]);
 
@@ -278,56 +325,65 @@ describe("SiteHeader", () => {
     vi.mocked(usePathname).mockReturnValue("/archivo/documentos");
     Object.defineProperty(window, "scrollY", { configurable: true, value: 0 });
     const { container } = render(<SiteHeader />);
-    expect(container.querySelector('#desktop-navigation a[aria-current="page"]')).toHaveAttribute(
-      "href",
-      "/archivo",
-    );
+    expect(
+      container.querySelector('#desktop-navigation a[aria-current="page"]'),
+    ).toHaveAttribute("href", "/archivo/documentos");
     Object.defineProperty(window, "scrollY", { configurable: true, value: 13 });
     fireEvent.scroll(window);
-    expect(container.querySelector("header")).toHaveClass("bg-paper/75");
+    expect(container.querySelector("header")).toHaveClass("bg-paper/95");
   });
 
-  it("opens the mobile menu, traps focus, and closes on Escape", async () => {
+  it("opens a native modal menu and restores focus after closing", async () => {
     vi.mocked(usePathname).mockReturnValue("/hermandad/historia");
-    vi.spyOn(HTMLElement.prototype, "getClientRects").mockReturnValue([new DOMRect()] as unknown as DOMRectList);
+    vi.spyOn(HTMLElement.prototype, "getClientRects").mockReturnValue([
+      new DOMRect(),
+    ] as unknown as DOMRectList);
     const { user } = renderWithUser(<SiteHeader />);
     const toggle = screen.getByRole("button", { name: "Abrir menú" });
     await user.click(toggle);
 
     expect(toggle).toHaveAttribute("aria-expanded", "true");
     expect(document.body.style.overflow).toBe("hidden");
-    const mobileNavigation = screen.getByRole("navigation", { name: "Navegación móvil" });
-    expect(mobileNavigation.querySelector('a[aria-current="page"]')).toHaveAttribute(
-      "href",
-      "/hermandad/historia",
-    );
+    const mobileNavigation = screen.getByRole("navigation", {
+      name: "Navegación móvil",
+    });
+    expect(
+      mobileNavigation.querySelector('a[aria-current="page"]'),
+    ).toHaveAttribute("href", "/hermandad/historia");
 
-    const linksAndButtons = mobileNavigation.querySelectorAll<HTMLElement>("a[href], button:not([disabled])");
-    linksAndButtons[0].focus();
-    fireEvent.keyDown(window, { key: "Tab", shiftKey: true });
-    expect(document.activeElement).toBe(linksAndButtons[linksAndButtons.length - 1]);
-    fireEvent.keyDown(window, { key: "ArrowRight" });
-    expect(toggle).toHaveAttribute("aria-expanded", "true");
-    linksAndButtons[linksAndButtons.length - 1].focus();
-    fireEvent.keyDown(window, { key: "Tab" });
-    expect(document.activeElement).toBe(linksAndButtons[0]);
-    fireEvent.keyDown(window, { key: "Escape" });
+    const dialog = screen.getByRole("dialog", { name: "Navegación" });
+    expect(dialog).toHaveAttribute("open");
+    expect(screen.getByRole("button", { name: "Cerrar menú" })).toHaveFocus();
+    fireEvent(dialog, new Event("cancel"));
+    act(() =>
+      dialog instanceof HTMLDialogElement ? dialog.close() : undefined,
+    );
     expect(toggle).toHaveAttribute("aria-expanded", "false");
     expect(document.body.style.overflow).toBe("");
     expect(toggle).toHaveFocus();
   });
 
   it("closes the mobile menu from its backdrop and navigation links", async () => {
-    vi.spyOn(HTMLElement.prototype, "getClientRects").mockReturnValue([new DOMRect()] as unknown as DOMRectList);
+    vi.spyOn(HTMLElement.prototype, "getClientRects").mockReturnValue([
+      new DOMRect(),
+    ] as unknown as DOMRectList);
     const { user } = renderWithUser(<SiteHeader />);
     await user.click(screen.getByRole("button", { name: "Abrir menú" }));
-    await user.click(screen.getAllByRole("button", { name: "Cerrar menú" })[0]);
-    expect(screen.getByRole("button", { name: "Abrir menú" })).toHaveAttribute("aria-expanded", "false");
+    await user.click(screen.getByRole("dialog", { name: "Navegación" }));
+    expect(screen.getByRole("button", { name: "Abrir menú" })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
 
     await user.click(screen.getByRole("button", { name: "Abrir menú" }));
-    const mobileNav = screen.getByRole("navigation", { name: "Navegación móvil" });
+    const mobileNav = screen.getByRole("navigation", {
+      name: "Navegación móvil",
+    });
     await user.click(mobileNav.querySelector("a[href='/hermandad']")!);
-    expect(screen.getByRole("button", { name: "Abrir menú" })).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByRole("button", { name: "Abrir menú" })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
   });
 });
 

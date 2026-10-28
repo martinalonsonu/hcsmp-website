@@ -1,23 +1,21 @@
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { SectionIndex } from "@/components/shared/section-index";
 import { milestones, virtues } from "@/models/san-martin/content";
 import Image from "next/image";
 import Link from "next/link";
 import { AudioPill } from "@/components/shared/audio-pill";
 import { ArrowUpRight } from "lucide-react";
 
-
-
-
-
 export function SanMartinPage() {
   return (
     <>
       <AudioPill left />
-      <header className="relative isolate flex aspect-square items-end overflow-hidden rounded-b-3xl bg-forest-deep text-white-warm md:aspect-auto md:min-h-[min(640px,calc(100svh-5rem))]">
+      <header className="relative isolate flex min-h-[30rem] items-end overflow-hidden rounded-b-3xl bg-forest-deep text-white-warm md:aspect-auto md:min-h-[min(640px,calc(100svh-5rem))]">
         <Image
           alt="Imagen de San Martín de Porres"
           className="object-cover object-[center_42%]"
           fill
-          priority
+          preload
           quality={90}
           sizes="100vw"
           src="https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/56478674_2552517768156471_2960457524760805376_n.jpg"
@@ -33,24 +31,11 @@ export function SanMartinPage() {
           className="absolute inset-0 bg-linear-to-t from-forest-deep/80 via-transparent to-forest-deep/15"
         />
 
-        <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-7xl pb-3 pt-4 sm:w-[calc(100%-2.5rem)] sm:pb-12 sm:pt-10 md:w-[calc(100%-4rem)] md:pb-20 md:pt-24">
-          <nav
-            aria-label="Ruta de navegación"
-            className="flex items-center gap-2 text-[11px] text-white/75"
-          >
-            <Link className="transition-colors hover:text-white" href="/">
-              Inicio
-            </Link>
-
-            <span aria-hidden="true">/</span>
-
-            <span aria-current="page" className="text-white">
-              San Martín de Porres
-            </span>
-          </nav>
+        <div className="site-container relative z-10 pb-10 pt-6 sm:pb-12 sm:pt-10 md:pb-20 md:pt-24">
+          <Breadcrumbs inverse items={[{ label: "San Martín de Porres" }]} />
 
           <div className="mt-6 max-w-4xl sm:mt-28 md:mt-36">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d9c28f] sm:text-xs">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d9c28f] sm:text-xs">
               Lima · 1579—1639
             </p>
 
@@ -64,41 +49,29 @@ export function SanMartinPage() {
             </p>
           </div>
 
-          <p className="absolute bottom-4 right-0 hidden max-w-xs text-right text-[10px] leading-5 text-white/70 md:block">
+          <p className="absolute bottom-4 right-0 hidden max-w-xs text-right text-xs leading-5 text-white/70 md:block">
             Imagen titular de nuestra hermandad. Tomada en los claustros del
             Convento de Santo Domingo de Lima.
           </p>
         </div>
       </header>
 
-      <nav
-        aria-label="Secciones de San Martín de Porres"
-        className="sticky top-18.25 z-20 border-b border-line bg-paper md:static md:z-auto"
-      >
-        <ul className="mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-nowrap items-center justify-between sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)] md:justify-start md:gap-x-9">
-          {[
-            ["Biografía", "#biografia"],
-            ["Espiritualidad", "#espiritualidad"],
-            ["Servicio", "#servicio"],
-            ["Tradición", "#tradicion"],
-            ["Legado", "#legado"],
-          ].map(([label, href]) => (
-            <li className="shrink-0" key={href}>
-              <Link
-                className="inline-flex min-h-12 items-center border-b-2 border-transparent text-[11px] font-semibold text-muted transition-colors hover:border-clay hover:text-ink sm:text-xs"
-                href={href}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <SectionIndex
+        label="Secciones de San Martín de Porres"
+        items={[
+          { id: "biografia", label: "Biografía" },
+          { id: "espiritualidad", label: "Espiritualidad" },
+          { id: "servicio", label: "Servicio" },
+          { id: "tradicion", label: "Tradición" },
+          { id: "legado", label: "Legado" },
+          { id: "himno", label: "Himno" },
+        ]}
+      />
 
       <section className="py-14 sm:py-20 md:py-28" id="biografia">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-7 sm:w-[calc(100%-2.5rem)] sm:gap-10 md:w-[calc(100%-4rem)] md:grid-cols-[0.7fr_1.3fr] md:gap-20">
+        <div className="site-container grid gap-7 sm:gap-10 md:grid-cols-[0.7fr_1.3fr] md:gap-20">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               Su vida: Una historia de amor.
             </p>
 
@@ -140,8 +113,8 @@ export function SanMartinPage() {
       </section>
 
       <section className="bg-forest-deep py-10 text-white-warm sm:py-14 md:py-16">
-        <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d9c28f]">
+        <div className="site-container ">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d9c28f]">
             Hitos de su vida
           </p>
 
@@ -169,7 +142,7 @@ export function SanMartinPage() {
       </section>
 
       <section className="py-14 sm:py-20 md:py-28" id="espiritualidad">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-8 sm:w-[calc(100%-2.5rem)] sm:gap-12 md:w-[calc(100%-4rem)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
+        <div className="site-container grid gap-8 sm:gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
           <figure className="mx-auto w-full max-w-md md:mx-0">
             <div className="relative aspect-4/5 w-full overflow-hidden bg-black">
               <Image
@@ -184,7 +157,7 @@ export function SanMartinPage() {
           </figure>
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               Contemplar y compartir
             </p>
 
@@ -224,9 +197,9 @@ export function SanMartinPage() {
       </section>
 
       <section className="bg-mist py-14 sm:py-20 md:py-28" id="servicio">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-8 sm:w-[calc(100%-2.5rem)] sm:gap-12 md:w-[calc(100%-4rem)] md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-20">
+        <div className="site-container grid gap-8 sm:gap-12 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-20">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               Una caridad sin distinciones
             </p>
 
@@ -281,7 +254,7 @@ export function SanMartinPage() {
           </figure>
         </div>
 
-        <div className="mx-auto mt-10 grid w-[calc(100%-2rem)] max-w-7xl border-t border-line sm:mt-14 sm:w-[calc(100%-2.5rem)] sm:grid-cols-2 md:mt-20 md:w-[calc(100%-4rem)] md:grid-cols-4">
+        <div className="site-container mt-10 grid border-t border-line sm:mt-14 sm:grid-cols-2 md:mt-20 md:grid-cols-4">
           {virtues.map(([virtue, description]) => (
             <div
               className="border-b border-line py-4 sm:px-4 md:border-b-0 md:border-l md:px-5 md:first:border-l-0 md:first:pl-0"
@@ -297,7 +270,7 @@ export function SanMartinPage() {
         </div>
       </section>
       <section className="py-14 sm:py-20 md:py-28" id="tradicion">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-8 sm:w-[calc(100%-2.5rem)] sm:gap-12 md:w-[calc(100%-4rem)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
+        <div className="site-container grid gap-8 sm:gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
           <figure className="relative aspect-4/3 overflow-hidden bg-mist">
             <Image
               alt="Imagen de San Martín de Porres"
@@ -310,7 +283,7 @@ export function SanMartinPage() {
           </figure>
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               Testimonios y tradición hagiográfica
             </p>
 
@@ -335,9 +308,9 @@ export function SanMartinPage() {
       </section>
 
       <section className="bg-mist py-14 sm:py-20 md:py-28" id="legado">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-8 sm:w-[calc(100%-2.5rem)] sm:gap-12 md:w-[calc(100%-4rem)] md:grid-cols-[0.7fr_1.3fr] md:gap-20">
+        <div className="site-container grid gap-8 sm:gap-12 md:grid-cols-[0.7fr_1.3fr] md:gap-20">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               Lima · 1639 · 1962
             </p>
 
@@ -379,8 +352,8 @@ export function SanMartinPage() {
         </div>
       </section>
 
-      <section className="py-14 sm:py-20 md:py-28" id="tradicion">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-8 sm:w-[calc(100%-2.5rem)] sm:gap-12 md:w-[calc(100%-4rem)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
+      <section className="py-14 sm:py-20 md:py-28" id="himno">
+        <div className="site-container grid gap-8 sm:gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
           <figure className="relative aspect-4/3 md:aspect-3/4 overflow-hidden bg-mist">
             <Image
               alt="Imagen de San Martín de Porres"
@@ -393,17 +366,17 @@ export function SanMartinPage() {
           </figure>
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               APRENDAMOS JUNTOS
             </p>
 
             <h2 className="mt-3 max-w-2xl font-display text-3xl font-normal leading-tight sm:mt-5">
               Himno a San Martin de Porres
             </h2>
-            <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               CORO
             </p>
-            <p className="text-sm text-muted sm:text-base">
+            <p className="text-sm leading-8 text-muted sm:text-base">
               ¡Gloria inmortal a tu bendito nombre <br /> sol de amor de los
               pobres,
               <br /> San Martín astro divino del Perú de América,
@@ -414,7 +387,7 @@ export function SanMartinPage() {
               <br />
               danos la fe que te enseñó a triunfar. (BIS)
             </p>
-            <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               ESTROFA I
             </p>
             <p className="text-sm text-muted sm:text-base">
@@ -428,7 +401,7 @@ export function SanMartinPage() {
               <br /> de un pueblo hará
               <br /> tan sólo un corazón
             </p>
-            <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               ESTROFA II
             </p>
             <p className="text-sm text-muted sm:text-base">
@@ -446,9 +419,9 @@ export function SanMartinPage() {
       </section>
 
       <section className="bg-forest-deep py-12 text-white-warm sm:py-16 md:py-20">
-        <div className="mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-col gap-5 sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)] md:flex-row md:items-end md:justify-between">
+        <div className="site-container flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d9c28f]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d9c28f]">
               Una santidad vivida en lo cotidiano
             </p>
 
@@ -462,7 +435,7 @@ export function SanMartinPage() {
             href="/hermandad"
           >
             Conoce la Hermandad
-            <ArrowUpRight aria-hidden="true" size={16} className="!bottom-20" />
+            <ArrowUpRight aria-hidden="true" size={16} />
           </Link>
         </div>
       </section>

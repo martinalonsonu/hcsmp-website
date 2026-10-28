@@ -1,18 +1,10 @@
 "use client";
 
 import { ArrowUp } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useScrollThreshold } from "@/hooks/use-scroll-threshold";
 
 export function ScrollToTopButton() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const updateVisibility = () => setIsVisible(window.scrollY > 320);
-
-    updateVisibility();
-    window.addEventListener("scroll", updateVisibility, { passive: true });
-    return () => window.removeEventListener("scroll", updateVisibility);
-  }, []);
+  const isVisible = useScrollThreshold(320);
 
   if (!isVisible) return null;
 

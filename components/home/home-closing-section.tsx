@@ -18,7 +18,7 @@ export function HomeClosingSection() {
       />
       <div aria-hidden="true" className="absolute inset-0 bg-black/55" />
       <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-5xl sm:w-[calc(100%-2.5rem)]">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
           #HCSMP
         </p>
         <h2 className="mx-auto mt-7 max-w-4xl font-display text-3xl font-normal leading-tight sm:text-4xl md:text-6xl">

@@ -7,7 +7,7 @@ import { footerNavigation } from "@/models/shared/navigation";
 export function SiteFooter() {
   return (
     <footer className="bg-[#111111] py-10 text-[#f4f0e6] md:py-12">
-      <div className="mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-col justify-between gap-8 sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)] md:flex-row md:items-end">
+      <div className="site-container flex flex-col justify-between gap-8 md:flex-row md:items-end">
         <div className="flex items-start gap-4 sm:gap-5">
           <span className="grid size-14 shrink-0 place-items-center sm:size-16">
             <Image
@@ -37,7 +37,7 @@ export function SiteFooter() {
         >
           {footerNavigation.map(({ href, label }) => (
             <Link
-              className="transition-colors hover:text-[#b89b5e] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b89b5e]"
+              className="inline-flex min-h-11 items-center text-sm transition-colors hover:text-[#b89b5e] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b89b5e]"
               href={href}
               key={href}
             >
@@ -46,7 +46,7 @@ export function SiteFooter() {
           ))}
         </nav>
       </div>
-      <div className="mx-auto mt-8 flex w-[calc(100%-2rem)] flex-col gap-3 border-t border-white/15 pt-5 text-[11px] text-white/60 sm:w-[calc(100%-2.5rem)] sm:flex-row sm:items-center sm:justify-between md:w-[calc(100%-4rem)]">
+      <div className="site-container mt-8 flex flex-col gap-3 border-t border-white/15 pt-5 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
         <p>
           © <CurrentYear /> Hermandad de Cargadores de San Martín de Porres.
           Todos los derechos reservados.

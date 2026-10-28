@@ -1,103 +1,34 @@
 "use client";
 
+import clsx from "clsx";
+
 import { ChevronLeft, ChevronRight, Pause, Play, X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
+import { useCarousel } from "@/hooks/use-carousel";
+import { useModalDialog } from "@/hooks/use-modal-dialog";
 import { slides } from "@/models/home/multimedia-slides";
 
-
-
 export function MultimediaCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [hasFocus, setHasFocus] = useState(false);
-  const lightboxRef = useRef<HTMLDialogElement>(null);
+  const {
+    activeIndex,
+    goTo: setActiveIndex,
+    previous: showPrevious,
+    next: showNext,
+    isPaused,
+    setIsPaused,
+    setIsHovered,
+    setHasFocus,
+    pauseRotation,
+  } = useCarousel({
+    count: slides.length,
+    interval: 5000,
+    suspended: isLightboxOpen,
+  });
+  const lightboxRef = useModalDialog(isLightboxOpen);
   const openButtonRef = useRef<HTMLButtonElement>(null);
-  const pauseRotation = isPaused || isHovered || hasFocus || isLightboxOpen;
-
-  useEffect(() => {
-    const lightbox = lightboxRef.current;
-    if (!lightbox) return;
-
-    if (isLightboxOpen && !lightbox.open) {
-      lightbox.showModal();
-    } else if (!isLightboxOpen && lightbox.open) {
-      lightbox.close();
-    }
-  }, [isLightboxOpen]);
-
-  useEffect(() => {
-    if (!isLightboxOpen) return;
-
-    const body = document.body;
-    const documentElement = document.documentElement;
-    const scrollY = window.scrollY;
-    const previousStyles = {
-      bodyPosition: body.style.position,
-      bodyTop: body.style.top,
-      bodyLeft: body.style.left,
-      bodyRight: body.style.right,
-      bodyWidth: body.style.width,
-      bodyOverflow: body.style.overflow,
-      bodyPaddingRight: body.style.paddingRight,
-      documentOverflow: documentElement.style.overflow,
-      documentScrollBehavior: documentElement.style.scrollBehavior,
-    };
-
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.left = "0";
-    body.style.right = "0";
-    body.style.width = "100%";
-    body.style.overflow = "hidden";
-    body.style.paddingRight = `${window.innerWidth - documentElement.clientWidth}px`;
-    documentElement.style.overflow = "hidden";
-
-    return () => {
-      body.style.position = previousStyles.bodyPosition;
-      body.style.top = previousStyles.bodyTop;
-      body.style.left = previousStyles.bodyLeft;
-      body.style.right = previousStyles.bodyRight;
-      body.style.width = previousStyles.bodyWidth;
-      body.style.overflow = previousStyles.bodyOverflow;
-      body.style.paddingRight = previousStyles.bodyPaddingRight;
-      documentElement.style.overflow = previousStyles.documentOverflow;
-      documentElement.style.scrollBehavior = "auto";
-      window.scrollTo(0, scrollY);
-      documentElement.style.scrollBehavior =
-        previousStyles.documentScrollBehavior;
-    };
-  }, [isLightboxOpen]);
-
-  useEffect(() => {
-    if (pauseRotation) return;
-
-    const intervalId = window.setInterval(() => {
-      if (
-        document.hidden ||
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ) {
-        return;
-      }
-
-      setActiveIndex((currentIndex) => (currentIndex + 1) % slides.length);
-    }, 5000);
-
-    return () => window.clearInterval(intervalId);
-  }, [pauseRotation]);
-
-  function showPrevious() {
-    setActiveIndex(
-      (currentIndex) => (currentIndex - 1 + slides.length) % slides.length,
-    );
-  }
-
-  function showNext() {
-    setActiveIndex((currentIndex) => (currentIndex + 1) % slides.length);
-  }
 
   function openLightbox(index: number) {
     setLightboxIndex(index);
@@ -133,7 +64,7 @@ export function MultimediaCarousel() {
       aria-roledescription="carrusel"
       className="group"
       onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
           setHasFocus(false);
         }
       }}
@@ -147,7 +78,10 @@ export function MultimediaCarousel() {
           <figure
             aria-label={`${index + 1} de ${slides.length}: ${slide.title}`}
             aria-roledescription="diapositiva"
-            className={`absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none ${index === activeIndex ? "z-10 opacity-100" : "z-0 opacity-0"}`}
+            className={clsx(
+              "absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none",
+              index === activeIndex ? "z-10 opacity-100" : "z-0 opacity-0",
+            )}
             key={slide.src}
             aria-hidden={index !== activeIndex}
           >
@@ -156,7 +90,7 @@ export function MultimediaCarousel() {
               aria-hidden="true"
               className="object-cover"
               fill
-              priority={index === 0}
+              loading="lazy"
               quality={90}
               sizes="(max-width: 768px) 100vw, 90vw"
               src={slide.src}
@@ -176,7 +110,7 @@ export function MultimediaCarousel() {
             />
             <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col justify-between gap-3 p-5 text-white sm:flex-row sm:items-end sm:p-8">
               <span>
-                <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-white/75">
+                <span className="block text-xs font-semibold uppercase tracking-[0.16em] text-white/75">
                   {slide.caption}
                 </span>
                 <span className="mt-2 block max-w-2xl font-display text-xl leading-snug sm:text-2xl md:text-3xl">
@@ -198,7 +132,7 @@ export function MultimediaCarousel() {
                 ? "Reanudar carrusel automático"
                 : "Pausar carrusel automático"
             }
-            className="grid size-10 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="grid size-11 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             onClick={() => setIsPaused((paused) => !paused)}
             type="button"
           >
@@ -211,7 +145,7 @@ export function MultimediaCarousel() {
           <div className="flex gap-2">
             <button
               aria-label="Fotografía anterior"
-              className="grid size-10 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="grid size-11 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               onClick={showPrevious}
               type="button"
             >
@@ -219,7 +153,7 @@ export function MultimediaCarousel() {
             </button>
             <button
               aria-label="Fotografía siguiente"
-              className="grid size-10 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="grid size-11 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               onClick={showNext}
               type="button"
             >
@@ -233,12 +167,18 @@ export function MultimediaCarousel() {
         aria-label="Elegir fotografía"
         className="mt-4 flex flex-wrap items-center gap-3"
         role="group"
+        aria-live={pauseRotation ? "polite" : "off"}
       >
         {slides.map((slide, index) => (
           <button
             aria-current={index === activeIndex ? "true" : undefined}
             aria-label={`Mostrar ${slide.title}`}
-            className={`min-h-10 touch-manipulation border-b px-1 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay ${index === activeIndex ? "border-clay font-semibold text-ink" : "border-line text-muted hover:text-ink"}`}
+            className={clsx(
+              "min-h-11 touch-manipulation border-b px-1 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay",
+              index === activeIndex
+                ? "border-clay font-semibold text-ink"
+                : "border-line text-muted hover:text-ink",
+            )}
             key={slide.src}
             onClick={() => setActiveIndex(index)}
             type="button"
@@ -266,7 +206,7 @@ export function MultimediaCarousel() {
         ref={lightboxRef}
       >
         <div
-          className="mx-auto flex h-full min-h-0 w-full max-w-7xl flex-col px-3 sm:px-6"
+          className="site-container flex h-full min-h-0 w-full flex-col px-3 sm:px-6"
           style={{
             paddingBottom: "env(safe-area-inset-bottom)",
             paddingTop: "env(safe-area-inset-top)",
@@ -274,7 +214,7 @@ export function MultimediaCarousel() {
         >
           <div className="flex shrink-0 items-start justify-between gap-4 py-3 sm:py-4">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/65">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/65">
                 {slides[lightboxIndex].caption}
               </p>
               <h2
