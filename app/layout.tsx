@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Libre_Baskerville, Poppins } from "next/font/google";
@@ -31,7 +32,8 @@ export const metadata: Metadata = {
     "Conoce la historia, la fe y las actividades de la Hermandad de Cargadores de San Martín de Porres de Cruz Blanca, Santa María, Huaura.",
   openGraph: {
     title: `${SITE_NAME} de Cruz Blanca | Santa María, Huaura`,
-    description: "Historia, fe, actividades y memoria de la Hermandad en Cruz Blanca, Santa María, Huaura.",
+    description:
+      "Historia, fe, actividades y memoria de la Hermandad en Cruz Blanca, Santa María, Huaura.",
     siteName: SITE_NAME,
     locale: "es_PE",
     type: "website",
@@ -39,7 +41,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: `${SITE_NAME} de Cruz Blanca`,
-    description: "Historia, fe y actividades de la Hermandad en Santa María, Huaura.",
+    description:
+      "Historia, fe y actividades de la Hermandad en Santa María, Huaura.",
   },
 };
 
@@ -49,7 +52,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="es"
-      className={`${poppins.variable} ${libreBaskerville.variable}`}
+      className={clsx(poppins.variable, libreBaskerville.variable)}
       data-scroll-behavior="smooth"
     >
       <body className="min-h-screen bg-paper font-sans text-ink antialiased">
@@ -61,7 +64,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         <NovemberCountdownRibbon initialCountdown={initialCountdown} />
         <SiteHeader />
-        <main id="contenido" className="min-h-[60vh]">
+        <main
+          id="contenido"
+          className="min-h-[60vh] focus:outline-none"
+          tabIndex={-1}
+        >
           {children}
         </main>
         <SiteFooter />

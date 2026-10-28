@@ -1,9 +1,6 @@
-import {
-  ArrowLeft,
-  CalendarDays,
-  FileText,
-  Landmark,
-} from "lucide-react";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { SectionIndex } from "@/components/shared/section-index";
+import { ArrowLeft, CalendarDays, FileText, Landmark } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -156,29 +153,16 @@ export function BrotherhoodImagePage() {
 
         <div aria-hidden="true" className="absolute inset-0 bg-black/65" />
 
-        <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
-          <nav
-            aria-label="Ruta de navegación"
-            className="flex flex-wrap items-center gap-2 text-[11px] text-white/75"
-          >
-            <Link className="hover:text-white" href="/">
-              Inicio
-            </Link>
+        <div className="site-container relative z-10">
+          <Breadcrumbs
+            inverse
+            items={[
+              { label: "La Hermandad", href: "/hermandad" },
+              { label: "Nuestra imagen" },
+            ]}
+          />
 
-            <span aria-hidden="true">/</span>
-
-            <Link className="hover:text-white" href="/hermandad">
-              La Hermandad
-            </Link>
-
-            <span aria-hidden="true">/</span>
-
-            <span aria-current="page" className="text-white">
-              Nuestra imagen
-            </span>
-          </nav>
-
-          <p className="mt-8 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d3b778] sm:mt-11">
+          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#d3b778] sm:mt-11">
             Patrimonio devocional · Cruz Blanca
           </p>
 
@@ -194,32 +178,44 @@ export function BrotherhoodImagePage() {
           </p>
         </div>
       </header>
+      <SectionIndex
+        label="Capítulos de esta historia"
+        items={[
+          { id: "image-overview-title", label: "La imagen" },
+          { id: "image-timeline-title", label: "Cronología" },
+          { id: "image-facts-title", label: "Ficha descriptiva" },
+          ...imageChapters.map((chapter) => ({
+            id: chapter.id,
+            label: chapter.title,
+          })),
+        ]}
+      />
 
       <section
         aria-labelledby="image-overview-title"
         className="bg-[#111111] py-10 text-[#f4f0e6] sm:py-14 md:py-20"
       >
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-8 sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)] md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] md:items-center md:gap-16">
+        <div className="site-container grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] md:items-center md:gap-16">
           <figure className="relative overflow-hidden bg-[#201e1a]">
             <Image
               alt="Imagen titular de San Martín de Porres venerada en Cruz Blanca"
               className="h-auto w-full object-contain"
               width={900}
               height={1200}
-              priority
+              preload
               quality={95}
               sizes="(max-width: 768px) 100vw, 50vw"
               src={imageSrc}
             />
 
-            <figcaption className="border-t border-white/10 px-4 py-3 text-[10px] leading-5 text-white/65 sm:px-5 sm:text-xs">
+            <figcaption className="border-t border-white/10 px-4 py-3 text-xs leading-5 text-white/65 sm:px-5 sm:text-xs">
               Imagen titular de la Hermandad de Cargadores de San Martín de
               Porres de Cruz Blanca.
             </figcaption>
           </figure>
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
               Más que una imagen
             </p>
 
@@ -259,10 +255,10 @@ export function BrotherhoodImagePage() {
         aria-labelledby="image-timeline-title"
         className="bg-[#111111] pb-10 text-[#f4f0e6] sm:pb-14 md:pb-20"
       >
-        <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
+        <div className="site-container ">
           <div className="mb-7 flex flex-col gap-3 sm:mb-10 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
                 Hitos históricos
               </p>
 
@@ -305,7 +301,7 @@ export function BrotherhoodImagePage() {
                   {milestone.detail}
                 </p>
 
-                <p className="mt-4 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#b89b5e]">
+                <p className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-[#b89b5e]">
                   <CalendarDays aria-hidden="true" size={13} />
                   {milestone.date}
                 </p>
@@ -319,10 +315,10 @@ export function BrotherhoodImagePage() {
         aria-labelledby="image-facts-title"
         className="bg-[#eae5d9] py-10 text-[#24221e] sm:py-14 md:py-20"
       >
-        <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
+        <div className="site-container ">
           <div className="grid gap-8 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] md:gap-16">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#846a37]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
                 Ficha descriptiva
               </p>
 
@@ -345,7 +341,7 @@ export function BrotherhoodImagePage() {
                   className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-6 sm:py-5"
                   key={fact.label}
                 >
-                  <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#846a37] sm:pt-1">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-clay-text sm:pt-1">
                     {fact.label}
                   </dt>
 
@@ -359,7 +355,7 @@ export function BrotherhoodImagePage() {
         </div>
       </section>
 
-      <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
+      <div className="site-container ">
         {imageChapters.map((chapter) => (
           <Fragment key={chapter.id}>
             <section
@@ -367,7 +363,7 @@ export function BrotherhoodImagePage() {
               id={chapter.id}
             >
               <div className="md:sticky md:top-28 md:self-start">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-clay-text">
                   {chapter.eyebrow}
                 </p>
 
@@ -390,16 +386,16 @@ export function BrotherhoodImagePage() {
                       />
                     </div>
 
-                    <figcaption className="border-b border-line px-4 py-3 text-[10px] leading-5 text-muted sm:px-6 sm:text-xs">
+                    <figcaption className="border-b border-line px-4 py-3 text-xs leading-5 text-muted sm:px-6 sm:text-xs">
                       La imagen titular, testimonio de una devoción transmitida
                       a través de generaciones.
                     </figcaption>
 
                     <div className="p-5 sm:p-8">
-                      <div className="mb-5 flex items-center gap-2 text-clay">
+                      <div className="mb-5 flex items-center gap-2 text-clay-text">
                         <FileText aria-hidden="true" size={17} />
 
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.15em]">
+                        <span className="text-xs font-semibold uppercase tracking-[0.15em]">
                           Transcripción de la inscripción
                         </span>
                       </div>
@@ -435,7 +431,7 @@ export function BrotherhoodImagePage() {
                         className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-5 sm:py-5"
                         key={fact.label}
                       >
-                        <dt className="text-xs font-semibold text-clay">
+                        <dt className="text-xs font-semibold text-clay-text">
                           {fact.label}
                         </dt>
 
@@ -453,7 +449,7 @@ export function BrotherhoodImagePage() {
       </div>
 
       <section className="bg-[#111111] py-10 text-[#f4f0e6] sm:py-14 md:py-16">
-        <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
+        <div className="site-container ">
           <div className="grid gap-5 border border-white/10 p-5 sm:p-8 md:grid-cols-[auto_1fr] md:items-start md:gap-6 md:p-10">
             <Landmark
               aria-hidden="true"
@@ -463,7 +459,7 @@ export function BrotherhoodImagePage() {
             />
 
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
                 Un legado compartido
               </p>
 
@@ -482,9 +478,9 @@ export function BrotherhoodImagePage() {
         </div>
       </section>
 
-      <div className="mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-col gap-3 py-8 sm:w-[calc(100%-2.5rem)] sm:flex-row sm:items-center sm:justify-between sm:py-10 md:w-[calc(100%-4rem)]">
+      <div className="site-container flex flex-col gap-3 py-8 sm:flex-row sm:items-center sm:justify-between sm:py-10">
         <Link
-          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
+          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay-text"
           href="/hermandad"
         >
           <ArrowLeft aria-hidden="true" size={15} />
@@ -492,7 +488,7 @@ export function BrotherhoodImagePage() {
         </Link>
 
         <Link
-          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
+          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay-text"
           href="/archivo/documentos"
         >
           Explorar memoria documental

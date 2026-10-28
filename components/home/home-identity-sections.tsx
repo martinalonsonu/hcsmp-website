@@ -22,10 +22,10 @@ export function HomeIdentitySections() {
           style={{ backgroundImage: `url("${assetUrl("smp-cruz.jpg")}")` }}
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[#111111]/80" />
-        <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
+        <div className="site-container relative z-10">
           <div className="grid gap-5 sm:gap-7 md:grid-cols-[0.7fr_1.3fr] md:gap-20">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
                 Cronología histórica
               </p>
               <h2 className="mt-3 font-display text-2xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
@@ -34,7 +34,7 @@ export function HomeIdentitySections() {
               <p className="mt-3 max-w-sm text-xs leading-6 text-white/75 sm:mt-5 sm:text-sm sm:leading-7">
                 Principales hitos que marcaron la historia de nuestra devoción.
               </p>
-              <SectionCta href="/hermandad" inverse>
+              <SectionCta href="/hermandad/historia" inverse>
                 Conoce más
               </SectionCta>
             </div>
@@ -65,7 +65,7 @@ export function HomeIdentitySections() {
       </section>
 
       <section className="py-10 sm:py-16 md:py-28" id="san-martin">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-5 sm:w-[calc(100%-2.5rem)] sm:gap-9 md:w-[calc(100%-4rem)] md:grid-cols-[0.95fr_1.05fr] md:items-center md:gap-20">
+        <div className="site-container grid gap-5 sm:gap-9 md:grid-cols-[0.95fr_1.05fr] md:items-center md:gap-20">
           <figure className="relative aspect-[4/3] w-full overflow-hidden bg-[#2a2a2a]">
             <Image
               alt="Imagen de San Martín de Porres en su anda procesional"
@@ -80,7 +80,7 @@ export function HomeIdentitySections() {
             </figcaption>
           </figure>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               Santo de la caridad y la sencillez
             </p>
             <h2 className="mt-3 font-display text-2xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
@@ -127,7 +127,7 @@ export function HomeIdentitySections() {
         className="border-y border-line bg-white/35 py-10 sm:py-16 md:py-24"
         id="significado"
       >
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-6 sm:w-[calc(100%-2.5rem)] sm:gap-8 md:w-[calc(100%-4rem)] md:grid-cols-[0.7fr_1.3fr] md:items-center md:gap-12">
+        <div className="site-container grid gap-6 sm:gap-8 md:grid-cols-[0.7fr_1.3fr] md:items-center md:gap-12">
           <div>
             <h2 className="font-display text-2xl font-normal leading-tight sm:text-3xl md:text-4xl">
               Síguenos en redes
@@ -142,7 +142,7 @@ export function HomeIdentitySections() {
             >
               <a
                 aria-label="Facebook de la Hermandad"
-                className="inline-flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-clay hover:text-clay"
+                className="inline-flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-clay hover:text-clay-text"
                 href="https://web.facebook.com/hcsmpcb"
                 rel="noreferrer"
                 target="_blank"
@@ -158,7 +158,7 @@ export function HomeIdentitySections() {
               </a>
               <a
                 aria-label="Canal de YouTube de la Hermandad"
-                className="inline-flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-clay hover:text-clay"
+                className="inline-flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-clay hover:text-clay-text"
                 href="https://www.youtube.com/@hermandaddesanmartindeporr4803"
                 rel="noreferrer"
                 target="_blank"
@@ -174,7 +174,7 @@ export function HomeIdentitySections() {
               </a>
               <a
                 aria-label="Instagram de la Hermandad"
-                className="inline-flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-clay hover:text-clay"
+                className="inline-flex size-11 items-center justify-center border border-line text-ink transition-colors hover:border-clay hover:text-clay-text"
                 href="https://www.instagram.com/hcsmpcb/"
                 rel="noreferrer"
                 target="_blank"
@@ -201,13 +201,13 @@ export function HomeIdentitySections() {
             </nav>
           </div>
           <iframe
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="aspect-video w-full border-0"
             loading="lazy"
             referrerPolicy="strict-origin-when-cross-origin"
-            src="https://www.youtube.com/embed/2pQa0Ku-dug?si=epib_tMv5JBJclyK&autoplay=1&mute=1"
-            title="YouTube video player"
+            src="https://www.youtube-nocookie.com/embed/2pQa0Ku-dug"
+            title="Video de la Hermandad de San Martín de Porres de Cruz Blanca"
           />
         </div>
       </section>
@@ -226,9 +226,9 @@ export function HomeIdentitySections() {
           src="https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/portada-para-facebook-salon-de-belleza-simple-beige.png"
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[#111111]/65" />
-        <div className="relative z-10 mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-col gap-4 sm:w-[calc(100%-2.5rem)] sm:gap-5 md:w-[calc(100%-4rem)] md:flex-row md:items-center md:justify-between">
+        <div className="site-container relative z-10 flex flex-col gap-4 sm:gap-5 md:flex-row md:items-center md:justify-between">
           <div className="max-w-3xl">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
               Noviembre · Cruz Blanca
             </p>
             <h2 className="mt-2 font-display text-2xl font-normal leading-tight text-[#f4f0e6] sm:text-3xl md:text-4xl">
@@ -252,9 +252,9 @@ export function HomeIdentitySections() {
         className="bg-[#e9e3d8] py-10 text-[#111111] sm:py-16 md:py-24"
         id="recorrido"
       >
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-5 sm:w-[calc(100%-2.5rem)] sm:gap-8 md:w-[calc(100%-4rem)] md:grid-cols-[0.75fr_1.25fr] md:items-center md:gap-20">
+        <div className="site-container grid gap-5 sm:gap-8 md:grid-cols-[0.75fr_1.25fr] md:items-center md:gap-20">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8d7443]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               #CaminemosConMartin
             </p>
             <h2 className="mt-3 font-display text-2xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
@@ -272,7 +272,7 @@ export function HomeIdentitySections() {
                   className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-5 sm:py-5"
                   key={event.id}
                 >
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#8d7443] sm:text-xs">
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-clay-text sm:text-xs">
                     {event.date}
                   </p>
                   <div>

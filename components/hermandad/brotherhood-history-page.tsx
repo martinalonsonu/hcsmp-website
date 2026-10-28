@@ -1,3 +1,5 @@
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { SectionIndex } from "@/components/shared/section-index";
 import { ArrowLeft, CalendarDays, FileText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,24 +20,15 @@ export function BrotherhoodHistoryPage() {
           src={assetUrl("escudo-1.jpg")}
         />
         <div aria-hidden="true" className="absolute inset-0 bg-black/55" />
-        <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
-          <nav
-            aria-label="Ruta de navegación"
-            className="flex items-center gap-2 text-[11px] text-white/75"
-          >
-            <Link className="hover:text-white" href="/">
-              Inicio
-            </Link>
-            <span aria-hidden="true">/</span>
-            <Link className="hover:text-white" href="/hermandad">
-              La Hermandad
-            </Link>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page" className="text-white">
-              Historia
-            </span>
-          </nav>
-          <p className="mt-8 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d3b778] sm:mt-11">
+        <div className="site-container relative z-10">
+          <Breadcrumbs
+            inverse
+            items={[
+              { label: "La Hermandad", href: "/hermandad" },
+              { label: "Historia" },
+            ]}
+          />
+          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#d3b778] sm:mt-11">
             Memoria institucional · Cruz Blanca
           </p>
           <h1 className="mt-3 max-w-5xl font-display text-4xl font-normal leading-[1.08] text-white sm:mt-4 sm:text-5xl md:text-7xl">
@@ -52,15 +45,22 @@ export function BrotherhoodHistoryPage() {
           </p>
         </div>
       </header>
+      <SectionIndex
+        label="Capítulos de esta historia"
+        items={historyChapters.map((chapter, index) => ({
+          id: chapter.id,
+          label: `${String(index + 1).padStart(2, "0")} · ${chapter.title}`,
+        }))}
+      />
 
       <section
         aria-labelledby="history-timeline-title"
         className="bg-[#111111] py-10 text-[#f4f0e6] sm:py-14 md:py-20"
       >
-        <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
+        <div className="site-container ">
           <div className="mb-7 flex flex-col gap-3 sm:mb-10 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
                 Fechas y acontecimientos
               </p>
               <h2
@@ -99,7 +99,7 @@ export function BrotherhoodHistoryPage() {
         </div>
       </section>
 
-      <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
+      <div className="site-container ">
         {historyChapters.map((chapter) => (
           <Fragment key={chapter.id}>
             <section
@@ -107,7 +107,7 @@ export function BrotherhoodHistoryPage() {
               id={chapter.id}
             >
               <div className="md:sticky md:top-28 md:self-start">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-clay-text">
                   {chapter.eyebrow}
                 </p>
                 <h2 className="mt-3 font-display text-2xl leading-tight sm:text-3xl md:text-4xl">
@@ -119,15 +119,15 @@ export function BrotherhoodHistoryPage() {
                   <figure className="relative mb-5 aspect-[4/3] overflow-hidden bg-mist sm:mb-7 sm:aspect-[16/9]">
                     <Image
                       alt={chapter.image.alt}
-                      className="object-cover w-full h-full"
+                      className="h-full w-full object-cover"
                       width={400}
                       height={300}
                       quality={90}
-                      sizes="(max-width: 768px)"
+                      sizes="(max-width: 768px) 100vw, 65vw"
                       src={chapter.image.src}
                       style={{ objectPosition: chapter?.position }}
                     />
-                    <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/75 to-transparent px-4 pb-3 pt-12 text-[10px] leading-5 text-white/90 sm:px-5 sm:pb-4 sm:text-xs">
+                    <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/75 to-transparent px-4 pb-3 pt-12 text-xs leading-5 text-white/90 sm:px-5 sm:pb-4 sm:text-xs">
                       {chapter.image.caption}
                     </figcaption>
                   </figure>
@@ -149,7 +149,7 @@ export function BrotherhoodHistoryPage() {
                         className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-5 sm:py-5"
                         key={fact.date}
                       >
-                        <dt className="flex items-start gap-2 text-xs font-semibold text-clay">
+                        <dt className="flex items-start gap-2 text-xs font-semibold text-clay-text">
                           <CalendarDays
                             aria-hidden="true"
                             className="mt-0.5 shrink-0"
@@ -175,15 +175,15 @@ export function BrotherhoodHistoryPage() {
         ))}
       </div>
 
-      <div className="mx-auto flex w-[calc(100%-2rem)] max-w-7xl flex-col gap-3 py-8 sm:w-[calc(100%-2.5rem)] sm:flex-row sm:items-center sm:justify-between sm:py-10 md:w-[calc(100%-4rem)]">
+      <div className="site-container flex flex-col gap-3 py-8 sm:flex-row sm:items-center sm:justify-between sm:py-10">
         <Link
-          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
+          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay-text"
           href="/hermandad"
         >
           <ArrowLeft aria-hidden="true" size={15} /> Volver a La Hermandad
         </Link>
         <Link
-          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
+          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay-text"
           href="/archivo/documentos"
         >
           Explorar memoria documental <FileText aria-hidden="true" size={15} />

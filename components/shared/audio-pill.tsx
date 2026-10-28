@@ -1,99 +1,94 @@
 "use client";
 
-import { Pause, Play, Volume2, X } from "lucide-react";
-import { useRef, useState } from "react";
-interface AudioPillProps {
-  left?: boolean;
-}
+import clsx from "clsx";
+import { LoaderCircle, Pause, Play, Volume2, X } from "lucide-react";
+import { useState } from "react";
+import { useAudioPlayer } from "@/hooks/use-audio-player";
 
-export const AudioPill = ({ left = false }: AudioPillProps) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showAudioPill, setShowAudioPill] = useState(true);
-
-  const audioSrc = "/audio/HIMNO_SMP.m4a";
-
-  const toggleAudio = async () => {
-    const audio = audioRef.current;
-
-    if (!audio) return;
-
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-      return;
-    }
-
-    try {
-      audio.load();
-      await audio.play();
-      setIsPlaying(true);
-    } catch {
-      setIsPlaying(false);
-    }
-  };
-
-  const closeAudioPill = () => {
-    const audio = audioRef.current;
-
-    if (audio) {
-      audio.pause();
-      audio.currentTime = 0;
-    }
-
-    setIsPlaying(false);
-    setShowAudioPill(false);
-  };
-
-  if (!showAudioPill) {
-    return <audio ref={audioRef} loop preload="metadata" src={audioSrc} />;
-  }
+export function AudioPill({ left = false }: { left?: boolean }) {
+  const { audioRef, status, toggle, stop, setStatus } = useAudioPlayer();
+  const [isVisible, setIsVisible] = useState(true);
+  const isPlaying = status === "playing";
 
   return (
     <>
-      <audio ref={audioRef} loop preload="metadata" src={audioSrc} />
-      <div
-        className={`pointer-events-auto fixed z-[9999] ${
-          left ? "bottom-5 left-2 md:left-6" : "bottom-20 right-6"
-        }`}
-      >
-        <div className="flex items-center gap-2 rounded-full border border-white/15 bg-forest-deep/95 px-3 py-2 text-white shadow-xl backdrop-blur-md">
-          <Volume2
-            aria-hidden="true"
-            className="size-4 shrink-0 text-[#d9c28f]"
-          />
-          <span className="text-xs font-medium">
-            <span className="sm:hidden">
-              {isPlaying ? "Escuchando himno" : "Himno a San Martín"}
+      <audio
+        loop
+        onPause={() => setStatus("idle")}
+        onError={() => setStatus("error")}
+        preload="none"
+        ref={audioRef}
+        src="/audio/HIMNO_SMP.mp3"
+      />
+      {isVisible && (
+        <div
+          className={clsx(
+            "fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-20 max-w-[calc(100vw-5.5rem)]",
+            left ? "left-4 md:left-6" : "right-5 bottom-20",
+          )}
+        >
+          <div className="flex items-center gap-1 rounded-3xl border border-white/20 bg-forest-deep px-2 py-1.5 text-white shadow-lg">
+            <Volume2
+              aria-hidden="true"
+              className="ml-1 hidden size-4 shrink-0 text-[#d9c28f] sm:block"
+            />
+            <span className="min-w-0 px-2 text-xs leading-5">
+              <span className="sm:hidden">
+                {isPlaying ? "Escuchando himno" : "Himno a San Martín"}
+              </span>
+              <span className="hidden sm:inline">
+                {isPlaying
+                  ? "Escuchando himno a San Martín de Porres"
+                  : "Escucha el himno a San Martín de Porres"}
+              </span>
             </span>
-            <span className="hidden sm:inline">
-              {isPlaying
-                ? "Escuchando himno a San Martín de Porres"
-                : "Escucha el himno a San Martín de Porres"}
-            </span>
-          </span>
-          <button
-            type="button"
-            onClick={toggleAudio}
-            className="pointer-events-auto flex size-8 shrink-0 touch-manipulation items-center justify-center rounded-full bg-[#d9c28f] text-forest-deep transition-transform hover:scale-105"
-            aria-label={isPlaying ? "Pausar himno" : "Escuchar himno"}
-          >
-            {isPlaying ? (
-              <Pause aria-hidden="true" className="size-4" />
-            ) : (
-              <Play aria-hidden="true" className="ml-0.5 size-4" />
+            <button
+              aria-label={isPlaying ? "Pausar himno" : "Escuchar himno"}
+              aria-busy={status === "loading"}
+              className="grid size-11 shrink-0 touch-manipulation place-items-center rounded-full bg-[#d9c28f] text-forest-deep transition-colors hover:bg-paper disabled:cursor-wait"
+              disabled={status === "loading"}
+              onClick={toggle}
+              type="button"
+            >
+              {status === "loading" ? (
+                <LoaderCircle
+                  aria-hidden="true"
+                  className="size-4 animate-spin motion-reduce:animate-none"
+                />
+              ) : isPlaying ? (
+                <Pause aria-hidden="true" size={17} />
+              ) : (
+                <Play aria-hidden="true" size={17} />
+              )}
+            </button>
+            <button
+              aria-label="Cerrar reproductor"
+              className="grid size-11 shrink-0 touch-manipulation place-items-center rounded-full text-white/80 hover:bg-white/10 hover:text-white"
+              onClick={() => {
+                stop();
+                setIsVisible(false);
+              }}
+              type="button"
+            >
+              <X aria-hidden="true" size={17} />
+            </button>
+          </div>
+          <p
+            aria-live="polite"
+            className={clsx(
+              status === "error"
+                ? "mt-2 rounded-lg bg-forest-deep p-3 text-xs leading-5 text-white"
+                : "sr-only",
             )}
-          </button>
-          <button
-            type="button"
-            onClick={closeAudioPill}
-            className="pointer-events-auto flex size-6 shrink-0 touch-manipulation items-center justify-center rounded-full text-white/50 transition-colors hover:text-white"
-            aria-label="Cerrar reproductor"
           >
-            <X aria-hidden="true" className="size-3.5" />
-          </button>
+            {status === "error"
+              ? "No se pudo reproducir el himno. Inténtalo de nuevo."
+              : status === "loading"
+                ? "Cargando himno…"
+                : ""}
+          </p>
         </div>
-      </div>
+      )}
     </>
   );
-};
+}

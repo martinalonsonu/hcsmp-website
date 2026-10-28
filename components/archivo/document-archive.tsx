@@ -1,8 +1,6 @@
 import { documents } from "@/models/archivo/archive-content";
 import { ArrowUpRight, FileText } from "lucide-react";
 
-
-
 export function DocumentArchive() {
   return (
     <ul className="grid gap-4 sm:grid-cols-2">
@@ -14,14 +12,10 @@ export function DocumentArchive() {
             rel="noreferrer"
             target="_blank"
           >
-            <FileText
-              aria-hidden="true"
-              className="text-clay"
-              size={24}
-            />
+            <FileText aria-hidden="true" className="text-clay-text" size={24} />
             <span>
               <span className="flex items-start justify-between gap-3">
-                <span className="font-display text-xl leading-snug group-hover:text-clay">
+                <span className="font-display text-xl leading-snug group-hover:text-clay-text">
                   {document.title}
                 </span>
                 <ArrowUpRight
@@ -30,11 +24,12 @@ export function DocumentArchive() {
                   size={18}
                 />
               </span>
-              <span className="mt-2 block text-xs leading-5 text-muted">
+              <span className="mt-2 block text-sm leading-6 text-muted">
                 {document.detail}
               </span>
               <span className="mt-4 block text-xs font-semibold text-forest-link">
-                Abrir documento
+                Abrir PDF{" "}
+                <span className="sr-only">(abre en otra pestaña)</span>
               </span>
             </span>
           </a>

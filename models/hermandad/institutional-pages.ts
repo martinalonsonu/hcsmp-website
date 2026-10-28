@@ -7,7 +7,7 @@ import {
 export type InstitutionalSection = {
   title: string;
   body: string;
-  items?: { label: string; detail: string; href?: string }[];
+  items?: { label: string; detail: string; href: string }[];
 };
 
 export type InstitutionalPage = {
@@ -434,7 +434,7 @@ export const institutionalPages: InstitutionalPage[] = [
         body: "La experiencia procesional forma parte de una vida de Hermandad que se extiende durante todo el año.",
       },
     ],
-    related: ["/fiesta"],
+    related: ["/hermandad/fiesta"],
   },
   {
     path: "/hermandad/pilares",
@@ -533,7 +533,7 @@ export const institutionalPages: InstitutionalPage[] = [
       "Un espacio para comunicados oficiales, actividades y noticias de la vida de la Hermandad.",
     kind: "news",
     sections: [],
-    related: ["/hermandad/pilares", "/fiesta"],
+    related: ["/hermandad/pilares", "/hermandad/fiesta"],
   },
 ];
 

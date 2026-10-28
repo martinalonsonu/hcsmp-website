@@ -8,6 +8,7 @@
   --forest-text: #111111;
   --forest-link: #2a2a2a;
   --clay: #9b8049;
+  --clay-text: var(--clay);
   --mist: #e9e3d8;
   --line: #d9d0c0;
 }
@@ -21,6 +22,7 @@
   --color-forest-text: var(--forest-text);
   --color-forest-link: var(--forest-link);
   --color-clay: var(--clay);
+  --color-clay-text: var(--clay-text);
   --color-mist: var(--mist);
   --color-line: var(--line);
   --color-white-warm: #ffffff;
@@ -42,7 +44,7 @@
 
 .scroll-reveal {
   opacity: 0;
-  transform: translateX(-24px);
+  transform: translateY(16px);
   transition:
     opacity 650ms cubic-bezier(0.2, 0.75, 0.25, 1),
     transform 650ms cubic-bezier(0.2, 0.75, 0.25, 1);
@@ -50,7 +52,53 @@
 
 .scroll-reveal-visible {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
+}
+
+@layer components {
+  .site-container {
+    width: calc(100% - 2.5rem);
+    max-width: 80rem;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 48rem) {
+    .site-container {
+      width: calc(100% - 4rem);
+    }
+  }
+
+  .section-index {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+
+  .prose-news a {
+    color: var(--forest-link);
+    text-decoration: underline;
+    text-decoration-color: var(--clay);
+    text-underline-offset: 0.2em;
+    overflow-wrap: anywhere;
+  }
+
+  .prose-news a:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .prose-news img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .prose-news pre {
+    overflow-x: auto;
+  }
+
+  .prose-news table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
 }
 
 @layer base {
@@ -59,10 +107,11 @@
   }
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 2rem;
+    scroll-padding-top: 10rem;
   }
   body {
     margin: 0;
+    overflow-wrap: break-word;
   }
   a {
     color: inherit;
@@ -71,6 +120,24 @@
   button {
     font: inherit;
     -webkit-tap-highlight-color: transparent;
+  }
+  button:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+  :where(a, button, summary, input, [tabindex]):focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+    box-shadow: 0 0 0 3px var(--paper);
+  }
+  :where(h1, h2, h3) {
+    text-wrap: balance;
+  }
+  :where(p) {
+    text-wrap: pretty;
+  }
+  :where(section[id], h2[id], main[id]) {
+    scroll-margin-top: 1rem;
   }
   ::selection {
     background: #d9d0c0;

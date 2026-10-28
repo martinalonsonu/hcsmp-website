@@ -3,7 +3,8 @@ import { ArrowLeft, CalendarDays } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
+import { ArticleContent } from "@/components/blog/article-content";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getNewsArticle, newsArticles } from "@/models/blog/news";
 import {
@@ -69,7 +70,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
     return (
       <article className="mx-auto w-[calc(100%-2rem)] max-w-4xl py-14 sm:w-[calc(100%-2.5rem)] sm:py-20 md:py-28">
         <Link
-          className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
+          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
           href="/"
         >
           <ArrowLeft aria-hidden="true" size={15} /> Volver al inicio
@@ -112,87 +113,67 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
   return (
     <>
       <JsonLd data={articleStructuredData} />
-    <article className="mx-auto w-[calc(100%-2rem)] max-w-4xl py-14 sm:w-[calc(100%-2.5rem)] sm:py-20 md:py-28">
-      <Link
-        className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
-        href="/blog"
-      >
-        <ArrowLeft aria-hidden="true" size={15} /> Volver al blog
-      </Link>
-      <p className="mt-10 text-[10px] font-semibold uppercase tracking-[0.16em] text-clay">
-        {article.eyebrow ?? article.category}
-      </p>
-      <h1 className="mt-4 font-display text-4xl leading-tight sm:text-5xl md:text-6xl">
-        {article.title}
-      </h1>
-      <p className="mt-5 flex items-center gap-2 text-xs text-muted">
-        <CalendarDays aria-hidden="true" size={14} /> {article.date}
-      </p>
-      {article.image && (
-        <figure className="relative mt-8 overflow-hidden sm:mt-10">
-          <Image
-            alt={article.title}
-            className=" w-full"
-            priority
-            quality={90}
-            width={768}
-            height={400}
-            sizes="(max-width: 1080px) 100vw, 1080px"
-            src={article.image}
-          />
-        </figure>
-      )}
-      <p className="mt-9 border-y border-line py-6 font-display text-xl leading-relaxed sm:text-2xl">
-        {article.summary}
-      </p>
-      <div className="prose-news mt-8">
-        <ReactMarkdown
-          components={{
-            h1: ({ children }) => (
-              <h2 className="mt-10 font-display text-2xl sm:text-3xl">
-                {children}
-              </h2>
-            ),
-            h2: ({ children }) => (
-              <h2 className="mt-10 font-display text-2xl sm:text-3xl">
-                {children}
-              </h2>
-            ),
-            h3: ({ children }) => (
-              <h3 className="mt-8 font-display text-xl sm:text-2xl">
-                {children}
-              </h3>
-            ),
-            p: ({ children }) => (
-              <p className="mt-5 text-sm leading-8 text-muted sm:text-base">
-                {children}
-              </p>
-            ),
-            strong: ({ children }) => (
-              <strong className="font-semibold text-ink">{children}</strong>
-            ),
-            ol: ({ children }) => (
-              <ol className="mt-5 flex flex-col gap-2 list-decimal pl-6 text-sm leading-7 text-muted sm:text-base">
-                {children}
-              </ol>
-            ),
-            ul: ({ children }) => (
-              <ul className="mt-5 flex flex-col gap-2 list-disc pl-6 text-sm leading-7 text-muted sm:text-base">
-                {children}
-              </ul>
-            ),
-            li: ({ children }) => <li className="pl-1">{children}</li>,
-            blockquote: ({ children }) => (
-              <blockquote className="mt-8 border-l-2 border-clay pl-5 font-display text-lg leading-relaxed text-ink sm:text-2xl">
-                {children}
-              </blockquote>
-            ),
-          }}
+      <article className="mx-auto w-[calc(100%-2rem)] max-w-4xl py-14 sm:w-[calc(100%-2.5rem)] sm:py-20 md:py-28">
+        <Link
+          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
+          href="/blog"
         >
-          {article.content}
-        </ReactMarkdown>
-      </div>
-    </article>
+          <ArrowLeft aria-hidden="true" size={15} /> Volver al blog
+        </Link>
+        <Breadcrumbs
+          items={[{ label: "Blog", href: "/blog" }, { label: article.title }]}
+        />
+        <p className="mt-8 text-xs font-semibold uppercase tracking-[0.16em] text-clay-text">
+          {article.eyebrow ?? article.category}
+        </p>
+        <h1 className="mt-4 font-display text-4xl leading-tight sm:text-5xl md:text-6xl">
+          {article.title}
+        </h1>
+        <p className="mt-5 flex items-center gap-2 text-xs text-muted">
+          <CalendarDays aria-hidden="true" size={14} />{" "}
+          {article.publishedAt ? (
+            <time dateTime={article.publishedAt}>{article.date}</time>
+          ) : (
+            <span>{article.date}</span>
+          )}
+        </p>
+        {article.image && (
+          <figure className="relative mt-8 overflow-hidden sm:mt-10">
+            <Image
+              alt={article.title}
+              className="h-auto w-full"
+              preload
+              quality={90}
+              width={768}
+              height={400}
+              sizes="(max-width: 896px) 100vw, 896px"
+              src={article.image}
+            />
+          </figure>
+        )}
+        <p className="mt-9 border-y border-line py-6 font-display text-xl leading-relaxed sm:text-2xl">
+          {article.summary}
+        </p>
+        <ArticleContent content={article.content} />
+        <nav
+          aria-label="Continuar leyendo"
+          className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6"
+        >
+          <Link
+            className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline-offset-4 hover:underline"
+            href="/blog"
+          >
+            <ArrowLeft aria-hidden="true" size={16} /> Ver todas las
+            publicaciones
+          </Link>
+          <Link
+            className="inline-flex min-h-11 items-center text-sm font-semibold underline-offset-4 hover:underline"
+            href="/contacto"
+          >
+            Contactar a la Hermandad →
+          </Link>
+        </nav>
+      </article>
     </>
   );
 }

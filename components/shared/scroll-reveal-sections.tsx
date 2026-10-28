@@ -9,6 +9,7 @@ export function ScrollRevealSections({ children }: { children: ReactNode }) {
     const container = containerRef.current;
     if (!container) return;
 
+    if (!("IntersectionObserver" in window)) return;
     const content = container.querySelectorAll<HTMLElement>(
       "section > div:not([aria-hidden='true'])",
     );
@@ -26,7 +27,7 @@ export function ScrollRevealSections({ children }: { children: ReactNode }) {
             }
           }
         },
-        { threshold: 0.2 },
+        { threshold: 0, rootMargin: "0px 0px -32px 0px" },
       );
 
       content.forEach((element) => {
@@ -45,6 +46,9 @@ export function ScrollRevealSections({ children }: { children: ReactNode }) {
     return () => {
       mobileQuery.removeEventListener("change", observeContent);
       observer.disconnect();
+      content.forEach((element) =>
+        element.classList.remove("scroll-reveal", "scroll-reveal-visible"),
+      );
     };
   }, []);
 

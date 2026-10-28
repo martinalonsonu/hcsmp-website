@@ -1,8 +1,9 @@
 "use client";
 
+import clsx from "clsx";
+
 import { categories } from "@/models/archivo/archive-content";
 import { useState } from "react";
-
 
 type ArchiveCategory = (typeof categories)[number];
 
@@ -15,7 +16,12 @@ export function ArchiveFilter() {
         {categories.map((item) => (
           <button
             aria-pressed={category === item}
-            className={`min-h-10 border px-4 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay ${category === item ? "border-ink bg-ink text-paper" : "border-line text-muted hover:border-ink hover:text-ink"}`}
+            className={clsx(
+              "min-h-11 border px-4 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay",
+              category === item
+                ? "border-ink bg-ink text-paper"
+                : "border-line text-muted hover:border-ink hover:text-ink",
+            )}
             key={item}
             onClick={() => setCategory(item)}
             type="button"

@@ -10,10 +10,10 @@ export function HomeNewsSection() {
       className="bg-[#e9e3d8] py-10 text-[#111111] sm:py-16 md:py-24"
       id="noticias"
     >
-      <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
+      <div className="site-container ">
         <div className="mb-5 flex flex-col justify-between gap-3 sm:mb-10 sm:flex-row sm:items-end sm:gap-4">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8d7443]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               Noticias y actualidad institucional
             </p>
             <h2 className="mt-3 font-display text-2xl font-normal sm:mt-4 sm:text-4xl md:text-5xl">
@@ -31,15 +31,27 @@ export function HomeNewsSection() {
                 className="border-b border-[#c9beaa] py-5 sm:border-b-0 sm:py-6"
                 key={article.slug}
               >
-                <p className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8d7443]">
+                <p className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.14em] text-clay-text">
                   {article.category}
                   <span>0{index + 1}</span>
                 </p>
+                <p className="mt-3 text-xs text-muted">
+                  {article.publishedAt ? (
+                    <time dateTime={article.publishedAt}>{article.date}</time>
+                  ) : (
+                    <span>{article.date}</span>
+                  )}
+                </p>
                 <h3 className="mt-5 max-w-sm font-display text-xl leading-snug sm:mt-8 sm:text-2xl">
-                  {article.title}
+                  <Link
+                    className="underline-offset-4 hover:underline decoration-clay"
+                    href={`/blog/${article.slug}`}
+                  >
+                    {article.title}
+                  </Link>
                 </h3>
                 <Link
-                  className="mt-5 inline-flex min-h-10 items-center gap-3 text-xs font-semibold text-[#2a2a2a] hover:text-[#8d7443]"
+                  className="mt-5 inline-flex min-h-11 items-center gap-3 text-xs font-semibold text-[#2a2a2a] hover:text-clay-text"
                   href={`/blog/${article.slug}`}
                 >
                   Leer nota<span aria-hidden="true">→</span>
@@ -63,10 +75,10 @@ export function HomeArchiveSections() {
   return (
     <>
       <section className="py-10 sm:py-16 md:py-24" id="multimedia">
-        <div className="mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)]">
+        <div className="site-container ">
           <div className="mb-5 flex flex-col justify-between gap-3 sm:mb-10 sm:flex-row sm:items-end sm:gap-4">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
                 Imágenes para recordar
               </p>
               <h2 className="mt-3 font-display text-2xl font-normal sm:mt-4 sm:text-4xl md:text-5xl">
@@ -85,9 +97,9 @@ export function HomeArchiveSections() {
       </section>
 
       <section className="py-16 sm:py-20 md:py-24" id="junta-directiva">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-7xl gap-7 sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-4rem)] md:grid-cols-[0.8fr_1.2fr] md:gap-20">
+        <div className="site-container grid gap-7 md:grid-cols-[0.8fr_1.2fr] md:gap-20">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               Representación institucional
             </p>
             <h2 className="mt-5 font-display text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
@@ -102,7 +114,7 @@ export function HomeArchiveSections() {
             <dl className="mt-5 grid gap-3 border-t border-line pt-4 sm:grid-cols-3">
               {boardMembers.map((member) => (
                 <div key={member.id}>
-                  <dt className="text-[10px] uppercase tracking-[0.12em] text-muted">
+                  <dt className="text-xs uppercase tracking-[0.12em] text-muted">
                     {member.role}
                   </dt>
                   <dd className="mt-1 text-xs font-medium">{member.name}</dd>

@@ -13,6 +13,7 @@ import {
   createWebPageSchema,
 } from "@/models/seo/schemas";
 import { getCanonicalUrl } from "@/models/seo/site";
+import { getInstitutionalBreadcrumbs } from "@/models/hermandad/breadcrumbs";
 
 type PageProps = {
   params: Promise<{ slug: string[] }>;
@@ -91,21 +92,7 @@ export default async function InstitutionalRoute({ params }: PageProps) {
           page.path === "/hermandad/pilares"
         ? "AboutPage"
         : "WebPage";
-  const breadcrumbItems = [
-    { name: "Inicio", path: "/" },
-    ...page.path
-      .split("/")
-      .filter(Boolean)
-      .map((segment, index, segments) => {
-        const itemPath = `/${segments.slice(0, index + 1).join("/")}`;
-        return {
-          name:
-            institutionalPageByPath.get(itemPath)?.title ??
-            segment.replaceAll("-", " "),
-          path: itemPath,
-        };
-      }),
-  ];
+  const breadcrumbItems = getInstitutionalBreadcrumbs(page);
   const pageStructuredData = createSiteGraph(
     createWebPageSchema({
       name: page.title,

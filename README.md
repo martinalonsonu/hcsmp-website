@@ -23,34 +23,41 @@ pnpm dev
 
 El servidor local muestra la dirección en la que puedes revisar los cambios. Los comandos disponibles son:
 
-| Comando | Uso |
-| --- | --- |
-| `pnpm dev` | Inicia el entorno de desarrollo local. |
-| `pnpm lint` | Revisa el código con ESLint. |
-| `pnpm build` | Compila y exporta el sitio estático en `out/`. |
+| Comando              | Uso                                                                        |
+| -------------------- | -------------------------------------------------------------------------- |
+| `pnpm dev`           | Inicia el entorno de desarrollo local.                                     |
+| `pnpm lint`          | Revisa el código con ESLint.                                               |
+| `pnpm typecheck`     | Comprueba los tipos de TypeScript.                                         |
+| `pnpm test:coverage` | Ejecuta las pruebas y verifica la cobertura mínima.                        |
+| `pnpm test:e2e`      | Comprueba navegación, diseño adaptable y accesibilidad en Chrome/Chromium. |
+| `pnpm build`         | Compila y exporta el sitio estático en `out/`.                             |
 
-Antes de publicar cambios, ejecuta lint y build. No edites `out/`: es una salida generada y se reemplaza en cada compilación. El proyecto no define actualmente un comando de pruebas automatizadas.
+Antes de publicar cambios, ejecuta las comprobaciones de tipos, lint, pruebas y build. No edites `out/`: es una salida generada y se reemplaza en cada compilación.
 
 ## Pruebas automatizadas
 
-Las pruebas usan Vitest, React Testing Library y jsdom. Ejecuta `pnpm test` para correr la suite o `pnpm test:coverage` para correrla y generar el reporte en `coverage/`. Este segundo comando exige al menos 75% de cobertura en branches, funciones, lÃ­neas y sentencias.
+Las pruebas usan Vitest, React Testing Library y jsdom. Ejecuta `pnpm test` para correr la suite o `pnpm test:coverage` para correrla y generar el reporte en `coverage/`. Este segundo comando exige al menos 75 % de cobertura en ramas, funciones, líneas y sentencias.
 
-El workflow de GitHub Actions ejecuta `pnpm test:coverage` antes del build. Si una prueba falla o la cobertura queda bajo el umbral, el build y el despliegue se detienen. AÃ±ade las pruebas junto a los dominios existentes en `tests/` y mantÃ©n cubiertos los casos lÃ­mite y las ramas condicionales.
+El workflow de GitHub Actions ejecuta `pnpm test:coverage` antes del build. Si una prueba falla o la cobertura queda bajo el umbral, el build y el despliegue se detienen. Añade las pruebas junto a los dominios existentes en `tests/` y mantén cubiertos los casos límite y las ramas condicionales.
+
+`pnpm test:e2e` ejecuta Playwright y Axe sobre las páginas del sitio. Reutiliza el servidor de desarrollo del puerto 3000, o lo inicia si no existe. En Windows utiliza Chrome instalado; en otros sistemas instala Chromium con `pnpm exec playwright install chromium`. Estas pruebas verifican el marcado propio; los controles internos de YouTube y Google Maps pertenecen a sus proveedores.
+
+La revisión por página, los criterios de diseño y los resultados de validación están en [Revisión UX/UI](docs/revision-ux-ui.md).
 
 ## Estructura del proyecto
 
-| Ruta | Contenido |
-| --- | --- |
-| `app/` | Rutas, layouts, metadatos por página, sitemap y robots. |
-| `components/` | Componentes de interfaz organizados por página o área funcional. |
+| Ruta                 | Contenido                                                                  |
+| -------------------- | -------------------------------------------------------------------------- |
+| `app/`               | Rutas, layouts, metadatos por página, sitemap y robots.                    |
+| `components/`        | Componentes de interfaz organizados por página o área funcional.           |
 | `components/shared/` | Elementos compartidos, como encabezado, pie de página y controles comunes. |
-| `components/seo/` | Componentes para datos estructurados y SEO. |
-| `models/` | Contenido y datos que consume la interfaz, agrupados por página o dominio. |
-| `models/seo/` | Configuración del sitio y definiciones de esquemas estructurados. |
-| `hooks/` | Hooks reutilizables con estado o comportamiento de React. |
-| `utils/` | Funciones independientes y reutilizables. |
-| `public/` | Archivos locales públicos, como documentos y audio. |
-| `.github/workflows/` | Automatización de compilación y despliegue. |
+| `components/seo/`    | Componentes para datos estructurados y SEO.                                |
+| `models/`            | Contenido y datos que consume la interfaz, agrupados por página o dominio. |
+| `models/seo/`        | Configuración del sitio y definiciones de esquemas estructurados.          |
+| `hooks/`             | Hooks reutilizables con estado o comportamiento de React.                  |
+| `utils/`             | Funciones independientes y reutilizables.                                  |
+| `public/`            | Archivos locales públicos, como documentos y audio.                        |
+| `.github/workflows/` | Automatización de compilación y despliegue.                                |
 
 El alias TypeScript `@/*` apunta a la raíz del proyecto. Por ejemplo, puedes importar un módulo con `@/models/home/...`.
 

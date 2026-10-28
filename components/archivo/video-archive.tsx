@@ -1,9 +1,5 @@
-"use client";
-
 import { videos } from "@/models/archivo/archive-content";
 import { ArrowUpRight, Play, Video } from "lucide-react";
-
-
 
 export function VideoArchive() {
   return (
@@ -27,28 +23,32 @@ export function VideoArchive() {
             </div>
 
             <div className="flex min-h-44 flex-col p-5 sm:p-6">
-              <Video aria-hidden="true" className="mb-4 text-clay" size={20} />
+              <Video
+                aria-hidden="true"
+                className="mb-4 text-clay-text"
+                size={20}
+              />
 
               <div className="flex items-start justify-between gap-3">
-                <h3 className="font-display text-xl leading-snug transition-colors group-hover:text-clay">
+                <h3 className="font-display text-xl leading-snug transition-colors group-hover:text-clay-text">
                   {video.title}
                 </h3>
-
-                <ArrowUpRight
-                  aria-hidden="true"
-                  className="mt-1 shrink-0 text-forest-link"
-                  size={18}
-                />
               </div>
 
-              <p className="mt-2 text-xs leading-5 text-muted">
+              <p className="mt-2 text-sm leading-6 text-muted">
                 {video.detail}
               </p>
 
-              <p className="mt-auto flex items-center gap-2 pt-5 text-xs font-semibold text-forest-link">
+              <a
+                className="mt-auto flex min-h-11 w-fit items-center gap-2 pt-5 text-sm font-semibold text-forest-link underline-offset-4 hover:underline"
+                href={`https://www.youtube.com/watch?v=${video.id}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Play aria-hidden="true" size={14} />
-                Reproducir video
-              </p>
+                Ver en YouTube <ArrowUpRight aria-hidden="true" size={16} />
+                <span className="sr-only">(abre en otra pestaña)</span>
+              </a>
             </div>
           </article>
         </li>
