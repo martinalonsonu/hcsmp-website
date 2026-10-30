@@ -1,3 +1,4 @@
+import { PrimaryImageBackground } from "@/components/shared/primary-image-background";
 import { Archive, ArrowUpRight, UsersRound } from "lucide-react";
 import Link from "next/link";
 import clsx from "clsx";
@@ -9,7 +10,6 @@ import { RelatedPages } from "@/components/hermandad/related-pages";
 import { ArchiveOverview } from "@/components/archivo/archive-overview";
 import { FiestaPage } from "@/components/fiesta/fiesta-page";
 import { NewsList } from "@/components/blog/news-list";
-import { PrimaryImageBackground } from "@/components/shared/primary-image-background";
 import { BrotherhoodHistoryPage } from "@/components/hermandad/brotherhood-history-page";
 import { DocumentArchive } from "@/components/archivo/document-archive";
 import { PhotoAlbumArchive } from "@/components/archivo/photo-album-archive";
@@ -55,7 +55,7 @@ function HistoryTimeline() {
             className="absolute -left-[5px] top-1 size-[9px] rounded-full bg-clay ring-4 ring-paper md:-top-[5px] md:left-3"
           />
           <time
-            className="font-display text-lg text-clay"
+            className="font-display text-lg text-clay-text"
             dateTime={String(event.year)}
           >
             {event.date}
@@ -180,13 +180,11 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
 
       <div
         className={clsx(
-          "site-container grid gap-12 py-12 sm:py-16 md:py-20",
+          "site-container grid gap-12 py-14 sm:py-20 md:py-24",
           relatedPaths.length > 0 &&
-            "lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16",
+            "lg:grid-cols-[minmax(0,1fr)_14rem] lg:gap-20",
         )}
       >
-        <RelatedPages paths={relatedPaths} />
-
         <div className="min-w-0 flex flex-col gap-12 sm:gap-14">
           {page.kind && (
             <section aria-label={page.title}>
@@ -195,12 +193,18 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
           )}
           {page.sections.map((section, index) => (
             <section
-              className="border-t border-line pt-6 sm:pt-8"
+              className="border-t border-line pt-8 sm:pt-10"
               id={"section-" + (index + 1)}
               key={section.title}
             >
-              <div className="grid gap-5">
-                <h2 className="font-display text-2xl leading-tight sm:text-3xl">
+              <div className="grid gap-6">
+                <span
+                  aria-hidden="true"
+                  className="text-xs font-semibold tracking-[0.16em] text-clay-text"
+                >
+                  {String(index + 1).padStart(2, "0")} /
+                </span>
+                <h2 className="font-display text-2xl leading-tight tracking-[-0.025em] sm:text-3xl">
                   {section.title}
                 </h2>
                 <div>
@@ -208,10 +212,10 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
                     {section.body}
                   </p>
                   {section.items && (
-                    <div className="mt-6 divide-y divide-line border-y border-line">
+                    <div className="mt-8 divide-y divide-line border-y border-line">
                       {section.items.map((item) => (
                         <Link
-                          className="group flex min-h-16 items-center justify-between gap-4 py-4"
+                          className="group flex min-h-20 items-center justify-between gap-5 py-5 transition-colors hover:bg-mist/50 sm:px-3"
                           href={item.href}
                           key={item.label}
                         >
@@ -225,7 +229,7 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
                           </span>
                           <ArrowUpRight
                             aria-hidden="true"
-                            className="shrink-0 text-clay transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                            className="shrink-0 text-clay-text transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                             size={18}
                           />
                         </Link>
@@ -247,15 +251,16 @@ export function InstitutionalPageView({ page }: { page: InstitutionalPage }) {
               </p>
             )}
         </div>
+        <RelatedPages paths={relatedPaths} />
       </div>
 
-      <section className="border-t border-line bg-mist/50 py-10 sm:py-12">
-        <div className="site-container flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <p className="font-display text-lg">
+      <section className="border-t border-line bg-mist/70 py-12 sm:py-16">
+        <div className="site-container flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
+          <p className="max-w-xl font-display text-2xl leading-snug tracking-[-0.025em] sm:text-3xl">
             ¡Somos parte de tu historia de amor!
           </p>
           <Link
-            className="inline-flex min-h-11 items-center gap-3 text-xs font-semibold text-forest-link hover:text-clay"
+            className="button-primary inline-flex min-h-12 w-fit items-center gap-5 bg-ink px-6 py-4 text-xs font-semibold text-paper transition-colors hover:bg-forest"
             href="/contacto"
           >
             Contactar a la Hermandad{" "}

@@ -46,7 +46,7 @@ function DesktopNavigation({ pathname }: { pathname: string }) {
   return (
     <nav
       aria-label="Navegación principal"
-      className="hidden items-center gap-5 xl:flex"
+      className="hidden items-center gap-4 xl:flex"
       id="desktop-navigation"
       ref={navigationRef}
     >
@@ -76,7 +76,7 @@ function DesktopNavigation({ pathname }: { pathname: string }) {
                 aria-current={
                   isCurrentPath(pathname, href) ? "page" : undefined
                 }
-                className="inline-flex min-h-11 items-center whitespace-nowrap text-sm hover:text-ink"
+                className="inline-flex min-h-11 items-center whitespace-nowrap text-xs font-medium hover:text-ink"
                 href={href}
                 onClick={() => setOpenGroup(null)}
               >
@@ -103,7 +103,7 @@ function DesktopNavigation({ pathname }: { pathname: string }) {
             </div>
             {links.length > 0 && (
               <ul
-                className="absolute left-0 top-full mt-2 min-w-56 border border-line bg-paper p-2 shadow-lg"
+                className="absolute left-0 top-full mt-4 min-w-60 border border-line border-t-clay bg-paper p-3 shadow-xl shadow-ink/5"
                 hidden={!isOpen}
                 id={panelId}
               >
@@ -128,7 +128,7 @@ function DesktopNavigation({ pathname }: { pathname: string }) {
       })}
       <Link
         aria-current={isCurrentPath(pathname, "/contacto") ? "page" : undefined}
-        className="inline-flex min-h-11 items-center justify-center border border-forest/30 px-4 text-sm font-semibold transition-colors hover:bg-forest hover:text-white"
+        className="ml-3 inline-flex min-h-11 items-center justify-center border border-ink bg-ink px-5 text-xs font-medium text-paper transition-colors hover:bg-forest"
         href="/contacto/"
       >
         Contáctanos
@@ -167,29 +167,29 @@ export function SiteHeader() {
             : "border-line bg-paper",
         )}
       >
-        <div className="site-container flex min-h-16 items-center justify-between gap-4 md:min-h-18">
+        <div className="site-container flex min-h-20 items-center justify-between gap-4 md:min-h-24">
           <Link
             aria-label="Hermandad de Cargadores de San Martín de Porres, inicio"
-            className="flex min-w-0 items-center gap-3 text-forest-text"
+            className="flex min-w-0 items-center gap-3 text-forest-text sm:gap-4"
             href="/"
             onClick={closeMenu}
           >
             <Image
               alt=""
-              className="size-11 shrink-0 object-contain"
+              className="size-14 shrink-0 object-contain md:size-16"
               height={52}
               width={52}
-              sizes="52px"
+              sizes="64px"
               src={brotherhoodLogoUrl}
             />
             <span className="grid gap-0.5 leading-snug">
-              <span className="text-[11px] sm:text-xs">
+              <span className="text-[9px] uppercase tracking-[0.1em] sm:text-[10px]">
                 Hermandad de Cargadores de
               </span>
-              <span className="text-[11px] font-bold tracking-[0.04em] text-clay-text sm:text-xs">
+              <span className="font-display text-xs tracking-[0.01em] sm:text-sm">
                 SAN MARTÍN DE PORRES
               </span>
-              <span className="text-[11px] text-muted">
+              <span className="text-[9px] uppercase tracking-[0.16em] text-clay-text sm:text-[10px]">
                 Cruz Blanca - Huacho
               </span>
             </span>
@@ -199,7 +199,7 @@ export function SiteHeader() {
             aria-controls="mobile-navigation-dialog"
             aria-expanded={isMenuOpen}
             aria-label="Abrir menú"
-            className="grid size-11 shrink-0 place-items-center text-ink xl:hidden"
+            className="grid size-11 shrink-0 place-items-center border border-line text-ink xl:hidden"
             onClick={() => setIsMenuOpen(true)}
             ref={menuButtonRef}
             type="button"
@@ -222,7 +222,7 @@ export function SiteHeader() {
         }}
         ref={dialogRef}
       >
-        <div className="ml-auto flex h-full w-[min(90vw,26rem)] flex-col border-l border-line bg-paper px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-5 shadow-2xl">
+        <div className="ml-auto flex h-full w-[min(92vw,28rem)] flex-col border-l border-clay bg-paper px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-5 shadow-2xl">
           <div className="flex items-center justify-between gap-4 border-b border-line pb-4">
             <h2 className="font-display text-xl" id="mobile-navigation-title">
               Navegación

@@ -113,66 +113,72 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
   return (
     <>
       <JsonLd data={articleStructuredData} />
-      <article className="mx-auto w-[calc(100%-2rem)] max-w-4xl py-14 sm:w-[calc(100%-2.5rem)] sm:py-20 md:py-28">
-        <Link
-          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
-          href="/blog"
-        >
-          <ArrowLeft aria-hidden="true" size={15} /> Volver al blog
-        </Link>
-        <Breadcrumbs
-          items={[{ label: "Blog", href: "/blog" }, { label: article.title }]}
-        />
-        <p className="mt-8 text-xs font-semibold uppercase tracking-[0.16em] text-clay-text">
-          {article.eyebrow ?? article.category}
-        </p>
-        <h1 className="mt-4 font-display text-4xl leading-tight sm:text-5xl md:text-6xl">
-          {article.title}
-        </h1>
-        <p className="mt-5 flex items-center gap-2 text-xs text-muted">
-          <CalendarDays aria-hidden="true" size={14} />{" "}
-          {article.publishedAt ? (
-            <time dateTime={article.publishedAt}>{article.date}</time>
-          ) : (
-            <span>{article.date}</span>
-          )}
-        </p>
-        {article.image && (
-          <figure className="relative mt-8 overflow-hidden sm:mt-10">
-            <Image
-              alt={article.title}
-              className="h-auto w-full"
-              preload
-              quality={90}
-              width={768}
-              height={400}
-              sizes="(max-width: 896px) 100vw, 896px"
-              src={article.image}
-            />
-          </figure>
-        )}
-        <p className="mt-9 border-y border-line py-6 font-display text-xl leading-relaxed sm:text-2xl">
-          {article.summary}
-        </p>
-        <ArticleContent content={article.content} />
-        <nav
-          aria-label="Continuar leyendo"
-          className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6"
-        >
+      <article>
+        <header className="mx-auto w-[calc(100%-2rem)] max-w-4xl py-14 sm:w-[calc(100%-2.5rem)] sm:py-20 md:py-28">
           <Link
-            className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline-offset-4 hover:underline"
+            className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
             href="/blog"
           >
-            <ArrowLeft aria-hidden="true" size={16} /> Ver todas las
-            publicaciones
+            <ArrowLeft aria-hidden="true" size={15} /> Volver al blog
           </Link>
-          <Link
-            className="inline-flex min-h-11 items-center text-sm font-semibold underline-offset-4 hover:underline"
-            href="/contacto"
-          >
-            Contactar a la Hermandad →
-          </Link>
-        </nav>
+          <Breadcrumbs
+            items={[{ label: "Blog", href: "/blog" }, { label: article.title }]}
+          />
+          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.16em] text-clay-text">
+            {article.eyebrow ?? article.category}
+          </p>
+          <h1 className="mt-4 font-display text-4xl leading-tight sm:text-5xl md:text-6xl">
+            {article.title}
+          </h1>
+          <p className="mt-5 flex items-center gap-2 text-xs text-muted">
+            <CalendarDays aria-hidden="true" size={14} />{" "}
+            {article.publishedAt ? (
+              <time dateTime={article.publishedAt}>{article.date}</time>
+            ) : (
+              <span>{article.date}</span>
+            )}
+          </p>
+          {article.image && (
+            <figure className="relative mt-8 overflow-hidden sm:mt-10">
+              <Image
+                alt={article.title}
+                className="h-auto w-full"
+                preload
+                quality={90}
+                width={768}
+                height={400}
+                sizes="(max-width: 896px) 100vw, 896px"
+                src={article.image}
+              />
+            </figure>
+          )}
+          <p className="mt-9 border-y border-line py-6 font-display text-xl leading-relaxed sm:text-2xl">
+            {article.summary}
+          </p>
+        </header>
+        <div className="site-container py-4 sm:py-8">
+          <div className="mx-auto max-w-3xl">
+            <ArticleContent content={article.content} />
+            <nav
+              aria-label="Continuar leyendo"
+              className="mb-10 mt-14 flex flex-wrap items-center justify-between gap-5 border-t border-line pt-8 sm:mb-14 sm:mt-20"
+            >
+              <Link
+                className="inline-flex min-h-12 items-center gap-3 text-xs font-semibold text-forest-link transition-colors hover:text-clay-text"
+                href="/blog"
+              >
+                <ArrowLeft aria-hidden="true" size={16} /> Ver todas las
+                publicaciones
+              </Link>
+              <Link
+                className="button-secondary inline-flex min-h-12 items-center border border-line px-5 text-xs font-semibold text-forest-link transition-colors hover:border-clay hover:text-clay-text"
+                href="/contacto"
+              >
+                Contactar a la Hermandad →
+              </Link>
+            </nav>
+          </div>
+        </div>
       </article>
     </>
   );

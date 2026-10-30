@@ -68,12 +68,10 @@ export function SanMartinPage() {
         ]}
       />
 
-      <section className="py-14 sm:py-20 md:py-28" id="biografia">
-        <div className="site-container grid gap-7 sm:gap-10 md:grid-cols-[0.7fr_1.3fr] md:gap-20">
+      <section className="py-16 sm:py-20 md:py-28" id="biografia">
+        <div className="site-container grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-16 lg:gap-24">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
-              Su vida: Una historia de amor.
-            </p>
+            <p className="eyebrow">01 / Su vida: Una historia de amor.</p>
 
             <h2 className="mt-3 max-w-md font-display text-3xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
               Nacimiento e infancia: crecer en Cristo.
@@ -114,17 +112,17 @@ export function SanMartinPage() {
 
       <section className="bg-forest-deep py-10 text-white-warm sm:py-14 md:py-16">
         <div className="site-container ">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d9c28f]">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay">
             Hitos de su vida
           </p>
 
           <ol className="mt-6 grid sm:grid-cols-2 md:mt-8 md:grid-cols-5">
             {milestones.map((milestone) => (
               <li
-                className="border-t border-[#d9c28f]/65 py-4 sm:px-4 sm:first:pl-0 md:px-5 md:py-5 md:first:pl-0"
+                className="border-t border-clay/65 py-4 sm:px-4 sm:first:pl-0 md:px-5 md:py-5 md:first:pl-0"
                 key={milestone.date}
               >
-                <p className="font-display text-xl text-[#d9c28f] sm:text-2xl">
+                <p className="font-display text-xl text-clay sm:text-2xl">
                   {milestone.date}
                 </p>
 
@@ -141,9 +139,9 @@ export function SanMartinPage() {
         </div>
       </section>
 
-      <section className="py-14 sm:py-20 md:py-28" id="espiritualidad">
+      <section className="py-16 sm:py-20 md:py-28" id="espiritualidad">
         <div className="site-container grid gap-8 sm:gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
-          <figure className="mx-auto w-full max-w-md md:mx-0">
+          <figure className="mx-auto w-full max-w-md border border-line p-4 md:mx-0 md:p-6">
             <div className="relative aspect-4/5 w-full overflow-hidden bg-black">
               <Image
                 alt="Imagen de San Martín de Porres con el hábito dominico y una escoba"
@@ -157,9 +155,7 @@ export function SanMartinPage() {
           </figure>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
-              Contemplar y compartir
-            </p>
+            <p className="eyebrow">02 / Contemplar y compartir</p>
 
             <h2 className="mt-3 max-w-2xl font-display text-3xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
               Dominico, hermano y servidor.
@@ -172,12 +168,12 @@ export function SanMartinPage() {
               eucarístico y mariano, con una vida de oración constante.
             </p>
 
-            <div className="mt-7 border-t border-line">
-              <h3 className="border-b border-line py-4 font-display text-xl sm:text-2xl">
+            <div className="mt-7 border-y border-line bg-white/40 px-5 sm:px-7">
+              <h3 className="pt-6 font-display text-xl sm:text-2xl">
                 El hermano donado
               </h3>
 
-              <p className="py-4 text-sm leading-7 text-muted sm:text-base sm:leading-8">
+              <p className="pb-6 pt-3 text-sm leading-7 text-muted sm:text-base sm:leading-8">
                 Ingresó al convento como donado y aceptó con humildad las tareas
                 más sencillas: limpiar, cocinar, atender a los enfermos y ayudar
                 en cuanto necesitaba la comunidad. Con el tiempo profesó como
@@ -196,12 +192,10 @@ export function SanMartinPage() {
         </div>
       </section>
 
-      <section className="bg-mist py-14 sm:py-20 md:py-28" id="servicio">
+      <section className="bg-mist py-16 sm:py-20 md:py-28" id="servicio">
         <div className="site-container grid gap-8 sm:gap-12 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-20">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
-              Una caridad sin distinciones
-            </p>
+            <p className="eyebrow">03 / Una caridad sin distinciones</p>
 
             <h2 className="mt-3 max-w-2xl font-display text-3xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
               En cada persona reconocía a Cristo.
@@ -238,7 +232,7 @@ export function SanMartinPage() {
             </p>
           </div>
 
-          <figure className="relative aspect-4/3 overflow-hidden bg-forest">
+          <figure className="relative aspect-4/5 overflow-hidden border-b-4 border-clay bg-forest">
             <Image
               alt="Imagen de San Martín de Porres"
               className="object-cover object-center"
@@ -248,7 +242,7 @@ export function SanMartinPage() {
               src="https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/514002267_30044326875215523_4147663507118119381_n.jpg"
             />
 
-            <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 to-transparent px-4 pb-4 pt-12 text-xs text-white/90 sm:px-5 sm:pb-5">
+            <figcaption className="absolute inset-x-0 bottom-0 bg-forest-deep/90 px-5 py-4 text-xs leading-6 text-white/90">
               Una fe que se hace cuidado y cercanía.
             </figcaption>
           </figure>
@@ -269,9 +263,9 @@ export function SanMartinPage() {
           ))}
         </div>
       </section>
-      <section className="py-14 sm:py-20 md:py-28" id="tradicion">
+      <section className="py-16 sm:py-20 md:py-28" id="tradicion">
         <div className="site-container grid gap-8 sm:gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
-          <figure className="relative aspect-4/3 overflow-hidden bg-mist">
+          <figure className="relative aspect-4/5 overflow-hidden border-b-4 border-clay bg-mist">
             <Image
               alt="Imagen de San Martín de Porres"
               className="object-cover object-center"
@@ -283,9 +277,7 @@ export function SanMartinPage() {
           </figure>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
-              Testimonios y tradición hagiográfica
-            </p>
+            <p className="eyebrow">04 / Testimonios y tradición hagiográfica</p>
 
             <h2 className="mt-3 max-w-2xl font-display text-3xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
               Lo extraordinario habla de una vida centrada en Dios.
@@ -299,7 +291,7 @@ export function SanMartinPage() {
               como hechos comprobados científicamente.
             </p>
 
-            <blockquote className="mt-6 max-w-2xl border-l-2 border-clay pl-4 text-left font-display text-lg leading-relaxed text-ink sm:mt-8 sm:pl-5 sm:text-2xl">
+            <blockquote className="mt-8 max-w-2xl border-l-2 border-clay py-2 pl-6 font-display text-xl leading-relaxed text-ink sm:pl-8 sm:text-2xl">
               Más que los relatos extraordinarios, permanece una vida entregada
               a la oración y a la caridad.
             </blockquote>
@@ -307,12 +299,13 @@ export function SanMartinPage() {
         </div>
       </section>
 
-      <section className="bg-mist py-14 sm:py-20 md:py-28" id="legado">
-        <div className="site-container grid gap-8 sm:gap-12 md:grid-cols-[0.7fr_1.3fr] md:gap-20">
+      <section
+        className="border-y border-line bg-white/40 py-16 sm:py-20 md:py-28"
+        id="legado"
+      >
+        <div className="site-container grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-16 lg:gap-24">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
-              Lima · 1639 · 1962
-            </p>
+            <p className="eyebrow">05 / Lima · 1639 · 1962</p>
 
             <h2 className="mt-3 max-w-md font-display text-3xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
               Una vida que sigue dando fruto.
@@ -352,9 +345,9 @@ export function SanMartinPage() {
         </div>
       </section>
 
-      <section className="py-14 sm:py-20 md:py-28" id="himno">
+      <section className="py-16 sm:py-20 md:py-28" id="himno">
         <div className="site-container grid gap-8 sm:gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-20">
-          <figure className="relative aspect-4/3 md:aspect-3/4 overflow-hidden bg-mist">
+          <figure className="relative aspect-4/5 overflow-hidden border-b-4 border-clay bg-mist md:sticky md:top-40 md:self-start">
             <Image
               alt="Imagen de San Martín de Porres"
               className="object-cover object-center"
@@ -366,9 +359,7 @@ export function SanMartinPage() {
           </figure>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
-              APRENDAMOS JUNTOS
-            </p>
+            <p className="eyebrow">06 / Aprendamos juntos</p>
 
             <h2 className="mt-3 max-w-2xl font-display text-3xl font-normal leading-tight sm:mt-5">
               Himno a San Martin de Porres
@@ -390,7 +381,7 @@ export function SanMartinPage() {
             <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               ESTROFA I
             </p>
-            <p className="text-sm text-muted sm:text-base">
+            <p className="text-sm leading-8 text-muted sm:text-base">
               ¡Radiante flor del suelo americano <br />
               que diste olor de augusta santidad;
               <br /> gala y blasón del pueblo peruano;
@@ -404,7 +395,7 @@ export function SanMartinPage() {
             <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
               ESTROFA II
             </p>
-            <p className="text-sm text-muted sm:text-base">
+            <p className="text-sm leading-8 text-muted sm:text-base">
               Te dio el solar de Rosa, la divina <br />
               Cuna de ardor para tu noble afán; <br />
               Tu fe sin par, su alma peregrina;
@@ -421,7 +412,7 @@ export function SanMartinPage() {
       <section className="bg-forest-deep py-12 text-white-warm sm:py-16 md:py-20">
         <div className="site-container flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d9c28f]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay">
               Una santidad vivida en lo cotidiano
             </p>
 
@@ -431,7 +422,7 @@ export function SanMartinPage() {
           </div>
 
           <Link
-            className="inline-flex min-h-11 shrink-0 items-center gap-3 border-b border-[#d9c28f] pb-1 text-sm font-semibold text-white transition-colors hover:text-[#d9c28f]"
+            className="inline-flex min-h-11 shrink-0 items-center gap-3 border-b border-clay pb-1 text-sm font-semibold text-white transition-colors hover:text-clay"
             href="/hermandad"
           >
             Conoce la Hermandad

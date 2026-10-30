@@ -1,6 +1,7 @@
+﻿import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { SectionIndex } from "@/components/shared/section-index";
-import Link from "next/link";
 import { practices } from "@/models/vida/practices";
 
 export default function CommunityLifePage() {
@@ -28,57 +29,55 @@ export default function CommunityLifePage() {
           label: practice.title,
         }))}
       />
-      <section className="py-14 md:py-24">
-        <div className="site-container grid gap-6 md:grid-cols-[0.55fr_1.45fr] md:gap-24">
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">
-            Un ritmo compartido
-          </p>
-          <div className="max-w-3xl">
-            <h2 className="font-display text-2xl font-normal leading-tight sm:text-3xl md:text-4xl">
+      <section className="py-16 md:py-24">
+        <div className="site-container">
+          <div className="mb-10 grid gap-4 md:grid-cols-[0.65fr_1.35fr] md:gap-16">
+            <p className="eyebrow">Un ritmo compartido</p>
+            <h2 className="max-w-2xl font-display text-3xl font-normal leading-tight sm:text-4xl">
               Espacios para encontrarnos y crecer.
             </h2>
-            <div className="mt-7 border-t border-line sm:mt-10">
-              {practices.map(({ number, title, text }) => (
-                <article
-                  className="grid grid-cols-[2rem_1fr] gap-3 border-b border-line py-5 sm:grid-cols-[2.5rem_1fr] sm:gap-4 md:grid-cols-[3rem_1fr] md:gap-5 md:py-7"
-                  id={"practica-" + number}
-                  key={number}
+          </div>
+          <div className="border-t border-ink">
+            {practices.map(({ number, title, text }) => (
+              <article
+                className="grid grid-cols-[3rem_1fr] gap-5 border-b border-line py-8 sm:grid-cols-[5rem_1fr] md:grid-cols-[0.65fr_1.35fr] md:gap-16 md:py-10"
+                id={"practica-" + number}
+                key={number}
+              >
+                <span
+                  aria-hidden="true"
+                  className="font-display text-3xl leading-none text-clay sm:text-5xl md:text-6xl"
                 >
-                  <span className="font-display text-base text-clay-text sm:text-lg">
-                    {number}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-xl font-normal sm:text-2xl">
-                      {title}
-                    </h3>
-                    <p className="mt-2 max-w-xl text-sm leading-7 text-muted">
-                      {text}
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
+                  {number}
+                </span>
+                <div className="grid gap-3 lg:grid-cols-[0.7fr_1.3fr] lg:gap-10">
+                  <h3 className="font-display text-2xl font-normal sm:text-3xl">
+                    {title}
+                  </h3>
+                  <p className="max-w-xl text-sm leading-7 text-muted sm:text-base">
+                    {text}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
-      <section className="bg-forest-deep py-14 text-white-warm md:py-20">
-        <div className="site-container flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+      <section className="bg-forest-deep py-16 text-white md:py-24">
+        <div className="site-container grid gap-8 md:grid-cols-[1fr_0.4fr] md:items-end md:gap-20">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#e7c2aa]">
+            <p className="text-xs uppercase tracking-[0.17em] text-white/65">
               Ven a conocernos
             </p>
-            <h2 className="mt-4 max-w-2xl font-display text-2xl font-normal leading-tight sm:text-3xl md:text-4xl">
+            <h2 className="mt-6 max-w-3xl font-display text-3xl font-normal leading-tight sm:text-4xl lg:text-5xl">
               Siempre hay lugar para una persona más.
             </h2>
           </div>
           <Link
-            className="inline-flex min-h-12 items-center justify-center border border-white/60 px-5 text-sm font-semibold transition-colors hover:bg-white hover:text-forest-deep"
+            className="inline-flex min-h-12 w-fit items-center justify-between gap-16 border-b border-clay text-sm font-medium transition-colors hover:text-white/70"
             href="/contacto"
           >
-            Acércate{" "}
-            <span aria-hidden="true" className="ml-4">
-              →
-            </span>
+            Acércate <ArrowUpRight aria-hidden="true" size={18} />
           </Link>
         </div>
       </section>

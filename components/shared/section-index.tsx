@@ -14,7 +14,7 @@ export function SectionIndex({
   return (
     <nav
       aria-label={label}
-      className="sticky top-16 z-20 border-b border-line bg-paper/95 backdrop-blur-md md:top-18"
+      className="sticky top-20 z-20 border-b border-line bg-paper/95 backdrop-blur-md md:top-24"
     >
       <div className="site-container">
         <ul className="section-index flex gap-6 overflow-x-auto py-1 sm:gap-8">

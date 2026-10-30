@@ -157,7 +157,13 @@ export const boardMembers: BoardMember[] = [
   {
     id: "auditor-2026",
     role: "Fiscal",
-    name: "Hno. César Reynaldo Cunchique Grados",
+    name: "Hno. César Reynaldo Quineche Grados",
+    year: 2026,
+  },
+  {
+    id: "worship-vocal-2026",
+    role: "Vocal de Piedad y Culto",
+    name: "Hno. Juan Alexander Pacora Marín",
     year: 2026,
   },
   {
@@ -170,12 +176,6 @@ export const boardMembers: BoardMember[] = [
     id: "social-assistance-nora-2026",
     role: "Vocal de Asistencia Social",
     name: "Hna. Nora Margot Pastor González",
-    year: 2026,
-  },
-  {
-    id: "worship-vocal-2026",
-    role: "Vocal de Piedad y Culto",
-    name: "Hno. Juan Alexander Pacora Marín",
     year: 2026,
   },
   {

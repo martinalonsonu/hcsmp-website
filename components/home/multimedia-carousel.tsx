@@ -2,7 +2,14 @@
 
 import clsx from "clsx";
 
-import { ChevronLeft, ChevronRight, Pause, Play, X } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Maximize2,
+  Pause,
+  Play,
+  X,
+} from "lucide-react";
 import Image from "next/image";
 import { useRef, useState, type KeyboardEvent } from "react";
 import { useCarousel } from "@/hooks/use-carousel";
@@ -62,7 +69,7 @@ export function MultimediaCarousel() {
     <div
       aria-label="Fotografías de la vida de la Hermandad"
       aria-roledescription="carrusel"
-      className="group"
+      className="group min-w-0"
       onBlurCapture={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) {
           setHasFocus(false);
@@ -73,66 +80,106 @@ export function MultimediaCarousel() {
       onMouseLeave={() => setIsHovered(false)}
       role="region"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-[#2a2a2a] sm:aspect-[16/8]">
+      <div className="relative h-[34rem] overflow-hidden bg-ink sm:h-[39rem] lg:h-[32rem]">
         {slides.map((slide, index) => (
           <figure
             aria-label={`${index + 1} de ${slides.length}: ${slide.title}`}
             aria-roledescription="diapositiva"
             className={clsx(
-              "absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none",
+              "absolute inset-0 grid grid-rows-[1fr_auto] transition-opacity duration-700 motion-reduce:transition-none lg:grid-cols-[1.8fr_1fr] lg:grid-rows-1",
               index === activeIndex ? "z-10 opacity-100" : "z-0 opacity-0",
             )}
             key={slide.src}
             aria-hidden={index !== activeIndex}
           >
-            <Image
-              alt=""
-              aria-hidden="true"
-              className="object-cover"
-              fill
-              loading="lazy"
-              quality={90}
-              sizes="(max-width: 768px) 100vw, 90vw"
-              src={slide.src}
-              style={{ objectPosition: slide.position }}
-            />
-            <button
-              aria-label={`Ampliar fotografía: ${slide.title}`}
-              className="absolute inset-0 z-0 cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white"
-              onClick={() => openLightbox(index)}
-              ref={index === activeIndex ? openButtonRef : undefined}
-              tabIndex={index === activeIndex ? 0 : -1}
-              type="button"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/75 via-black/10 to-transparent"
-            />
-            <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col justify-between gap-3 p-5 text-white sm:flex-row sm:items-end sm:p-8">
-              <span>
-                <span className="block text-xs font-semibold uppercase tracking-[0.16em] text-white/75">
-                  {slide.caption}
+            <div className="relative min-h-0 overflow-hidden">
+              <Image
+                alt=""
+                aria-hidden="true"
+                className="object-cover"
+                fill
+                loading="lazy"
+                quality={90}
+                sizes="(max-width: 1024px) 100vw, 65vw"
+                src={slide.src}
+                style={{ objectPosition: slide.position }}
+              />
+              <button
+                aria-label={`Ampliar fotografía: ${slide.title}`}
+                className="group/expand absolute inset-0 z-0 cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white"
+                onClick={() => openLightbox(index)}
+                ref={index === activeIndex ? openButtonRef : undefined}
+                tabIndex={index === activeIndex ? 0 : -1}
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-4 right-4 grid size-11 place-items-center border border-paper/40 bg-ink/70 text-paper transition-colors group-hover/expand:bg-ink"
+                >
+                  <Maximize2 size={18} />
                 </span>
-                <span className="mt-2 block max-w-2xl font-display text-xl leading-snug sm:text-2xl md:text-3xl">
-                  {slide.title}
-                </span>
-              </span>
-              <span className="shrink-0 text-xs text-white/70">
+              </button>
+            </div>
+            <figcaption className="flex flex-col justify-between gap-7 p-6 text-paper sm:p-8 lg:gap-12 lg:p-10">
+              <span
+                aria-hidden="true"
+                className="text-xs font-medium tracking-[0.14em] text-paper/60"
+              >
                 {String(index + 1).padStart(2, "0")} /{" "}
                 {String(slides.length).padStart(2, "0")}
               </span>
+              <span>
+                <span className="block text-[10px] font-semibold uppercase leading-6 tracking-[0.16em] text-paper/65">
+                  {slide.caption}
+                </span>
+                <span className="mt-4 block max-w-xl font-display text-2xl leading-snug sm:text-3xl">
+                  {slide.title}
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                className="hidden h-px w-12 bg-clay lg:block"
+              />
             </figcaption>
           </figure>
         ))}
+      </div>
 
-        <div className="absolute inset-x-0 top-0 z-20 flex justify-between p-3 sm:p-5">
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-b border-line pb-5 sm:mt-6 sm:pb-6">
+        <div
+          aria-label="Elegir fotografía"
+          className="flex flex-wrap items-center gap-1 sm:gap-2"
+          role="group"
+          aria-live={pauseRotation ? "polite" : "off"}
+        >
+          {slides.map((slide, index) => (
+            <button
+              aria-current={index === activeIndex ? "true" : undefined}
+              aria-label={`Mostrar ${slide.title}`}
+              className={clsx(
+                "grid size-11 touch-manipulation place-items-center border-b-2 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay",
+                index === activeIndex
+                  ? "border-clay font-semibold text-ink"
+                  : "border-transparent text-muted hover:border-line hover:text-ink",
+              )}
+              key={slide.src}
+              onClick={() => setActiveIndex(index)}
+              type="button"
+            >
+              0{index + 1}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2">
           <button
             aria-label={
               isPaused
                 ? "Reanudar carrusel automático"
                 : "Pausar carrusel automático"
             }
-            className="grid size-11 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            aria-pressed={isPaused}
+            className="mr-3 grid size-11 touch-manipulation place-items-center text-muted transition-colors hover:text-ink"
             onClick={() => setIsPaused((paused) => !paused)}
             type="button"
           >
@@ -142,55 +189,28 @@ export function MultimediaCarousel() {
               <Pause aria-hidden="true" size={17} />
             )}
           </button>
-          <div className="flex gap-2">
-            <button
-              aria-label="Fotografía anterior"
-              className="grid size-11 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              onClick={showPrevious}
-              type="button"
-            >
-              <ChevronLeft aria-hidden="true" size={19} />
-            </button>
-            <button
-              aria-label="Fotografía siguiente"
-              className="grid size-11 touch-manipulation place-items-center border border-white/45 bg-black/25 text-white backdrop-blur-xs transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              onClick={showNext}
-              type="button"
-            >
-              <ChevronRight aria-hidden="true" size={19} />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div
-        aria-label="Elegir fotografía"
-        className="mt-4 flex flex-wrap items-center gap-3"
-        role="group"
-        aria-live={pauseRotation ? "polite" : "off"}
-      >
-        {slides.map((slide, index) => (
           <button
-            aria-current={index === activeIndex ? "true" : undefined}
-            aria-label={`Mostrar ${slide.title}`}
-            className={clsx(
-              "min-h-11 touch-manipulation border-b px-1 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay",
-              index === activeIndex
-                ? "border-clay font-semibold text-ink"
-                : "border-line text-muted hover:text-ink",
-            )}
-            key={slide.src}
-            onClick={() => setActiveIndex(index)}
+            aria-label="Fotografía anterior"
+            className="grid size-11 touch-manipulation place-items-center border border-line text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper"
+            onClick={showPrevious}
             type="button"
           >
-            0{index + 1}
+            <ChevronLeft aria-hidden="true" size={19} />
           </button>
-        ))}
+          <button
+            aria-label="Fotografía siguiente"
+            className="grid size-11 touch-manipulation place-items-center border border-line text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper"
+            onClick={showNext}
+            type="button"
+          >
+            <ChevronRight aria-hidden="true" size={19} />
+          </button>
+        </div>
       </div>
 
       <dialog
         aria-labelledby="multimedia-lightbox-title"
-        className="fixed inset-0 m-0 h-dvh w-screen max-h-none max-w-none overflow-hidden border-0 bg-black/95 p-0 text-white backdrop:bg-black/80"
+        className="fixed inset-0 m-0 h-dvh w-screen max-h-none max-w-none overflow-hidden border-0 bg-ink p-0 text-paper backdrop:bg-black/80"
         onClick={(event) => {
           if (event.target === event.currentTarget) {
             lightboxRef.current?.close();
@@ -212,7 +232,7 @@ export function MultimediaCarousel() {
             paddingTop: "env(safe-area-inset-top)",
           }}
         >
-          <div className="flex shrink-0 items-start justify-between gap-4 py-3 sm:py-4">
+          <div className="flex shrink-0 items-start justify-between gap-4 border-b border-paper/20 py-4 sm:py-6">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/65">
                 {slides[lightboxIndex].caption}
@@ -235,7 +255,7 @@ export function MultimediaCarousel() {
             </button>
           </div>
 
-          <div className="relative min-h-0 flex-1 bg-black/40">
+          <div className="relative mt-4 min-h-0 flex-1 bg-black/30">
             <Image
               alt={slides[lightboxIndex].alt}
               className="object-contain"

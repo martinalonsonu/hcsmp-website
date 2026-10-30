@@ -1,4 +1,5 @@
-import clsx from "clsx";
+﻿import clsx from "clsx";
+import { MapPin } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { SectionIndex } from "@/components/shared/section-index";
 import { sectionIds, sectionLabels } from "@/models/fiesta/content";
@@ -50,7 +51,6 @@ export function FiestaPage({ page }: { page: InstitutionalPage }) {
           </div>
         </div>
       </header>
-
       <SectionIndex
         label="Secciones de la fiesta"
         items={page.sections.map((section, index) => ({
@@ -58,43 +58,56 @@ export function FiestaPage({ page }: { page: InstitutionalPage }) {
           label: sectionLabels[index] ?? section.title,
         }))}
       />
-
       {page.sections.map((section, index) => (
         <section
           className={clsx(
-            "py-14 sm:py-20 md:py-28",
-            index === 1 ? "bg-mist" : "",
+            "py-16 md:py-24",
+            index === 1 && "border-y border-line bg-white/40",
           )}
           id={sectionIds[index]}
           key={section.title}
         >
-          <div className="site-container grid gap-7 sm:gap-10 md:grid-cols-[0.7fr_1.3fr] md:gap-20">
+          <div className="site-container grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-16 lg:gap-24">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
-                {sectionLabels[index]} · Cruz Blanca
+              <p className="eyebrow">
+                0{index + 1} / {sectionLabels[index]} · Cruz Blanca
               </p>
-              <h2 className="mt-3 max-w-md font-display text-3xl font-normal leading-tight sm:mt-5 sm:text-4xl md:text-5xl">
+              <h2 className="mt-5 max-w-lg font-display text-3xl font-normal leading-tight sm:text-4xl lg:text-5xl">
                 {section.title}
               </h2>
-            </div>
-            <div className="flex flex-col gap-5 text-sm leading-7 text-muted sm:text-base sm:leading-8">
-              <p>{section.body}</p>
               {index === 2 && (
-                <ol className="divide-y divide-line border-y border-line">
-                  {processionalRouteEvents.map((event) => (
+                <p className="mt-7 flex items-center gap-2 border-t border-line pt-5 text-xs uppercase tracking-[0.12em] text-muted">
+                  <MapPin aria-hidden="true" size={15} />
+                  Fe que recorre nuestras calles
+                </p>
+              )}
+            </div>
+            <div>
+              <p className="max-w-3xl text-base leading-8 text-muted">
+                {section.body}
+              </p>
+              {index === 2 && (
+                <ol className="mt-8 border-t border-ink">
+                  {processionalRouteEvents.map((event, eventIndex) => (
                     <li
-                      className="grid gap-2 py-5 sm:grid-cols-[12rem_1fr] sm:gap-6 sm:py-6"
+                      className="grid grid-cols-[2rem_1fr] gap-4 border-b border-line py-7 sm:grid-cols-[3rem_1fr] sm:gap-5 sm:py-8"
                       key={event.id}
                     >
-                      <p className="text-xs font-semibold text-clay-text sm:text-sm">
-                        {event.date}
-                      </p>
+                      <span
+                        aria-hidden="true"
+                        className="font-display text-2xl text-clay"
+                      >
+                        {String(eventIndex + 1).padStart(2, "0")}
+                      </span>
                       <div>
-                        <h3 className="font-display text-lg leading-snug sm:text-xl">
+                        <p className="text-xs font-medium uppercase tracking-[0.1em] text-muted">
+                          {event.date}
+                        </p>
+                        <h3 className="mt-3 font-display text-xl leading-snug text-ink sm:text-2xl">
                           {event.title}
                         </h3>
                         {event.detail && (
-                          <p className="mt-2 text-sm leading-6 text-muted">
+                          <p className="mt-3 text-sm leading-7 text-muted">
                             {event.detail}
                           </p>
                         )}

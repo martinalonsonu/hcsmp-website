@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { assetUrl } from "@/models/shared/assets";
 import { HomeClosingSection } from "@/components/home/home-closing-section";
+import { HomeFestivitySection } from "@/components/home/home-festivity-section";
 import { HomeNewsSection } from "@/components/home/home-archive-sections";
 import { SectionCta } from "@/components/shared/section-cta";
 import {
@@ -212,41 +212,7 @@ export function HomeIdentitySections() {
         </div>
       </section>
 
-      <section
-        className="relative isolate overflow-hidden bg-[#111111] py-7 text-[#f4f0e6] sm:py-9 md:py-12"
-        id="fiesta"
-      >
-        <Image
-          alt=""
-          aria-hidden="true"
-          className="object-cover object-[center_25%] grayscale opacity-45"
-          fill
-          quality={90}
-          sizes="100vw"
-          src="https://hcsmpcb.wordpress.com/wp-content/uploads/2026/10/portada-para-facebook-salon-de-belleza-simple-beige.png"
-        />
-        <div aria-hidden="true" className="absolute inset-0 bg-[#111111]/65" />
-        <div className="site-container relative z-10 flex flex-col gap-4 sm:gap-5 md:flex-row md:items-center md:justify-between">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
-              Noviembre · Cruz Blanca
-            </p>
-            <h2 className="mt-2 font-display text-2xl font-normal leading-tight text-[#f4f0e6] sm:text-3xl md:text-4xl">
-              Solemne Festividad 2026
-            </h2>
-            <p className="mt-2 text-sm leading-6 text-[#f4f0e6]/80">
-              Una tradición de fe y encuentro que cada noviembre reúne a nuestra
-              comunidad en torno a San Martín de Porres.
-            </p>
-            <Link
-              className="mt-3 inline-flex min-h-11 shrink-0 items-center gap-4 border-b border-[#b89b5e] pb-1 text-sm font-semibold text-[#fffefa] transition-colors hover:text-[#d9c28f]"
-              href="/blog/programa-festividad-san-martin-2026/"
-            >
-              Conoce nuestra fiesta <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HomeFestivitySection />
 
       <section
         className="bg-[#e9e3d8] py-10 text-[#111111] sm:py-16 md:py-24"
