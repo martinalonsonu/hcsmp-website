@@ -1,3 +1,4 @@
+import { PrimaryImageBackground } from "@/components/shared/primary-image-background";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { SectionIndex } from "@/components/shared/section-index";
 import { ArrowLeft, CalendarDays, FileText } from "lucide-react";
@@ -7,7 +8,6 @@ import { Fragment } from "react";
 import { assetUrl } from "@/models/shared/assets";
 import { historyChapters } from "@/models/hermandad/history";
 import { historicalEvents } from "@/models/hermandad/institutional-pages";
-import { PrimaryImageBackground } from "@/components/shared/primary-image-background";
 
 export function BrotherhoodHistoryPage() {
   return (
@@ -55,44 +55,48 @@ export function BrotherhoodHistoryPage() {
 
       <section
         aria-labelledby="history-timeline-title"
-        className="bg-[#111111] py-10 text-[#f4f0e6] sm:py-14 md:py-20"
+        className="border-b border-line bg-mist/50 py-14 sm:py-20"
       >
         <div className="site-container ">
           <div className="mb-7 flex flex-col gap-3 sm:mb-10 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b89b5e]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-clay-text">
                 Fechas y acontecimientos
               </p>
               <h2
-                className="mt-3 font-display text-2xl sm:text-3xl md:text-4xl"
+                className="mt-4 font-display text-3xl tracking-[-0.035em] sm:text-4xl"
                 id="history-timeline-title"
               >
                 Una memoria en el tiempo
               </h2>
             </div>
-            <p className="max-w-md text-xs leading-6 text-white/65">
+            <p className="max-w-sm text-xs leading-7 text-muted">
               Cronología referencial de la historia institucional.
             </p>
           </div>
-          <ol className="grid gap-0 border-l border-[#b89b5e]/70 pl-5 sm:grid-cols-2 sm:gap-x-6 sm:pl-0 md:grid-cols-3 md:gap-x-8">
-            {historicalEvents.map((event) => (
+          <ol className="grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
+            {historicalEvents.map((event, index) => (
               <li
-                className="relative border-b border-white/15 py-4 sm:border-t sm:border-b-0 sm:py-5 sm:pl-5 md:py-6"
+                className="grid grid-cols-[1.5rem_1fr] gap-x-4 border-t border-line py-6 sm:py-8"
                 key={event.id}
               >
                 <span
                   aria-hidden="true"
-                  className="absolute -left-[25px] top-6 size-2 rounded-full border border-[#b89b5e] bg-[#111111] sm:-left-[5px] sm:top-[-5px]"
-                />
-                <time
-                  className="font-display text-lg text-[#b89b5e] sm:text-xl"
-                  dateTime={String(event.year)}
+                  className="pt-1 text-[10px] font-medium text-clay-text"
                 >
-                  {event.date}
-                </time>
-                <h3 className="mt-1 font-display text-sm leading-snug text-[#f4f0e6] sm:text-base">
-                  {event.title}
-                </h3>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <time
+                    className="font-display text-xl leading-snug tracking-[-0.02em]"
+                    dateTime={String(event.year)}
+                  >
+                    {event.date}
+                  </time>
+                  <h3 className="mt-3 text-xs font-normal leading-7 text-muted sm:text-sm">
+                    {event.title}
+                  </h3>
+                </div>
               </li>
             ))}
           </ol>
@@ -100,42 +104,50 @@ export function BrotherhoodHistoryPage() {
       </section>
 
       <div className="site-container ">
-        {historyChapters.map((chapter) => (
+        {historyChapters.map((chapter, index) => (
           <Fragment key={chapter.id}>
             <section
-              className="grid gap-6 border-b border-line py-10 sm:gap-8 sm:py-14 md:grid-cols-[minmax(12rem,0.7fr)_minmax(0,1.3fr)] md:gap-16 md:py-20"
+              className="grid gap-8 border-b border-line py-14 sm:gap-10 sm:py-20 md:grid-cols-[minmax(12rem,0.7fr)_minmax(0,1.3fr)] md:gap-20 md:py-24"
               id={chapter.id}
             >
-              <div className="md:sticky md:top-28 md:self-start">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-clay-text">
+              <div className="md:sticky md:top-36 md:self-start">
+                <span
+                  aria-hidden="true"
+                  className="mb-6 block font-display text-5xl leading-none tracking-[-0.04em] text-clay-text"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">
                   {chapter.eyebrow}
                 </p>
-                <h2 className="mt-3 font-display text-2xl leading-tight sm:text-3xl md:text-4xl">
+                <h2 className="mt-4 font-display text-2xl leading-tight tracking-[-0.03em] sm:text-3xl md:text-4xl">
                   {chapter.title}
                 </h2>
               </div>
               <div className="min-w-0">
                 {chapter.image && (
-                  <figure className="relative mb-5 aspect-[4/3] overflow-hidden bg-mist sm:mb-7 sm:aspect-[16/9]">
-                    <Image
-                      alt={chapter.image.alt}
-                      className="h-full w-full object-cover"
-                      width={400}
-                      height={300}
-                      quality={90}
-                      sizes="(max-width: 768px) 100vw, 65vw"
-                      src={chapter.image.src}
-                      style={{ objectPosition: chapter?.position }}
-                    />
-                    <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/75 to-transparent px-4 pb-3 pt-12 text-xs leading-5 text-white/90 sm:px-5 sm:pb-4 sm:text-xs">
+                  <figure className="mb-8 border border-line bg-mist p-2 sm:mb-10 sm:p-3">
+                    <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/10]">
+                      <Image
+                        alt={chapter.image.alt}
+                        className="h-full w-full object-cover"
+                        width={1000}
+                        height={625}
+                        quality={90}
+                        sizes="(max-width: 768px) 100vw, 65vw"
+                        src={chapter.image.src}
+                        style={{ objectPosition: chapter?.position }}
+                      />
+                    </div>
+                    <figcaption className="px-2 pb-1 pt-4 text-xs leading-6 text-muted">
                       {chapter.image.caption}
                     </figcaption>
                   </figure>
                 )}
-                <div className="flex flex-col gap-4 sm:gap-5">
+                <div className="flex flex-col gap-5 sm:gap-6">
                   {chapter.paragraphs.map((paragraph) => (
                     <p
-                      className="text-sm leading-7 text-muted sm:text-base sm:leading-8"
+                      className="text-sm leading-8 text-muted sm:text-base sm:leading-8"
                       key={paragraph}
                     >
                       {paragraph}
@@ -143,7 +155,7 @@ export function BrotherhoodHistoryPage() {
                   ))}
                 </div>
                 {chapter.facts && (
-                  <dl className="mt-6 divide-y divide-line border-y border-line sm:mt-8">
+                  <dl className="mt-8 divide-y divide-line border-y border-line sm:mt-10">
                     {chapter.facts.map((fact) => (
                       <div
                         className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-5 sm:py-5"
@@ -175,15 +187,15 @@ export function BrotherhoodHistoryPage() {
         ))}
       </div>
 
-      <div className="site-container flex flex-col gap-3 py-8 sm:flex-row sm:items-center sm:justify-between sm:py-10">
+      <div className="site-container flex flex-col gap-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:py-14">
         <Link
-          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay-text"
+          className="inline-flex min-h-12 items-center gap-3 text-xs font-semibold text-forest-link hover:text-clay-text"
           href="/hermandad"
         >
           <ArrowLeft aria-hidden="true" size={15} /> Volver a La Hermandad
         </Link>
         <Link
-          className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay-text"
+          className="button-secondary inline-flex min-h-12 w-fit items-center gap-3 border border-line px-5 text-xs font-semibold text-forest-link transition-colors hover:border-clay hover:text-clay-text"
           href="/archivo/documentos"
         >
           Explorar memoria documental <FileText aria-hidden="true" size={15} />

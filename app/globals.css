@@ -8,7 +8,7 @@
   --forest-text: #111111;
   --forest-link: #2a2a2a;
   --clay: #9b8049;
-  --clay-text: var(--clay);
+  --clay-text: #786237;
   --mist: #e9e3d8;
   --line: #d9d0c0;
 }
@@ -71,6 +71,69 @@
   .section-index {
     scrollbar-width: thin;
     scrollbar-color: var(--line) transparent;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--clay-text);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.7;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    flex-shrink: 0;
+    background: var(--clay);
+  }
+
+  .section-heading {
+    font-family: var(--font-display-family), Georgia, serif;
+    font-size: clamp(2rem, 3.8vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.045em;
+  }
+
+  .button-primary,
+  .button-secondary {
+    display: inline-flex;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    border: 1px solid var(--ink);
+    padding: 0.875rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.5;
+    transition:
+      background-color 200ms,
+      color 200ms,
+      border-color 200ms;
+  }
+
+  .button-primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .button-primary:hover {
+    border-color: var(--forest-link);
+    background: var(--forest-link);
+  }
+  .button-secondary {
+    border-color: var(--line);
+    color: var(--ink);
+  }
+  .button-secondary:hover {
+    border-color: var(--clay);
+    background: var(--mist);
   }
 
   .prose-news a {

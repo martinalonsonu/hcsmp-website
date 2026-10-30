@@ -74,18 +74,14 @@ export function HomeNewsSection() {
 export function HomeArchiveSections() {
   return (
     <>
-      <section className="py-10 sm:py-16 md:py-24" id="multimedia">
-        <div className="site-container ">
-          <div className="mb-5 flex flex-col justify-between gap-3 sm:mb-10 sm:flex-row sm:items-end sm:gap-4">
+      <section className="py-16 sm:py-20 md:py-28" id="multimedia">
+        <div className="site-container">
+          <div className="mb-9 flex flex-col justify-between gap-5 sm:mb-12 sm:flex-row sm:items-end sm:gap-8">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
-                Imágenes para recordar
-              </p>
-              <h2 className="mt-3 font-display text-2xl font-normal sm:mt-4 sm:text-4xl md:text-5xl">
-                Multimedia
-              </h2>
+              <p className="eyebrow">Imágenes para recordar</p>
+              <h2 className="section-heading mt-4">Multimedia</h2>
             </div>
-            <p className="max-w-sm text-xs leading-6 text-muted">
+            <p className="max-w-xs text-sm leading-7 text-muted">
               Momentos de la Hermandad que permanecen en nuestra memoria.
             </p>
           </div>
@@ -96,28 +92,38 @@ export function HomeArchiveSections() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 md:py-24" id="junta-directiva">
-        <div className="site-container grid gap-7 md:grid-cols-[0.8fr_1.2fr] md:gap-20">
+      <section
+        className="border-t border-line bg-mist/40 py-16 sm:py-20 md:py-28"
+        id="junta-directiva"
+      >
+        <div className="site-container grid items-start gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-text">
-              Representación institucional
-            </p>
-            <h2 className="mt-5 font-display text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-              Junta Directiva
-            </h2>
-          </div>
-          <div className="border-t border-line pt-5 sm:pt-6">
-            <p className="max-w-2xl text-sm leading-7 text-muted sm:text-base sm:leading-8">
+            <p className="eyebrow">Representación institucional</p>
+            <h2 className="section-heading mt-5">Junta Directiva</h2>
+            <p className="mt-6 max-w-sm text-sm leading-8 text-muted">
               La Junta Directiva acompaña la vida y continuidad de la Hermandad
               durante el periodo 2026.
             </p>
-            <dl className="mt-5 grid gap-3 border-t border-line pt-4 sm:grid-cols-3">
+            <p
+              aria-hidden="true"
+              className="mt-8 font-display text-6xl text-clay-text sm:text-7xl"
+            >
+              2026
+            </p>
+          </div>
+          <div className="min-w-0">
+            <dl className="divide-y divide-line border-y border-line">
               {boardMembers.map((member) => (
-                <div key={member.id}>
-                  <dt className="text-xs uppercase tracking-[0.12em] text-muted">
+                <div
+                  className="grid gap-2 py-5 sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] sm:items-baseline sm:gap-7"
+                  key={member.id}
+                >
+                  <dt className="text-[11px] font-medium uppercase leading-6 tracking-[0.1em] text-muted">
                     {member.role}
                   </dt>
-                  <dd className="mt-1 text-xs font-medium">{member.name}</dd>
+                  <dd className="text-sm font-medium leading-7">
+                    {member.name}
+                  </dd>
                 </div>
               ))}
             </dl>

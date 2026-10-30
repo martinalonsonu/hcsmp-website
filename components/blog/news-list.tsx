@@ -11,18 +11,15 @@ export function NewsList({
 }) {
   if (articles.length === 0) {
     return (
-      <div className="border border-line bg-mist/50 p-6 sm:p-8">
-        <h2 className="font-display text-2xl">
+      <div className="border-l-2 border-clay bg-mist/50 p-7 sm:p-10">
+        <h2 className="font-display text-2xl sm:text-3xl">
           Aún no hay noticias publicadas
         </h2>
         <p className="mt-4 text-base leading-8 text-muted">
           Los comunicados oficiales se publicarán aquí cuando sean confirmados
           por la Junta Directiva.
         </p>
-        <Link
-          className="mt-5 inline-flex min-h-11 items-center gap-3 text-sm font-semibold underline underline-offset-4"
-          href="/contacto"
-        >
+        <Link className="button-secondary mt-6" href="/contacto">
           Contactar a la Hermandad <ArrowRight aria-hidden="true" size={16} />
         </Link>
       </div>
@@ -30,39 +27,83 @@ export function NewsList({
   }
 
   return (
-    <div className="grid gap-6">
-      {articles.map((article) => (
+    <div className="grid gap-10 sm:gap-14">
+      {articles.map((article, index) => (
         <article
-          className="overflow-hidden border border-line bg-white/30"
+          className={clsx(
+            "min-w-0",
+            index === 0
+              ? "overflow-hidden bg-ink text-paper"
+              : "border-b border-line pb-8 sm:pb-10",
+          )}
           key={article.slug}
         >
           <Link
             className={clsx(
-              "group grid transition-colors hover:bg-white/50",
-              article.image && "sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]",
+              "group grid",
+              article.image &&
+                (index === 0
+                  ? "xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
+                  : "sm:grid-cols-[minmax(0,0.65fr)_minmax(0,1fr)] sm:gap-8"),
             )}
             href={`/blog/${article.slug}`}
           >
             {article.image && (
-              <div className="relative aspect-[4/3] overflow-hidden bg-mist sm:aspect-auto sm:min-h-72">
+              <div
+                className={clsx(
+                  "relative overflow-hidden bg-mist",
+                  index === 0
+                    ? "aspect-[16/11] xl:aspect-auto xl:min-h-[28rem]"
+                    : "aspect-[4/3] sm:aspect-auto sm:min-h-72",
+                )}
+              >
                 <Image
                   alt={article.title}
-                  className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
+                  className="object-cover transition-transform duration-700 motion-safe:group-hover:scale-[1.04]"
                   fill
                   quality={90}
-                  sizes="(max-width: 640px) 100vw, 35vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 70vw, 35vw"
                   src={article.image}
                 />
               </div>
             )}
-            <div className="flex flex-col justify-center p-5 sm:p-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-clay-text">
+            <div
+              className={clsx(
+                "flex flex-col justify-center",
+                index === 0 ? "p-6 sm:p-9" : "pt-6 sm:py-2",
+              )}
+            >
+              <p
+                className={clsx(
+                  "text-[10px] font-semibold uppercase tracking-[0.18em]",
+                  index === 0 ? "text-paper/70" : "text-muted",
+                )}
+              >
+                <span
+                  aria-hidden="true"
+                  className={clsx(
+                    "mr-3",
+                    index === 0 ? "text-clay" : "text-clay-text",
+                  )}
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 {article.eyebrow ?? article.category}
               </p>
-              <h2 className="mt-3 font-display text-2xl leading-snug group-hover:underline decoration-clay underline-offset-4 sm:text-3xl">
+              <h2
+                className={clsx(
+                  "mt-5 font-display leading-snug group-hover:underline decoration-clay underline-offset-4",
+                  index === 0 ? "text-3xl sm:text-4xl" : "text-2xl sm:text-3xl",
+                )}
+              >
                 {article.title}
               </h2>
-              <p className="mt-4 flex items-center gap-2 text-sm text-muted">
+              <p
+                className={clsx(
+                  "mt-5 flex items-center gap-2 text-xs",
+                  index === 0 ? "text-paper/70" : "text-muted",
+                )}
+              >
                 <CalendarDays aria-hidden="true" size={15} />
                 {article.publishedAt ? (
                   <time dateTime={article.publishedAt}>{article.date}</time>
@@ -70,11 +111,26 @@ export function NewsList({
                   <span>{article.date}</span>
                 )}
               </p>
-              <p className="mt-4 text-sm leading-7 text-muted">
+              <p
+                className={clsx(
+                  "mt-5 text-sm leading-8",
+                  index === 0 ? "text-paper/80" : "text-muted",
+                )}
+              >
                 {article.summary}
               </p>
-              <span className="mt-5 inline-flex min-h-11 items-center gap-3 text-sm font-semibold">
-                Leer más <ArrowRight aria-hidden="true" size={17} />
+              <span
+                className={clsx(
+                  "mt-7 inline-flex min-h-11 items-center justify-between gap-6 border-t pt-5 text-xs font-semibold",
+                  index === 0 ? "border-paper/20" : "border-line",
+                )}
+              >
+                Leer más{" "}
+                <ArrowRight
+                  aria-hidden="true"
+                  className="transition-transform motion-safe:group-hover:translate-x-1"
+                  size={19}
+                />
               </span>
             </div>
           </Link>

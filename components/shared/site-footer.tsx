@@ -1,60 +1,88 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { brotherhoodLogoUrl } from "@/models/shared/assets";
 import { CurrentYear } from "@/components/shared/current-year";
 import { footerNavigation } from "@/models/shared/navigation";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[#111111] py-10 text-[#f4f0e6] md:py-12">
-      <div className="site-container flex flex-col justify-between gap-8 md:flex-row md:items-end">
-        <div className="flex items-start gap-4 sm:gap-5">
-          <span className="grid size-14 shrink-0 place-items-center sm:size-16">
-            <Image
-              alt="Emblema de la Hermandad de Cargadores de San Martín de Porres"
-              className="size-full object-contain"
-              height={1080}
-              quality={90}
-              src={brotherhoodLogoUrl}
-              width={1080}
-            />
-          </span>
-          <div>
-            <p className="max-w-md font-display text-lg leading-snug text-[#f4f0e6] sm:text-xl">
-              Hermandad de Cargadores de San Martín de Porres
-            </p>
-            <p className="mt-2 text-xs tracking-wide text-white/65">
-              Parroquia La Santa Cruz · Diócesis de Huacho
-            </p>
-            <p className="mt-4 text-xs text-[#b89b5e]">
-              ¡Somos parte de tu historia de amor!
-            </p>
-          </div>
+    <footer className="border-t border-clay/40 bg-ink pb-8 pt-14 text-paper sm:pt-20">
+      <div className="site-container grid gap-12 pb-12 md:grid-cols-[1.6fr_1fr_1fr] md:gap-14 sm:pb-16">
+        <div>
+          <Image
+            alt="Emblema de la Hermandad de Cargadores de San Martín de Porres"
+            className="size-20 object-contain"
+            height={80}
+            width={80}
+            sizes="80px"
+            src={brotherhoodLogoUrl}
+          />
+          <p className="mt-6 max-w-sm font-display text-xl leading-relaxed sm:text-2xl">
+            Hermandad de Cargadores de San Martín de Porres
+          </p>
+          <p className="mt-4 text-xs leading-6 text-paper/65">
+            Parroquia La Santa Cruz · Diócesis de Huacho
+            <br />
+            Cruz Blanca · Santa María, Huaura, Perú
+          </p>
         </div>
-        <nav
-          aria-label="Navegación del pie de página"
-          className="flex max-w-xl flex-wrap gap-x-5 gap-y-3 text-xs text-white/75"
-        >
-          {footerNavigation.map(({ href, label }) => (
-            <Link
-              className="inline-flex min-h-11 items-center text-sm transition-colors hover:text-[#b89b5e] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b89b5e]"
-              href={href}
-              key={href}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
+        <div>
+          <p className="border-b border-white/15 pb-4 text-[10px] uppercase tracking-[0.18em] text-paper/65">
+            Conoce la Hermandad
+          </p>
+          <nav
+            aria-label="Navegación del pie de página"
+            className="mt-3 grid grid-cols-2 gap-x-4 md:grid-cols-1"
+          >
+            {footerNavigation.map(({ href, label }) => (
+              <Link
+                className="inline-flex min-h-11 items-center text-xs text-paper/85 transition-colors hover:text-white hover:underline decoration-clay underline-offset-4"
+                href={href}
+                key={href}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+        <div>
+          <p className="border-b border-white/15 pb-4 text-[10px] uppercase tracking-[0.18em] text-paper/65">
+            Sigamos caminando juntos
+          </p>
+          <p className="mt-6 font-display text-xl leading-relaxed">
+            ¡Somos parte de tu historia de amor!
+          </p>
+          <Link
+            className="mt-6 inline-flex min-h-12 items-center justify-between gap-5 border-b border-clay text-xs text-paper"
+            href="/contacto"
+          >
+            Sé parte de la Hermandad{" "}
+            <ArrowUpRight aria-hidden="true" size={17} />
+          </Link>
+          <a
+            className="mt-6 flex min-h-11 items-center gap-3 text-xs text-paper/65 hover:text-paper"
+            href="https://web.facebook.com/hcsmpcb"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Facebook oficial <ArrowUpRight aria-hidden="true" size={13} />
+          </a>
+        </div>
       </div>
-      <div className="site-container mt-8 flex flex-col gap-3 border-t border-white/15 pt-5 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
+      <div className="site-container flex flex-col gap-4 border-t border-white/15 pt-7 text-[10px] leading-6 text-paper/65 sm:flex-row sm:items-center sm:justify-between">
         <p>
           © <CurrentYear /> Hermandad de Cargadores de San Martín de Porres.
           Todos los derechos reservados.
         </p>
-        <p>
-          Hecho con <span aria-label="amor">❤️</span> por{" "}
+        <p className="shrink-0">
+          Hecho con{" "}
+          <span aria-label="amor" className="text-paper">
+            ♡
+          </span>{" "}
+          por{" "}
           <a
-            className="font-medium text-[#f4f0e6] underline decoration-[#b89b5e]/70 underline-offset-4 transition-colors hover:text-[#b89b5e] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b89b5e]"
+            className="text-paper underline decoration-clay underline-offset-4"
             href="https://martinalonsonu.netlify.app/"
             rel="noreferrer"
             target="_blank"

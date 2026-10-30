@@ -8,24 +8,30 @@ import {
 
 export function BrotherhoodOverview() {
   return (
-    <div className="flex flex-col gap-12 sm:gap-14">
-      <section className="border-y border-line py-5 sm:py-7">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-clay-text">
+    <div className="flex flex-col gap-14 sm:gap-20">
+      <section className="relative overflow-hidden bg-ink p-7 text-paper sm:p-10">
+        <span
+          aria-hidden="true"
+          className="absolute -right-1 -top-4 font-display text-[12rem] leading-none text-paper/5"
+        >
+          ✝
+        </span>
+        <p className="relative text-[10px] font-semibold uppercase tracking-[0.2em] text-paper/65">
           Nuestra identidad
         </p>
-        <p className="mt-4 max-w-3xl font-display text-xl leading-relaxed sm:text-2xl">
+        <p className="relative mt-7 max-w-3xl font-display text-xl leading-relaxed tracking-[-0.02em] sm:text-2xl">
           Somos una institución de fieles laicos, que hace vida eclesial en la
           Parroquia La Santa Cruz, del barrio de Cruz Blanca, unida por la
           devoción a San Martín de Porres y una vida de fe, fraternidad y
           caridad.
         </p>
-        <p className="mt-4 text-sm leading-7 text-muted sm:text-sm sm:leading-7">
+        <p className="relative mt-8 border-t border-paper/20 pt-5 text-[10px] uppercase leading-6 tracking-[0.15em] text-paper/70">
           Diócesis de Huacho · Parroquia La Santa Cruz
         </p>
       </section>
 
       <section>
-        <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
+        <div className="grid gap-8 sm:grid-cols-3 sm:gap-6">
           {[
             [
               "Fe",
@@ -39,51 +45,61 @@ export function BrotherhoodOverview() {
               "Caridad",
               "El ejemplo de San Martín inspira cercanía y apostolado. Ver en el hermano a Cristo mismo.",
             ],
-          ].map(([title, detail]) => (
-            <article className="border-t border-clay/70 pt-3" key={title}>
-              <h2 className="font-display text-lg sm:text-xl">{title}</h2>
-              <p className="mt-2 text-sm leading-7 text-muted sm:text-sm">
-                {detail}
-              </p>
+          ].map(([title, detail], index) => (
+            <article className="border-t border-line pt-5" key={title}>
+              <span
+                aria-hidden="true"
+                className="text-xs font-medium tracking-widest text-clay-text"
+              >
+                0{index + 1}
+              </span>
+              <h2 className="mt-6 font-display text-2xl tracking-[-0.02em]">
+                {title}
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-muted">{detail}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="bg-mist/70 px-5 py-6 sm:px-7 sm:py-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-clay-text">
+      <section className="border-y border-line py-8 sm:py-10">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-clay-text">
           Una historia con dos referencias fundacionales
         </p>
-        <div className="mt-5 grid gap-5 sm:grid-cols-2">
+        <div className="mt-8 grid gap-8 sm:grid-cols-2 sm:gap-10">
           <div>
-            <p className="font-display text-2xl">5 nov 1974</p>
-            <p className="mt-1 text-sm leading-7 text-muted">
+            <p className="font-display text-3xl tracking-[-0.03em]">
+              5 nov 1974
+            </p>
+            <p className="mt-4 text-sm leading-7 text-muted">
               Fecha que aparece en el sello institucional más antiguo que se
               conserva en una carta institucional.
             </p>
           </div>
           <div>
-            <p className="font-display text-2xl">3 nov 1975</p>
-            <p className="mt-1 text-sm leading-7 text-muted">
+            <p className="font-display text-3xl tracking-[-0.03em]">
+              3 nov 1975
+            </p>
+            <p className="mt-4 text-sm leading-7 text-muted">
               Fecha fijada posteriormente como referencia institucional tras
               perderse los libros fundacionales y al ser requerido para el
               reconocimiento eclesial.
             </p>
           </div>
         </div>
-        <p className="mt-5 border-t border-line pt-4 text-sm leading-7 text-muted">
+        <p className="mt-8 bg-mist/60 p-5 text-xs leading-7 text-muted">
           Conservamos ambas fechas con su contexto y como parte de la riqueza de
           nuestra historia.
         </p>
       </section>
 
       <section>
-        <div className="mb-5 flex items-end justify-between gap-4">
+        <div className="mb-8 flex items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.15em] text-clay-text">
               Recorrido institucional
             </p>
-            <h2 className="mt-2 font-display text-2xl sm:text-3xl">
+            <h2 className="mt-3 font-display text-3xl tracking-[-0.03em] sm:text-4xl">
               Explora la sección
             </h2>
           </div>
@@ -96,15 +112,15 @@ export function BrotherhoodOverview() {
         <div className="divide-y divide-line border-y border-line">
           {sectionLinks.map((link) => (
             <Link
-              className="group grid min-h-20 grid-cols-[2rem_1fr_auto] items-center gap-3 py-4 sm:grid-cols-[3rem_1fr_auto] sm:gap-5"
+              className="group grid min-h-24 grid-cols-[2rem_1fr_auto] items-center gap-3 py-6 transition-colors hover:bg-mist/50 sm:grid-cols-[3rem_1fr_auto] sm:gap-5 sm:px-3"
               href={link.href}
               key={link.href}
             >
-              <span className="font-display text-sm text-clay-text">
+              <span className="font-display text-lg text-clay-text">
                 {link.number}
               </span>
               <span>
-                <span className="block font-display text-lg leading-snug group-hover:text-clay-text sm:text-xl">
+                <span className="block font-display text-lg leading-snug tracking-[-0.02em] group-hover:text-clay-text sm:text-2xl">
                   {link.title}
                 </span>
                 <span className="mt-1 block text-sm leading-6 text-muted">
@@ -121,8 +137,8 @@ export function BrotherhoodOverview() {
         </div>
       </section>
 
-      <section className="border-l-2 border-clay pl-4 sm:pl-5">
-        <p className="font-display text-xl leading-relaxed sm:text-2xl">
+      <section className="border-l-2 border-clay py-3 pl-6 sm:pl-8">
+        <p className="font-display text-2xl leading-relaxed tracking-[-0.025em] sm:text-3xl">
           “¡Somos parte de tu historia de amor!”
         </p>
       </section>
@@ -133,17 +149,20 @@ export function BrotherhoodOverview() {
 export function FoundersArchive() {
   return (
     <div className="flex flex-col gap-10 sm:gap-12">
-      <section className="border-y border-line">
+      <section className="grid gap-x-10 border-t border-line sm:grid-cols-2">
         {foundingFigures.map((figure, index) => (
           <article
-            className="grid gap-2 border-b border-line py-5 last:border-b-0 sm:grid-cols-[3rem_1fr] sm:gap-5 sm:py-6"
+            className="grid grid-cols-[2.5rem_1fr] items-start gap-4 border-b border-line py-8 sm:py-10"
             key={figure.id}
           >
-            <span className="font-display text-sm text-clay-text">
+            <span
+              aria-hidden="true"
+              className="font-display text-2xl text-clay-text"
+            >
               {String(index + 1).padStart(2, "0")}
             </span>
             <div>
-              <h2 className="font-display text-xl sm:text-2xl">
+              <h2 className="font-display text-xl leading-snug tracking-[-0.025em] sm:text-2xl">
                 {figure.name}
               </h2>
               <p className="mt-2 text-sm leading-7 text-muted sm:text-sm">
@@ -153,7 +172,7 @@ export function FoundersArchive() {
           </article>
         ))}
       </section>
-      <p className="text-sm leading-7 text-muted sm:text-sm sm:leading-7">
+      <p className="border-l-2 border-clay bg-mist/50 px-6 py-5 text-sm leading-7 text-muted">
         Debido a la pérdida de los documentos fundacionales y de los primeros
         años de nuestra historia, no tenemos un referencia completa de la nómina
         de hermanos fundadores. Poco a poco estamos reconstruyendo nuestra
@@ -165,32 +184,30 @@ export function FoundersArchive() {
 
 export function PresidentsArchive() {
   return (
-    <div className="flex flex-col gap-7 sm:gap-9">
-      <ol className="relative border-l border-line">
+    <div className="flex flex-col gap-8 sm:gap-10">
+      <ol className="border-t border-line">
         {presidencyReferences.map((reference) => (
           <li
-            className="relative pb-7 pl-6 last:pb-0 sm:pl-8"
+            className="grid gap-3 border-b border-line py-6 sm:grid-cols-[9rem_1fr] sm:gap-x-8 sm:py-8"
             key={reference.id}
           >
-            <span
-              aria-hidden="true"
-              className="absolute -left-[5px] top-1 size-[9px] rounded-full bg-clay ring-4 ring-paper"
-            />
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-clay-text">
+            <p className="pt-1 text-xs font-semibold uppercase leading-6 tracking-[0.1em] text-clay-text">
               {reference.date}
             </p>
-            <h2 className="mt-1 font-display text-xl sm:text-2xl">
-              {reference.name}
-            </h2>
-            {reference.context && (
-              <p className="mt-2 max-w-2xl text-sm leading-7 text-muted sm:text-sm">
-                {reference.context}
-              </p>
-            )}
+            <div>
+              <h2 className="font-display text-xl leading-snug tracking-[-0.025em] sm:text-2xl">
+                {reference.name}
+              </h2>
+              {reference.context && (
+                <p className="mt-2 max-w-2xl text-sm leading-7 text-muted sm:text-sm">
+                  {reference.context}
+                </p>
+              )}
+            </div>
           </li>
         ))}
       </ol>
-      <p className="border-t border-line pt-4 text-sm leading-7 text-muted sm:text-sm">
+      <p className="border-l-2 border-clay pl-6 font-display text-lg leading-8 text-muted sm:text-xl">
         Reconocer a quienes dirigieron nuestra institución es reconocer la
         riqueza de nuestra historia.
       </p>
