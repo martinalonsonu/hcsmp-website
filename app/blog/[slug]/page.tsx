@@ -114,7 +114,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
     <>
       <JsonLd data={articleStructuredData} />
       <article>
-        <header className="mx-auto w-[calc(100%-2rem)] max-w-4xl py-14 sm:w-[calc(100%-2.5rem)] sm:py-20 md:py-28">
+        <header className="mx-auto w-[calc(100%-2rem)] max-w-4xl pb-4 pt-14 sm:w-[calc(100%-2.5rem)] sm:py-20 md:py-28">
           <Link
             className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold text-forest-link hover:text-clay"
             href="/blog"

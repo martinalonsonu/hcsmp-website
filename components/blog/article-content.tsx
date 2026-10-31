@@ -44,7 +44,7 @@ const markdownComponents: Components = {
 
 export function ArticleContent({ content }: { content: string }) {
   return (
-    <div className="prose-news mt-10 max-w-[46rem] sm:mt-12">
+    <div className="prose-news max-w-[46rem] sm:mt-12 max-sm:[&>:first-child]:mt-0">
       <ReactMarkdown components={markdownComponents}>{content}</ReactMarkdown>
     </div>
   );

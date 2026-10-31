@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { assetUrl } from "@/models/shared/assets";
 import { HomeClosingSection } from "@/components/home/home-closing-section";
-import { HomeFestivitySection } from "@/components/home/home-festivity-section";
 import { HomeNewsSection } from "@/components/home/home-archive-sections";
 import { SectionCta } from "@/components/shared/section-cta";
 import {
@@ -211,8 +210,6 @@ export function HomeIdentitySections() {
           />
         </div>
       </section>
-
-      <HomeFestivitySection />
 
       <section
         className="bg-[#e9e3d8] py-10 text-[#111111] sm:py-16 md:py-24"

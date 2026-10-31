@@ -15,12 +15,12 @@ export function HomeFestivitySection() {
 
   return (
     <section
-      className="border-t border-line py-12 sm:py-16 md:py-20"
+      className="mt-6 border-t border-line bg-ink sm:mt-0 sm:bg-transparent sm:py-16 md:py-20"
       id="fiesta"
       aria-labelledby="home-festivity-title"
     >
-      <div className="site-container">
-        <div className="grid overflow-hidden border border-line bg-ink text-paper md:grid-cols-[1.05fr_0.95fr]">
+      <div className="site-container max-sm:w-full">
+        <div className="grid overflow-hidden bg-ink text-paper sm:border sm:border-line md:grid-cols-[1.05fr_0.95fr]">
           <div className="border-t-2 border-clay px-6 py-9 sm:p-10 lg:p-12">
             <p className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-paper/80 sm:text-xs">
               <span aria-hidden="true" className="h-px w-8 shrink-0 bg-clay" />
