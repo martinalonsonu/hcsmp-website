@@ -7,33 +7,35 @@ import { footerNavigation } from "@/models/shared/navigation";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-clay/40 bg-ink pb-8 pt-14 text-paper sm:pt-20">
-      <div className="site-container grid gap-12 pb-12 md:grid-cols-[1.6fr_1fr_1fr] md:gap-14 sm:pb-16">
-        <div>
+    <footer className="border-t border-clay/40 bg-ink pb-[calc(6rem+env(safe-area-inset-bottom))] pt-8 text-paper sm:pb-8 sm:pt-20">
+      <div className="site-container grid gap-6 pb-7 sm:gap-12 sm:pb-16 md:grid-cols-[1.6fr_1fr_1fr] md:gap-14">
+        <div className="flex items-start gap-3 sm:block">
           <Image
             alt="Emblema de la Hermandad de Cargadores de San Martín de Porres"
-            className="size-20 object-contain"
+            className="size-14 shrink-0 object-contain sm:size-20"
             height={80}
             width={80}
-            sizes="80px"
+            sizes="(min-width: 640px) 80px, 56px"
             src={brotherhoodLogoUrl}
           />
-          <p className="mt-6 max-w-sm font-display text-xl leading-relaxed sm:text-2xl">
-            Hermandad de Cargadores de San Martín de Porres
-          </p>
-          <p className="mt-4 text-xs leading-6 text-paper/65">
-            Parroquia La Santa Cruz · Diócesis de Huacho
-            <br />
-            Cruz Blanca · Santa María, Huaura, Perú
-          </p>
+          <div className="min-w-0">
+            <p className="max-w-sm font-display text-lg leading-snug sm:mt-6 sm:text-2xl sm:leading-relaxed">
+              Hermandad de Cargadores de San Martín de Porres
+            </p>
+            <p className="mt-2 text-xs leading-5 text-paper/65 sm:mt-4 sm:leading-6">
+              Parroquia La Santa Cruz · Diócesis de Huacho
+              <br />
+              Cruz Blanca · Santa María, Huaura, Perú
+            </p>
+          </div>
         </div>
         <div>
-          <p className="border-b border-white/15 pb-4 text-[10px] uppercase tracking-[0.18em] text-paper/65">
+          <p className="border-b border-white/15 pb-2 text-[10px] uppercase tracking-[0.18em] text-paper/65 sm:pb-4">
             Conoce la Hermandad
           </p>
           <nav
             aria-label="Navegación del pie de página"
-            className="mt-3 grid grid-cols-2 gap-x-4 md:grid-cols-1"
+            className="mt-2 grid grid-cols-2 gap-x-4 sm:mt-3 md:grid-cols-1"
           >
             {footerNavigation.map(({ href, label }) => (
               <Link
@@ -47,30 +49,32 @@ export function SiteFooter() {
           </nav>
         </div>
         <div>
-          <p className="border-b border-white/15 pb-4 text-[10px] uppercase tracking-[0.18em] text-paper/65">
+          <p className="border-b border-white/15 pb-2 text-[10px] uppercase tracking-[0.18em] text-paper/65 sm:pb-4">
             Sigamos caminando juntos
           </p>
-          <p className="mt-6 font-display text-xl leading-relaxed">
+          <p className="mt-3 font-display text-lg leading-snug sm:mt-6 sm:text-xl sm:leading-relaxed">
             ¡Somos parte de tu historia de amor!
           </p>
-          <Link
-            className="mt-6 inline-flex min-h-12 items-center justify-between gap-5 border-b border-clay text-xs text-paper"
-            href="/contacto"
-          >
-            Sé parte de la Hermandad{" "}
-            <ArrowUpRight aria-hidden="true" size={17} />
-          </Link>
-          <a
-            className="mt-6 flex min-h-11 items-center gap-3 text-xs text-paper/65 hover:text-paper"
-            href="https://web.facebook.com/hcsmpcb"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Facebook oficial <ArrowUpRight aria-hidden="true" size={13} />
-          </a>
+          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 sm:mt-0 sm:block">
+            <Link
+              className="inline-flex min-h-12 items-center justify-between gap-3 border-b border-clay text-xs text-paper sm:mt-6 sm:gap-5"
+              href="/contacto"
+            >
+              Sé parte de la Hermandad{" "}
+              <ArrowUpRight aria-hidden="true" size={17} />
+            </Link>
+            <a
+              className="flex min-h-11 items-center gap-2 text-xs text-paper/65 hover:text-paper sm:mt-6 sm:gap-3"
+              href="https://web.facebook.com/hcsmpcb"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Facebook oficial <ArrowUpRight aria-hidden="true" size={13} />
+            </a>
+          </div>
         </div>
       </div>
-      <div className="site-container flex flex-col gap-4 border-t border-white/15 pt-7 text-[10px] leading-6 text-paper/65 sm:flex-row sm:items-center sm:justify-between">
+      <div className="site-container flex flex-col gap-1 border-t border-white/15 pt-4 text-[10px] leading-5 text-paper/65 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:pt-7 sm:leading-6">
         <p>
           © <CurrentYear /> Hermandad de Cargadores de San Martín de Porres.
           Todos los derechos reservados.

@@ -85,14 +85,6 @@
     text-transform: uppercase;
   }
 
-  .eyebrow::before {
-    content: "";
-    width: 1.75rem;
-    height: 1px;
-    flex-shrink: 0;
-    background: var(--clay);
-  }
-
   .section-heading {
     font-family: var(--font-display-family), Georgia, serif;
     font-size: clamp(2rem, 3.8vw, 3.5rem);

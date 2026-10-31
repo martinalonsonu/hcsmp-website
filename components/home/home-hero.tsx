@@ -26,7 +26,7 @@ export function HomeHero() {
     <section
       aria-label="La Hermandad en imágenes"
       aria-roledescription="carrusel"
-      className="relative flex min-h-[32rem] items-end overflow-hidden rounded-b-3xl bg-[#111111] text-white sm:min-h-[36rem] lg:mx-4 lg:min-h-[min(640px,calc(100svh-5rem))]"
+      className="relative flex min-h-[30rem] items-end overflow-hidden rounded-b-3xl bg-[#111111] text-white sm:min-h-[36rem] lg:mx-4 lg:min-h-[min(640px,calc(100svh-5rem))]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onFocusCapture={() => setHasFocus(true)}

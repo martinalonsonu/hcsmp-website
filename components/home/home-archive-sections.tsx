@@ -93,20 +93,20 @@ export function HomeArchiveSections() {
       </section>
 
       <section
-        className="border-t border-line bg-mist/40 py-16 sm:py-20 md:py-28"
+        className="border-t border-line bg-mist/40 py-10 sm:py-20 md:py-28"
         id="junta-directiva"
       >
-        <div className="site-container grid items-start gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
-          <div>
-            <p className="eyebrow">Representación institucional</p>
-            <h2 className="section-heading mt-5">Junta Directiva</h2>
-            <p className="mt-6 max-w-sm text-sm leading-8 text-muted">
+        <div className="site-container grid items-start gap-6 sm:gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+          <div className="grid grid-cols-[auto_1fr] items-baseline gap-x-3 sm:block">
+            <p className="eyebrow col-span-2">Representación institucional</p>
+            <h2 className="section-heading mt-3 sm:mt-5">Junta Directiva</h2>
+            <p className="col-span-2 mt-3 max-w-sm text-sm leading-8 text-muted sm:mt-6">
               La Junta Directiva acompaña la vida y continuidad de la Hermandad
               durante el periodo 2026.
             </p>
             <p
               aria-hidden="true"
-              className="mt-8 font-display text-6xl text-clay-text sm:text-7xl"
+              className="col-start-2 row-start-2 font-display text-xl text-clay-text sm:mt-8 sm:text-7xl"
             >
               2026
             </p>
@@ -115,7 +115,7 @@ export function HomeArchiveSections() {
             <dl className="divide-y divide-line border-y border-line">
               {boardMembers.map((member) => (
                 <div
-                  className="grid gap-2 py-5 sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] sm:items-baseline sm:gap-7"
+                  className="grid gap-1 py-3 sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] sm:items-baseline sm:gap-7 sm:py-5"
                   key={member.id}
                 >
                   <dt className="text-[11px] font-medium uppercase leading-6 tracking-[0.1em] text-muted">

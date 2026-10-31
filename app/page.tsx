@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/json-ld";
 import { HomeArchiveSections } from "@/components/home/home-archive-sections";
 import { HomeBrotherhoodSection } from "@/components/home/home-brotherhood-section";
+import { HomeFestivitySection } from "@/components/home/home-festivity-section";
 import { HomeHero } from "@/components/home/home-hero";
 import { HomeIdentitySections } from "@/components/home/home-identity-sections";
 import { ScrollRevealSections } from "@/components/shared/scroll-reveal-sections";
@@ -59,6 +60,7 @@ export default function HomePage() {
       <JsonLd data={homeStructuredData} />
       <HomeHero />
       <ScrollRevealSections>
+        <HomeFestivitySection />
         <HomeBrotherhoodSection />
         <HomeIdentitySections />
         <HomeArchiveSections />
